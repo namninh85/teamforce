@@ -1,0 +1,15 @@
+com\ruubel\service\UserDetailsServiceImpl.class
+com\ruubel\api\ApiUserController$1.class
+com\ruubel\config\SimpleCORSFilter.class
+com\ruubel\api\ApiUserController.class
+com\ruubel\Application.class
+com\ruubel\model\Role.class
+com\ruubel\service\UserService.class
+com\ruubel\config\ResourceServerConfiguration.class
+com\ruubel\config\WebSecurityConfiguration.class
+com\ruubel\repository\RoleRepository.class
+com\ruubel\config\AuthorizationServerConfiguration.class
+com\ruubel\repository\UserRepository.class
+com\ruubel\service\RoleService.class
+com\ruubel\config\AppConfig.class
+com\ruubel\model\User.class
