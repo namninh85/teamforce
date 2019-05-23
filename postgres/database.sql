@@ -110,3 +110,134 @@ CREATE TABLE user_role
       REFERENCES public.userdb (id) MATCH SIMPLE
       ON UPDATE NO ACTION ON DELETE NO ACTION
 );
+
+
+CREATE TABLE product(
+   product_id serial,
+   name varchar(250),
+   description text,
+   is_active boolean,
+   is_deleted boolean,
+   PRIMARY KEY(product_id)
+);
+
+CREATE TABLE product_category(
+   product_category_id serial,
+   name varchar(250),
+   parent_id int,
+   description boolean,
+   is_active boolean,
+   is_deleted boolean,
+   PRIMARY KEY(product_category_id)
+);
+
+CREATE TABLE price(
+   price_id serial,
+   product_id int,
+   value decimal,
+   start_date bigint,
+   end_date bigint,
+   is_active boolean,
+   is_deleted boolean,
+   PRIMARY KEY(price_id)
+);
+
+CREATE TABLE store(
+   store_id serial,
+   name varchar(250),
+   street varchar(250),
+   district varchar(250),
+   city varchar(250),
+   position_map varchar(250),
+   is_active boolean,
+   is_deleted boolean,
+   PRIMARY KEY(store_id)
+);
+
+CREATE TABLE product_in_store(
+   product_id int,
+   store_id int,
+   stock_amount int,
+   is_active boolean,
+   is_deleted boolean,
+   PRIMARY KEY(store_id)
+);
+
+CREATE TABLE customer(
+   customer_id int,
+   first_name varchar(250),
+   last_name varchar(250),
+   email varchar(250),
+   phone varchar(250),
+   lang varchar(250),
+   total_point int,
+   total_voucher int,
+   is_active boolean,
+   is_deleted boolean,
+   PRIMARY KEY(customer_id)
+);
+
+
+CREATE TABLE customer_like_product(
+   customer_id int,
+   product_id int
+);
+
+CREATE TABLE voucher(
+   voucher_id serial,
+   value decimal,
+   description text,
+   is_active boolean,
+   is_deleted boolean,
+   PRIMARY KEY(voucher_id)
+);
+
+CREATE TABLE voucher_code(
+   voucher_code_id serial,
+   voucher_id int,
+   voucher_code varchar(250),
+   is_active boolean,
+   is_deleted boolean,
+   PRIMARY KEY(voucher_code_id)
+);
+
+CREATE TABLE loyalty_program(
+   loyalty_program_id serial,
+   voucher_id int,
+   start_date bigint,
+   end_date bigint,
+   is_active boolean,
+   is_deleted boolean,
+   PRIMARY KEY(loyalty_program_id)
+);
+
+CREATE TABLE customer_rewards_log(
+   customer_rewards_log_id serial,
+   customer_id int,
+   point_burn_earn int,
+   loyalty_program_id int,
+   voucher_code_id int,
+   reward_date bigint,
+   is_active boolean,
+   is_deleted boolean,
+   PRIMARY KEY(customer_rewards_log_id)
+);
+
+CREATE TABLE customer_has_voucher(
+   customer_has_voucher_id serial,
+   customer_id int,
+   voucher_code_id int,
+   received_date bigint,
+   expired_date bigint,
+   is_active boolean,
+   is_deleted boolean,
+   PRIMARY KEY(customer_has_voucher_id)
+);
+
+CREATE TABLE history_log(
+   history_log_id serial,
+   date bigint,
+   table_name varchar(250),
+   content_log text,
+   PRIMARY KEY(history_log_id)
+);
