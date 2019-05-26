@@ -1,3 +1,4 @@
+* ASCII text
 create table oauth_client_details (
   client_id VARCHAR(255) PRIMARY KEY,
   resource_ids VARCHAR(255),
