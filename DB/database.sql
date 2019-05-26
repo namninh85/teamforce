@@ -1,4 +1,3 @@
-* ASCII text
 create table oauth_client_details (
   client_id VARCHAR(255) PRIMARY KEY,
   resource_ids VARCHAR(255),
@@ -115,6 +114,7 @@ CREATE TABLE user_role
 
 CREATE TABLE product(
    product_id serial,
+   code varchar(250),
    name varchar(250),
    description text,
    is_active boolean,
@@ -124,12 +124,20 @@ CREATE TABLE product(
 
 CREATE TABLE product_category(
    product_category_id serial,
+   code varchar(250),
    name varchar(250),
    parent_id int,
    description boolean,
    is_active boolean,
    is_deleted boolean,
    PRIMARY KEY(product_category_id)
+);
+
+CREATE TABLE product_in_pd_category(
+   pipc_id serial,
+   product_id int,
+   product_category_id int,
+   PRIMARY KEY(pipc_id)
 );
 
 CREATE TABLE price(
@@ -171,6 +179,7 @@ CREATE TABLE customer(
    email varchar(250),
    phone varchar(250),
    lang varchar(250),
+   qrcode text,
    total_point int,
    total_voucher int,
    is_active boolean,
