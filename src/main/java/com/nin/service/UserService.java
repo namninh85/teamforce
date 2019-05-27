@@ -1,7 +1,9 @@
 package com.nin.service;
 
+import com.nin.model.Customer;
 import com.nin.model.Role;
 import com.nin.model.User;
+import com.nin.repository.CustomerRepository;
 import com.nin.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
@@ -18,12 +20,14 @@ public class UserService {
     private static String ROLE_USER = "ROLE_USER";
 
     private UserRepository userRepository;
+    private CustomerRepository customerRepository;
     private PasswordEncoder passwordEncoder;
     private RoleService roleService;
 
     @Autowired
-    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder, RoleService roleService) {
+    public UserService(UserRepository userRepository, CustomerRepository customerRepository, PasswordEncoder passwordEncoder, RoleService roleService) {
         this.userRepository = userRepository;
+        this.customerRepository = customerRepository;
         this.passwordEncoder = passwordEncoder;
         this.roleService = roleService;
     }
@@ -66,5 +70,9 @@ public class UserService {
 
     public User findByEmail(String email) {
         return userRepository.findByEmail(email);
+    }
+    
+    public Customer findCustomerByEmail(String email) {
+        return customerRepository.findByEmail(email);
     }
 }

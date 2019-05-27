@@ -251,3 +251,11 @@ CREATE TABLE history_log(
    content_log text,
    PRIMARY KEY(history_log_id)
 );
+
+-- 2019/05/28: update customer
+
+ALTER TABLE customer ADD COLUMN interested_fields character varying(250),
+ADD COLUMN address character varying(250),
+ADD COLUMN avartar_img text,
+ADD COLUMN banner_header_img text,
+ADD COLUMN qrcode_img text;

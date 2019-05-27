@@ -1,5 +1,6 @@
 package com.nin.api;
 
+import com.nin.model.Customer;
 import com.nin.model.User;
 import com.nin.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,11 +28,16 @@ public class ApiUserController {
     public ResponseEntity<Map<String, Object>> userDetails() {
 
         User currentUser = userService.getCurrentUser();
+        Customer aTest = userService.findCustomerByEmail(currentUser.getEmail());
 
         Map<String, Object> out = new HashMap<String, Object>() {{
             put("id", currentUser.getId());
             put("email", currentUser.getEmail());
+            put("address", aTest.getAddress());
         }};
+        
+        
+        
 
         return new ResponseEntity<>(out, HttpStatus.OK);
     }
