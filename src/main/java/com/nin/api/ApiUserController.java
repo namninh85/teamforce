@@ -28,12 +28,14 @@ public class ApiUserController {
     public ResponseEntity<Map<String, Object>> userDetails() {
 
         User currentUser = userService.getCurrentUser();
-        Customer aTest = userService.findCustomerByEmail(currentUser.getEmail());
+        Customer aCustomer = userService.findCustomerByEmail(currentUser.getEmail());
 
         Map<String, Object> out = new HashMap<String, Object>() {{
             put("id", currentUser.getId());
             put("email", currentUser.getEmail());
-            put("address", aTest.getAddress());
+            if(aCustomer != null){
+                put("address", aCustomer.getAddress());
+            }            
         }};
         
         
