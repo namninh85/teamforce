@@ -259,3 +259,10 @@ ADD COLUMN address character varying(250),
 ADD COLUMN avartar_img text,
 ADD COLUMN banner_header_img text,
 ADD COLUMN qrcode_img text;
+
+
+-- 2019/05/29: update customer (total_offer, is_deleted)
+ALTER TABLE customer ADD COLUMN total_offer int;
+ALTER TABLE customer ALTER COLUMN is_deleted
+SET DEFAULT 'FALSE';
+
