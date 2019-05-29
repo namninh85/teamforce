@@ -39,6 +39,7 @@ public class LoginController {
 	@Autowired
 	private TokenStore tokenStore;
 
+	@Autowired
 	private UserService userService;
 
 	@PostMapping("/login")
