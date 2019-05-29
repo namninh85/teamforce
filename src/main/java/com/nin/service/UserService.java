@@ -42,6 +42,10 @@ public class UserService {
         }
         return null;
     }
+    
+    public Customer createOrUpdateCustomer(Customer customer) {
+    	return customerRepository.save(customer);
+    }
 
     private void addRoleToUser(User user, String roleStr) {
         Role role = roleService.findByRole(roleStr);
