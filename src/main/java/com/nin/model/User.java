@@ -57,4 +57,11 @@ public class User {
     public boolean isActive() {
         return active;
     }
+
+	public Instant getCreated() {
+		return created;
+	}
+
+	    
+    
 }

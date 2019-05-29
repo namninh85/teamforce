@@ -72,7 +72,7 @@ public class UserService {
         return userRepository.findByEmail(email);
     }
     
-    public Customer findCustomerByEmail(String email) {
-        return customerRepository.findByEmail(email);
+    public Customer findByCustomerIdAndEmail(long customerId, String email) {
+    	return customerRepository.findByCustomerIdAndEmail(customerId, email);
     }
 }

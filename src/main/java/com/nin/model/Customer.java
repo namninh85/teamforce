@@ -9,8 +9,13 @@ import javax.persistence.Table;
 @Table(name = "customer")
 public class Customer implements java.io.Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -8963700376471819016L;
+
 	@Id
-	private int customerId;
+	private long customerId;
 	
 	private String firstName;
 	private String lastName;
@@ -18,8 +23,9 @@ public class Customer implements java.io.Serializable {
 	private String phone;
 	private String lang;
 	private Integer totalVoucher;
-	private Boolean isActive;
-	private Boolean isDeleted;
+	private Integer totalPoint;
+	private Integer totalOffer;
+	private boolean isActive;
 	private String interestedFields;
 	private String address;
 	private String avartarImg;
@@ -34,7 +40,7 @@ public class Customer implements java.io.Serializable {
 	}
 
 	public Customer(int customerId, String firstName, String lastName, String email, String phone, String lang,
-			Integer totalVoucher, Boolean isActive, Boolean isDeleted, String interestedFields, String address,
+			Integer totalVoucher, Boolean isActive, String interestedFields, String address,
 			String avartarImg, String bannerHeaderImg, String qrcodeImg) {
 		this.customerId = customerId;
 		this.firstName = firstName;
@@ -44,7 +50,7 @@ public class Customer implements java.io.Serializable {
 		this.lang = lang;
 		this.totalVoucher = totalVoucher;
 		this.isActive = isActive;
-		this.isDeleted = isDeleted;
+		
 		this.interestedFields = interestedFields;
 		this.address = address;
 		this.avartarImg = avartarImg;
@@ -52,11 +58,11 @@ public class Customer implements java.io.Serializable {
 		this.qrcodeImg = qrcodeImg;
 	}
 
-	public int getCustomerId() {
+	public long getCustomerId() {
 		return this.customerId;
 	}
 
-	public void setCustomerId(int customerId) {
+	public void setCustomerId(long customerId) {
 		this.customerId = customerId;
 	}
 
@@ -101,27 +107,44 @@ public class Customer implements java.io.Serializable {
 	}
 
 	public Integer getTotalVoucher() {
+		if(this.totalVoucher == null) {
+			return 0;
+		}
 		return this.totalVoucher;
 	}
 
 	public void setTotalVoucher(Integer totalVoucher) {
 		this.totalVoucher = totalVoucher;
 	}
-
-	public Boolean getIsActive() {
-		return this.isActive;
+	
+	public Integer getTotalPoint() {
+		if(this.totalPoint == null) {
+			return 0;
+		}
+		return this.totalPoint;
 	}
 
-	public void setIsActive(Boolean isActive) {
+	public void setTotalPoint(Integer totalPoint) {
+		this.totalPoint = totalPoint;
+	}
+
+	public Integer getTotalOffer() {
+		if(this.totalOffer == null) {
+			return 0;
+		}
+		return totalOffer;
+	}
+
+	public void setTotalOffer(Integer totalOffer) {
+		this.totalOffer = totalOffer;
+	}
+
+	public boolean isActive() {
+		return isActive;
+	}
+
+	public void setActive(boolean isActive) {
 		this.isActive = isActive;
-	}
-
-	public Boolean getIsDeleted() {
-		return this.isDeleted;
-	}
-
-	public void setIsDeleted(Boolean isDeleted) {
-		this.isDeleted = isDeleted;
 	}
 
 	public String getInterestedFields() {
