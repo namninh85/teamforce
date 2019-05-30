@@ -77,7 +77,12 @@ public class ApiUserController {
 					if (!StringUtils.isEmpty(interestedFields)) {
 						String[] ary = interestedFields.split(",");
 						for (int i = 0; i < ary.length; i++) {
-							InterestedField field = InterestedField.valueOf("_" + ary[i]);
+							InterestedField field = null;
+							try {
+								field = InterestedField.valueOf("_" + ary[i]);
+							}
+							catch(Exception e) {
+							}
 							if (field != null) {
 								Map<String, Object> interestedFieldObj = new HashMap<String, Object>();
 								interestedFieldObj.put("value", Integer.parseInt(ary[i]));
@@ -141,7 +146,7 @@ public class ApiUserController {
 
 		if (profileDTO.get("interestedFields") != null) {
 			String myNum = profileDTO.get("interestedFields").toString() ;
-			String joined = myNum.replace("[", "").replace("]", "");
+			String joined = myNum.replace("[", "").replace("]", "").replace(" ", "");
 			aCustomer.setInterestedFields(joined);
 		}
 
@@ -157,7 +162,7 @@ public class ApiUserController {
 	}
 
 	private String generateQRCode(long customerId, String email, String firstName) {
-		String q = "CustomerId: " + customerId + " /n " + "email: " + email + " /n " + "FirstName: " + firstName;
+		String q = "CustomerId: " + customerId + " ||| " + "email: " + email + " ||| " + "FirstName: " + firstName;
 		String url = null;
 		try {
 			url = "http://chart.apis.google.com/chart?cht=qr&chs=300x300&chl=" + URLEncoder.encode(q, "UTF-8");
