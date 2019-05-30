@@ -11,7 +11,7 @@ public class ProfileDTO {
 	String language;
 	String avatarImage;
 	String bannerHeaderImage;
-	ArrayList<Interert> interestedFields;
+	List<Interert> interestedFields;
 	
 
 	public String getPhone() {
@@ -54,22 +54,25 @@ public class ProfileDTO {
 		this.bannerHeaderImage = bannerHeaderImage;
 	}
 
-	public ArrayList<Interert> getInterestedFields() {
+	public List<Interert> getInterestedFields() {
 		return interestedFields;
 	}
 
-	public void setInterestedFields(ArrayList<Interert> interestedFields) {
+	public void setInterestedFields(List<Interert> interestedFields) {
 		this.interestedFields = interestedFields;
 	}
 
 	public String getStringInterestedFields() {
-		List<String> interests = new ArrayList<String>();
-		for (Interert interert : this.interestedFields) {
-			interests.add(interert.getValue());
+		if(this.interestedFields != null && this.interestedFields.size() > 0) {
+			List<String> interests = new ArrayList<String>();
+			for (Interert interert : this.interestedFields) {
+				interests.add(interert.getValue());
+			}
+			if (interests.size() > 0) {
+				return StringUtils.join(interests, ",");
+			}
 		}
-		if (interests.size() > 0) {
-			return StringUtils.join(interests, ",");
-		}
+		
 		return "";
 	}
 

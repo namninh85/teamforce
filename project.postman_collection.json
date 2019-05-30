@@ -1,140 +1,294 @@
 {
-	"info": {
-		"_postman_id": "a135896f-5a07-4275-bbb7-eaeb270adac6",
-		"name": "project",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
-	},
-	"item": [
+	"id": "19341432-c7bd-b1f7-b087-51fefc7bc43e",
+	"name": "project",
+	"description": "",
+	"order": [
+		"b0759ea2-93c8-b8be-5314-2d2cd5ed9e0b",
+		"c524640d-795a-b09a-11bd-2dd7f8d35739",
+		"4e45c5dc-7325-8cef-e1fe-b5d0fdb3d6ce",
+		"d6fc8f94-44cc-c3cf-994f-a789c6ef22c3",
+		"e036b178-e939-add0-5e13-c2249a2ee707",
+		"956e8486-e6bd-8f4a-0aed-737f31904acd",
+		"00bc0a2d-67ce-d8ae-1aa3-4f0fafcc13fc",
+		"202c7efb-ee2f-c7fd-b3f0-cfb9fa3272ae"
+	],
+	"folders": [],
+	"folders_order": [],
+	"timestamp": 0,
+	"owner": 0,
+	"public": false,
+	"requests": [
 		{
-			"name": "token",
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"name": "Content-Type",
-						"value": "application/x-www-form-urlencoded",
-						"type": "text"
-					},
-					{
-						"key": "Authorization",
-						"value": "Basic cHJvamVjdF9jbGllbnQ6cHJvamVjdF9wYXNz",
-						"type": "text"
-					},
-					{
-						"key": "Accept",
-						"value": "application/json",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "urlencoded",
-					"urlencoded": [
-						{
-							"key": "password",
-							"value": "password",
-							"type": "text"
-						},
-						{
-							"key": "username",
-							"value": "email@email.com",
-							"type": "text"
-						},
-						{
-							"key": "grant_type",
-							"value": "password",
-							"type": "text"
-						},
-						{
-							"key": "scope",
-							"value": "read write",
-							"type": "text"
-						}
-					]
-				},
-				"url": {
-					"raw": "http://localhost:8080/oauth/token",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"oauth",
-						"token"
-					]
-				},
-				"description": "Get a token"
-			},
-			"response": []
-		},
-		{
-			"name": "http://localhost:8080/oauth/check_token",
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"name": "Content-Type",
-						"value": "application/x-www-form-urlencoded",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "urlencoded",
-					"urlencoded": [
-						{
-							"key": "token",
-							"value": "77f12d42-e002-4064-9d05-44758edad34e",
-							"type": "text"
-						}
-					]
-				},
-				"url": {
-					"raw": "http://localhost:8080/oauth/check_token",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"oauth",
-						"check_token"
-					]
+			"id": "00bc0a2d-67ce-d8ae-1aa3-4f0fafcc13fc",
+			"headers": "Authorization: Bearer a08249f3-f714-48c5-873d-c59d1c0a8353\n",
+			"headerData": [
+				{
+					"key": "Authorization",
+					"value": "Bearer a08249f3-f714-48c5-873d-c59d1c0a8353",
+					"description": "",
+					"enabled": true
 				}
-			},
-			"response": []
+			],
+			"url": "http://localhost:8080/api/v1/user/profile",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "GET",
+			"data": [],
+			"dataMode": "raw",
+			"version": 2,
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1559175277383,
+			"name": "http://localhost:8080/api/v1/user/profile",
+			"description": "",
+			"collectionId": "19341432-c7bd-b1f7-b087-51fefc7bc43e",
+			"responses": [],
+			"rawModeData": ""
 		},
 		{
+			"id": "202c7efb-ee2f-c7fd-b3f0-cfb9fa3272ae",
+			"headers": "Authorization: Bearer a08249f3-f714-48c5-873d-c59d1c0a8353\nContent-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Authorization",
+					"value": "Bearer a08249f3-f714-48c5-873d-c59d1c0a8353",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:8080/api/v1/user/profile",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "POST",
+			"data": [],
+			"dataMode": "raw",
+			"version": 2,
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1559176214450,
+			"name": "Creat profile",
+			"description": "",
+			"collectionId": "19341432-c7bd-b1f7-b087-51fefc7bc43e",
+			"responses": [],
+			"rawModeData": "{\n        \"firstName\": \"Yummy\",\n        \"lastName\": \"Nguyen 2\",\n        \"phone\": \"+84 779 291 669\",\n        \"lang\": \"en\",\n        \"totalVoucher\": 8,\n        \"totalPoint\": 0,\n        \"totalOffer\": 0,\n    \t\"address\": \"bbbaba 33\",\n        \"avatarImage\": null,\n        \"bannerHeaderImage\": null,\n        \"interestedFields\": [0,1]\n        \n    }"
+		},
+		{
+			"id": "4e45c5dc-7325-8cef-e1fe-b5d0fdb3d6ce",
+			"headers": "Authorization: Bearer 503c43f3-5580-4871-a37f-5ceaebed8df4\n",
+			"headerData": [
+				{
+					"key": "Authorization",
+					"value": "Bearer 503c43f3-5580-4871-a37f-5ceaebed8df4",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:8080/api/v1/user",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "GET",
+			"data": [],
+			"dataMode": "raw",
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1558648999997,
 			"name": "http://localhost:8080/api/v1/user",
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "Authorization",
-						"value": "Bearer 77f12d42-e002-4064-9d05-44758edad34e",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
-				"url": {
-					"raw": "http://localhost:8080/api/v1/user",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"api",
-						"v1",
-						"user"
-					]
+			"description": "",
+			"collectionId": "19341432-c7bd-b1f7-b087-51fefc7bc43e",
+			"responses": [],
+			"rawModeData": ""
+		},
+		{
+			"id": "956e8486-e6bd-8f4a-0aed-737f31904acd",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
 				}
-			},
-			"response": []
+			],
+			"url": "http://localhost:8080/auth/login-create",
+			"queryParams": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"preRequestScript": null,
+			"method": "POST",
+			"collectionId": "19341432-c7bd-b1f7-b087-51fefc7bc43e",
+			"data": [],
+			"dataMode": "raw",
+			"name": "http://localhost:8080/auth/login-create",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1559172827188,
+			"version": 2,
+			"responses": [],
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"rawModeData": "{\r\n\"username\": \"email2@email.com\",\r\n\"password\": \"password\"\r\n}\r\n"
+		},
+		{
+			"id": "b0759ea2-93c8-b8be-5314-2d2cd5ed9e0b",
+			"name": "token",
+			"description": "Get a token",
+			"collectionId": "19341432-c7bd-b1f7-b087-51fefc7bc43e",
+			"method": "POST",
+			"headers": "Content-Type: application/x-www-form-urlencoded\nAuthorization: Basic cHJvamVjdF9jbGllbnQ6cHJvamVjdF9wYXNz\nAccept: application/json",
+			"dataMode": "urlencoded",
+			"data": [
+				{
+					"key": "password",
+					"value": "password",
+					"type": "text"
+				},
+				{
+					"key": "username",
+					"value": "email@email.com",
+					"type": "text"
+				},
+				{
+					"key": "grant_type",
+					"value": "password",
+					"type": "text"
+				},
+				{
+					"key": "scope",
+					"value": "read write",
+					"type": "text"
+				}
+			],
+			"rawModeData": "",
+			"url": "http://localhost:8080/oauth/token",
+			"responses": [],
+			"pathVariableData": [],
+			"queryParams": [],
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"name": "Content-Type",
+					"value": "application/x-www-form-urlencoded",
+					"type": "text"
+				},
+				{
+					"key": "Authorization",
+					"value": "Basic cHJvamVjdF9jbGllbnQ6cHJvamVjdF9wYXNz",
+					"type": "text"
+				},
+				{
+					"key": "Accept",
+					"value": "application/json",
+					"type": "text"
+				}
+			],
+			"collection_id": "19341432-c7bd-b1f7-b087-51fefc7bc43e"
+		},
+		{
+			"id": "c524640d-795a-b09a-11bd-2dd7f8d35739",
+			"name": "http://localhost:8080/oauth/check_token",
+			"description": "",
+			"collectionId": "19341432-c7bd-b1f7-b087-51fefc7bc43e",
+			"method": "POST",
+			"headers": "Content-Type: application/x-www-form-urlencoded",
+			"dataMode": "urlencoded",
+			"data": [
+				{
+					"key": "token",
+					"value": "77f12d42-e002-4064-9d05-44758edad34e",
+					"type": "text"
+				}
+			],
+			"rawModeData": "",
+			"url": "http://localhost:8080/oauth/check_token",
+			"responses": [],
+			"pathVariableData": [],
+			"queryParams": [],
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"name": "Content-Type",
+					"value": "application/x-www-form-urlencoded",
+					"type": "text"
+				}
+			],
+			"collection_id": "19341432-c7bd-b1f7-b087-51fefc7bc43e"
+		},
+		{
+			"id": "d6fc8f94-44cc-c3cf-994f-a789c6ef22c3",
+			"headers": "Authorization: Bearer cc35728f-f446-4da0-b7f3-a4024685989a\n",
+			"headerData": [
+				{
+					"key": "Authorization",
+					"value": "Bearer cc35728f-f446-4da0-b7f3-a4024685989a",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:8080/auth/logout",
+			"queryParams": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"preRequestScript": null,
+			"method": "GET",
+			"collectionId": "19341432-c7bd-b1f7-b087-51fefc7bc43e",
+			"data": null,
+			"dataMode": "params",
+			"name": "http://localhost:8080/auth/logout",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1558768672868,
+			"version": 2,
+			"responses": [],
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {}
+		},
+		{
+			"id": "e036b178-e939-add0-5e13-c2249a2ee707",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:8080/auth/login",
+			"queryParams": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"preRequestScript": null,
+			"method": "POST",
+			"collectionId": "19341432-c7bd-b1f7-b087-51fefc7bc43e",
+			"data": [],
+			"dataMode": "raw",
+			"name": "http://localhost:8080/auth/login",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1558769050533,
+			"version": 2,
+			"responses": [],
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"rawModeData": "{\r\n\"username\": \"email@email.com\",\r\n\"password\": \"password2\"\r\n}\r\n"
 		}
 	]
 }

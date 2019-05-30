@@ -1,6 +1,7 @@
 package com.nin.api;
 
 import java.io.UnsupportedEncodingException;
+import java.lang.reflect.Array;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -12,6 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -93,7 +95,7 @@ public class ApiUserController {
 	}
 
 	@PostMapping("/profile")
-	public ResponseEntity<Map<String, Object>> updateProfile(ProfileDTO profileDTO) {
+	public ResponseEntity<Map<String, Object>> updateProfile(@RequestBody Map<String, Object> profileDTO) {
 
 		User currentUser = userService.getCurrentUser();
 		Customer customerDB = userService.findByCustomerIdAndEmail(currentUser.getId(), currentUser.getEmail());
@@ -105,27 +107,42 @@ public class ApiUserController {
 		aCustomer.setCustomerId(currentUser.getId());
 		aCustomer.setEmail(currentUser.getEmail());
 
-		if (profileDTO.getPhone() != null) {
-			aCustomer.setPhone(profileDTO.getPhone());
+		if (profileDTO.get("firstName") != null) {
+			aCustomer.setFirstName(profileDTO.get("firstName").toString());
 		}
-		if (profileDTO.getAddress() != null) {
-			aCustomer.setAddress(profileDTO.getAddress());
+		
+		if (profileDTO.get("lastName") != null) {
+			aCustomer.setLastName(profileDTO.get("lastName").toString());
+		}
+		
+		
+		if (profileDTO.get("phone") != null) {
+			aCustomer.setPhone(profileDTO.get("phone").toString());
+		}
+		
+		if (profileDTO.get("phone") != null) {
+			aCustomer.setPhone(profileDTO.get("phone").toString());
+		}
+		if (profileDTO.get("address") != null) {
+			aCustomer.setAddress(profileDTO.get("address").toString());
 		}
 
-		if (profileDTO.getLanguage() != null) {
-			aCustomer.setLang(profileDTO.getLanguage());
+		if (profileDTO.get("lang") != null) {
+			aCustomer.setLang(profileDTO.get("lang").toString());
 		}
 
-		if (profileDTO.getAvatarImage() != null) {
-			aCustomer.setAvartarImg(profileDTO.getAvatarImage());
+		if (profileDTO.get("avatarImage") != null) {
+			aCustomer.setAvartarImg(profileDTO.get("avatarImage").toString());
 		}
 
-		if (profileDTO.getBannerHeaderImage() != null) {
-			aCustomer.setBannerHeaderImg(profileDTO.getBannerHeaderImage());
+		if (profileDTO.get("bannerHeaderImage") != null) {
+			aCustomer.setBannerHeaderImg(profileDTO.get("bannerHeaderImage").toString());
 		}
 
-		if (profileDTO.getInterestedFields() != null) {
-			aCustomer.setInterestedFields(profileDTO.getStringInterestedFields());
+		if (profileDTO.get("interestedFields") != null) {
+			String myNum = profileDTO.get("interestedFields").toString() ;
+			String joined = myNum.replace("[", "").replace("]", "");
+			aCustomer.setInterestedFields(joined);
 		}
 
 		if (StringUtils.isEmpty(aCustomer.getQrcodeImg())) {
