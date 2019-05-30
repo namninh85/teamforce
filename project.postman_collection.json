@@ -148,7 +148,7 @@
 			"auth": null,
 			"events": null,
 			"folder": null,
-			"rawModeData": "{\n        \"firstName\": \"Yummy\",\n        \"lastName\": \"Nguyen 2\",\n        \"phone\": \"+84 779 291 669\",\n        \"lang\": \"en\",\n        \"totalVoucher\": 8,\n        \"totalPoint\": 0,\n        \"totalOffer\": 0,\n    \t\"address\": \"bbbaba 33\",\n        \"avatarImage\": null,\n        \"bannerHeaderImage\": null,\n        \"interestedFields\": [0,1]\n        \n    }",
+			"rawModeData": "{\n        \"firstName\": \"Yummy\",\n        \"lastName\": \"Nguyen 2\",\n        \"phone\": \"+84 779 291 669\",\n        \"lang\": \"en\",\n        \"address\": \"bbbaba 33\",\n        \"interestedFields\": [0,1]\n        \n    }",
 			"headers": "Authorization: Bearer 5e58dcc2-184d-4237-8843-4d3553ed63ae\nContent-Type: application/json\n",
 			"pathVariables": {}
 		},
