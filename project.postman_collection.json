@@ -1,60 +1,137 @@
 {
-	"id": "19341432-c7bd-b1f7-b087-51fefc7bc43e",
+	"id": "901d1255-bd9c-489f-aa8d-175f401d0f96",
 	"name": "project",
 	"description": "",
+	"auth": null,
+	"events": null,
+	"variables": [],
 	"order": [
-		"b0759ea2-93c8-b8be-5314-2d2cd5ed9e0b",
-		"c524640d-795a-b09a-11bd-2dd7f8d35739",
-		"4e45c5dc-7325-8cef-e1fe-b5d0fdb3d6ce",
-		"d6fc8f94-44cc-c3cf-994f-a789c6ef22c3",
-		"e036b178-e939-add0-5e13-c2249a2ee707",
-		"956e8486-e6bd-8f4a-0aed-737f31904acd",
-		"00bc0a2d-67ce-d8ae-1aa3-4f0fafcc13fc",
-		"202c7efb-ee2f-c7fd-b3f0-cfb9fa3272ae"
+		"d6257039-f7b1-43f3-86b0-372441bcb6f2",
+		"9c537453-efbf-4408-ac7a-b50a25f61725",
+		"b2de475c-849c-4b77-afe2-eb980aabaad9",
+		"b76b22b5-7b34-4045-b9f2-d405a54e666a",
+		"f0fa9661-955f-4310-8d28-4760c566cb7f",
+		"1103b09b-5415-4a04-9b3c-7d55c49e8455",
+		"b659612f-af2b-49bb-864e-360853d62d33",
+		"ad409a4f-ba2c-4a4b-b077-1c3a5f0458b9"
 	],
-	"folders": [],
 	"folders_order": [],
-	"timestamp": 0,
-	"owner": 0,
-	"public": false,
+	"folders": [],
 	"requests": [
 		{
-			"id": "00bc0a2d-67ce-d8ae-1aa3-4f0fafcc13fc",
-			"headers": "Authorization: Bearer a08249f3-f714-48c5-873d-c59d1c0a8353\n",
+			"id": "1103b09b-5415-4a04-9b3c-7d55c49e8455",
+			"name": "Login & Create New",
+			"url": "https://nin-loyalty-backend.herokuapp.com/auth/login-create",
+			"description": "",
+			"data": [],
+			"dataMode": "raw",
 			"headerData": [
 				{
-					"key": "Authorization",
-					"value": "Bearer a08249f3-f714-48c5-873d-c59d1c0a8353",
+					"key": "Content-Type",
+					"value": "application/json",
 					"description": "",
 					"enabled": true
 				}
 			],
-			"url": "http://localhost:8080/api/v1/user/profile",
-			"queryParams": [],
-			"preRequestScript": null,
-			"pathVariables": {},
+			"method": "POST",
 			"pathVariableData": [],
-			"method": "GET",
-			"data": [],
-			"dataMode": "raw",
-			"version": 2,
-			"tests": null,
-			"currentHelper": "normal",
-			"helperAttributes": {},
-			"time": 1559175277383,
-			"name": "http://localhost:8080/api/v1/user/profile",
-			"description": "",
-			"collectionId": "19341432-c7bd-b1f7-b087-51fefc7bc43e",
-			"responses": [],
-			"rawModeData": ""
+			"queryParams": [],
+			"auth": null,
+			"events": null,
+			"folder": null,
+			"rawModeData": "{\r\n\"username\": \"email2@email.com\",\r\n\"password\": \"password\"\r\n}\r\n",
+			"headers": "Content-Type: application/json\n",
+			"pathVariables": {}
 		},
 		{
-			"id": "202c7efb-ee2f-c7fd-b3f0-cfb9fa3272ae",
-			"headers": "Authorization: Bearer a08249f3-f714-48c5-873d-c59d1c0a8353\nContent-Type: application/json\n",
+			"id": "9c537453-efbf-4408-ac7a-b50a25f61725",
+			"name": "Check_token",
+			"url": "http://nin-loyalty-backend.herokuapp.com/oauth/check_token",
+			"description": "",
+			"data": [
+				{
+					"key": "token",
+					"value": "77f12d42-e002-4064-9d05-44758edad34e",
+					"type": "text"
+				}
+			],
+			"dataMode": "urlencoded",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"name": "Content-Type",
+					"value": "application/x-www-form-urlencoded",
+					"type": "text"
+				}
+			],
+			"method": "POST",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": null,
+			"folder": null,
+			"headers": "Content-Type: application/x-www-form-urlencoded\n",
+			"pathVariables": {}
+		},
+		{
+			"id": "ad409a4f-ba2c-4a4b-b077-1c3a5f0458b9",
+			"name": "View Profile",
+			"url": "http://nin-loyalty-backend.herokuapp.com/api/v1/user/profile",
+			"description": "",
+			"data": null,
+			"dataMode": null,
 			"headerData": [
 				{
 					"key": "Authorization",
-					"value": "Bearer a08249f3-f714-48c5-873d-c59d1c0a8353",
+					"value": "Bearer 5e58dcc2-184d-4237-8843-4d3553ed63ae",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"method": "GET",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": null,
+			"folder": null,
+			"headers": "Authorization: Bearer 5e58dcc2-184d-4237-8843-4d3553ed63ae\n",
+			"pathVariables": {}
+		},
+		{
+			"id": "b2de475c-849c-4b77-afe2-eb980aabaad9",
+			"name": "Get User",
+			"url": "http://nin-loyalty-backend.herokuapp.com/api/v1/user",
+			"description": "",
+			"data": null,
+			"dataMode": null,
+			"headerData": [
+				{
+					"key": "Authorization",
+					"value": "Bearer 503c43f3-5580-4871-a37f-5ceaebed8df4",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"method": "GET",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": null,
+			"folder": null,
+			"headers": "Authorization: Bearer 503c43f3-5580-4871-a37f-5ceaebed8df4\n",
+			"pathVariables": {}
+		},
+		{
+			"id": "b659612f-af2b-49bb-864e-360853d62d33",
+			"name": "Create Or Update profile",
+			"url": "http://nin-loyalty-backend.herokuapp.com/api/v1/user/profile",
+			"description": "",
+			"data": [],
+			"dataMode": "raw",
+			"headerData": [
+				{
+					"key": "Authorization",
+					"value": "Bearer 5e58dcc2-184d-4237-8843-4d3553ed63ae",
 					"description": "",
 					"enabled": true
 				},
@@ -65,93 +142,45 @@
 					"enabled": true
 				}
 			],
-			"url": "http://localhost:8080/api/v1/user/profile",
-			"queryParams": [],
-			"preRequestScript": null,
-			"pathVariables": {},
-			"pathVariableData": [],
 			"method": "POST",
-			"data": [],
-			"dataMode": "raw",
-			"version": 2,
-			"tests": null,
-			"currentHelper": "normal",
-			"helperAttributes": {},
-			"time": 1559176214450,
-			"name": "Creat profile",
-			"description": "",
-			"collectionId": "19341432-c7bd-b1f7-b087-51fefc7bc43e",
-			"responses": [],
-			"rawModeData": "{\n        \"firstName\": \"Yummy\",\n        \"lastName\": \"Nguyen 2\",\n        \"phone\": \"+84 779 291 669\",\n        \"lang\": \"en\",\n        \"totalVoucher\": 8,\n        \"totalPoint\": 0,\n        \"totalOffer\": 0,\n    \t\"address\": \"bbbaba 33\",\n        \"avatarImage\": null,\n        \"bannerHeaderImage\": null,\n        \"interestedFields\": [0,1]\n        \n    }"
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": null,
+			"folder": null,
+			"rawModeData": "{\n        \"firstName\": \"Yummy\",\n        \"lastName\": \"Nguyen 2\",\n        \"phone\": \"+84 779 291 669\",\n        \"lang\": \"en\",\n        \"totalVoucher\": 8,\n        \"totalPoint\": 0,\n        \"totalOffer\": 0,\n    \t\"address\": \"bbbaba 33\",\n        \"avatarImage\": null,\n        \"bannerHeaderImage\": null,\n        \"interestedFields\": [0,1]\n        \n    }",
+			"headers": "Authorization: Bearer 5e58dcc2-184d-4237-8843-4d3553ed63ae\nContent-Type: application/json\n",
+			"pathVariables": {}
 		},
 		{
-			"id": "4e45c5dc-7325-8cef-e1fe-b5d0fdb3d6ce",
-			"headers": "Authorization: Bearer 503c43f3-5580-4871-a37f-5ceaebed8df4\n",
+			"id": "b76b22b5-7b34-4045-b9f2-d405a54e666a",
+			"name": "Logout",
+			"url": "http://nin-loyalty-backend.herokuapp.com/auth/logout",
+			"description": "",
+			"data": null,
+			"dataMode": null,
 			"headerData": [
 				{
 					"key": "Authorization",
-					"value": "Bearer 503c43f3-5580-4871-a37f-5ceaebed8df4",
+					"value": "Bearer cc35728f-f446-4da0-b7f3-a4024685989a",
 					"description": "",
 					"enabled": true
 				}
 			],
-			"url": "http://localhost:8080/api/v1/user",
-			"queryParams": [],
-			"preRequestScript": null,
-			"pathVariables": {},
-			"pathVariableData": [],
 			"method": "GET",
-			"data": [],
-			"dataMode": "raw",
-			"tests": null,
-			"currentHelper": "normal",
-			"helperAttributes": {},
-			"time": 1558648999997,
-			"name": "http://localhost:8080/api/v1/user",
-			"description": "",
-			"collectionId": "19341432-c7bd-b1f7-b087-51fefc7bc43e",
-			"responses": [],
-			"rawModeData": ""
-		},
-		{
-			"id": "956e8486-e6bd-8f4a-0aed-737f31904acd",
-			"headers": "Content-Type: application/json\n",
-			"headerData": [
-				{
-					"key": "Content-Type",
-					"value": "application/json",
-					"description": "",
-					"enabled": true
-				}
-			],
-			"url": "http://localhost:8080/auth/login-create",
-			"queryParams": [],
-			"pathVariables": {},
 			"pathVariableData": [],
-			"preRequestScript": null,
-			"method": "POST",
-			"collectionId": "19341432-c7bd-b1f7-b087-51fefc7bc43e",
-			"data": [],
-			"dataMode": "raw",
-			"name": "http://localhost:8080/auth/login-create",
-			"description": "",
-			"descriptionFormat": "html",
-			"time": 1559172827188,
-			"version": 2,
-			"responses": [],
-			"tests": null,
-			"currentHelper": "normal",
-			"helperAttributes": {},
-			"rawModeData": "{\r\n\"username\": \"email2@email.com\",\r\n\"password\": \"password\"\r\n}\r\n"
+			"queryParams": [],
+			"auth": null,
+			"events": null,
+			"folder": null,
+			"headers": "Authorization: Bearer cc35728f-f446-4da0-b7f3-a4024685989a\n",
+			"pathVariables": {}
 		},
 		{
-			"id": "b0759ea2-93c8-b8be-5314-2d2cd5ed9e0b",
+			"id": "d6257039-f7b1-43f3-86b0-372441bcb6f2",
 			"name": "token",
+			"url": "http://nin-loyalty-backend.herokuapp.com/oauth/token",
 			"description": "Get a token",
-			"collectionId": "19341432-c7bd-b1f7-b087-51fefc7bc43e",
-			"method": "POST",
-			"headers": "Content-Type: application/x-www-form-urlencoded\nAuthorization: Basic cHJvamVjdF9jbGllbnQ6cHJvamVjdF9wYXNz\nAccept: application/json",
-			"dataMode": "urlencoded",
 			"data": [
 				{
 					"key": "password",
@@ -174,11 +203,7 @@
 					"type": "text"
 				}
 			],
-			"rawModeData": "",
-			"url": "http://localhost:8080/oauth/token",
-			"responses": [],
-			"pathVariableData": [],
-			"queryParams": [],
+			"dataMode": "urlencoded",
 			"headerData": [
 				{
 					"key": "Content-Type",
@@ -197,98 +222,39 @@
 					"type": "text"
 				}
 			],
-			"collection_id": "19341432-c7bd-b1f7-b087-51fefc7bc43e"
-		},
-		{
-			"id": "c524640d-795a-b09a-11bd-2dd7f8d35739",
-			"name": "http://localhost:8080/oauth/check_token",
-			"description": "",
-			"collectionId": "19341432-c7bd-b1f7-b087-51fefc7bc43e",
 			"method": "POST",
-			"headers": "Content-Type: application/x-www-form-urlencoded",
-			"dataMode": "urlencoded",
-			"data": [
-				{
-					"key": "token",
-					"value": "77f12d42-e002-4064-9d05-44758edad34e",
-					"type": "text"
-				}
-			],
-			"rawModeData": "",
-			"url": "http://localhost:8080/oauth/check_token",
-			"responses": [],
 			"pathVariableData": [],
 			"queryParams": [],
-			"headerData": [
-				{
-					"key": "Content-Type",
-					"name": "Content-Type",
-					"value": "application/x-www-form-urlencoded",
-					"type": "text"
-				}
-			],
-			"collection_id": "19341432-c7bd-b1f7-b087-51fefc7bc43e"
+			"auth": null,
+			"events": null,
+			"folder": null,
+			"headers": "Content-Type: application/x-www-form-urlencoded\nAuthorization: Basic cHJvamVjdF9jbGllbnQ6cHJvamVjdF9wYXNz\nAccept: application/json\n",
+			"pathVariables": {}
 		},
 		{
-			"id": "d6fc8f94-44cc-c3cf-994f-a789c6ef22c3",
-			"headers": "Authorization: Bearer cc35728f-f446-4da0-b7f3-a4024685989a\n",
-			"headerData": [
-				{
-					"key": "Authorization",
-					"value": "Bearer cc35728f-f446-4da0-b7f3-a4024685989a",
-					"description": "",
-					"enabled": true
-				}
-			],
-			"url": "http://localhost:8080/auth/logout",
-			"queryParams": [],
-			"pathVariables": {},
-			"pathVariableData": [],
-			"preRequestScript": null,
-			"method": "GET",
-			"collectionId": "19341432-c7bd-b1f7-b087-51fefc7bc43e",
-			"data": null,
-			"dataMode": "params",
-			"name": "http://localhost:8080/auth/logout",
+			"id": "f0fa9661-955f-4310-8d28-4760c566cb7f",
+			"name": "Login",
+			"url": "http://nin-loyalty-backend.herokuapp.com/auth/login",
 			"description": "",
-			"descriptionFormat": "html",
-			"time": 1558768672868,
-			"version": 2,
-			"responses": [],
-			"tests": null,
-			"currentHelper": "normal",
-			"helperAttributes": {}
-		},
-		{
-			"id": "e036b178-e939-add0-5e13-c2249a2ee707",
-			"headers": "Content-Type: application/json\n",
-			"headerData": [
-				{
-					"key": "Content-Type",
-					"value": "application/json",
-					"description": "",
-					"enabled": true
-				}
-			],
-			"url": "http://localhost:8080/auth/login",
-			"queryParams": [],
-			"pathVariables": {},
-			"pathVariableData": [],
-			"preRequestScript": null,
-			"method": "POST",
-			"collectionId": "19341432-c7bd-b1f7-b087-51fefc7bc43e",
 			"data": [],
 			"dataMode": "raw",
-			"name": "http://localhost:8080/auth/login",
-			"description": "",
-			"descriptionFormat": "html",
-			"time": 1558769050533,
-			"version": 2,
-			"responses": [],
-			"tests": null,
-			"currentHelper": "normal",
-			"helperAttributes": {},
-			"rawModeData": "{\r\n\"username\": \"email@email.com\",\r\n\"password\": \"password2\"\r\n}\r\n"
+			"headerData": [
+				{
+					"description": "",
+					"enabled": true,
+					"key": "Content-Type",
+					"value": "application/json"
+				}
+			],
+			"method": "POST",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": null,
+			"folder": null,
+			"rawModeData": "{\r\n\"username\": \"email@email.com\",\r\n\"password\": \"password\"\r\n}\r\n",
+			"headers": "Content-Type: application/json\n",
+			"pathVariables": {}
 		}
 	]
 }
