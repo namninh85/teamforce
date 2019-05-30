@@ -1,6 +1,6 @@
 # Loyalty backend
 
-A barebones Java app, which can easily be deployed to Heroku.
+A Loyalty backend Java app, which can be deployed to Heroku.
 
 
 
