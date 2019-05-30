@@ -127,11 +127,37 @@ CREATE TABLE product_category(
    code varchar(250),
    name varchar(250),
    parent_id int,
-   description boolean,
+   description text,
    is_active boolean,
    is_deleted boolean,
    PRIMARY KEY(product_category_id)
 );
+INSERT INTO public.product_category(product_category_id ,code,name,parent_id,description,image,web_link,is_active,is_deleted)
+values(1,'BIA – RƯỢU TRÁI CÂY','BIA – RƯỢU TRÁI CÂY',0,'Sản phẩm bia và rượu trái cây tại Circle K được phục vụ 24/7 với đầy đủ các thương hiệu nổi tiếng trong nước và trên thế giới.Bạn sẽ không lo cuộc vui của mình bị gián đoạn.','https://www.circlek.com.vn/wp-content/uploads/2016/01/blk-1-BEER-pc-450.png',
+	   'https://www.circlek.com.vn/vi/san-pham-dich-vu/san-pham/',true,false),
+	   (2,'RƯỢU','RƯỢU',0,'Tại Circle K, bạn sẽ an tâm vì sản phẩm của chúng tôi  được đảm bảo về chất lượng và xuất xứ rõ ràng.',
+		'https://www.circlek.com.vn/wp-content/uploads/2016/01/wine_470x450.png',
+	   'https://www.circlek.com.vn/vi/san-pham-dich-vu/san-pham/',true,false),
+	   (3,'NƯỚC GIẢI KHÁT LẠNH','NƯỚC GIẢI KHÁT LẠNH',0,'Hầu hết các thương hiệu nước giải khát được yêu thích, có chất lượng và uy tín trên thị trường hiện nay đã có tại Circle K, từ nước tinh khiết, nước khoáng thiên nhiên, nước có ga, nước tăng lực, nước uống thể thao, trà, cà phê, nước trái cây…',
+		'https://www.circlek.com.vn/wp-content/uploads/2016/01/blk-3-DRINK-pc1.png',
+	   'https://www.circlek.com.vn/vi/san-pham-dich-vu/san-pham/',true,false),
+	   (4,'BIA – RƯỢU TRÁI CÂY','BIA – RƯỢU TRÁI CÂY',0,'Sản phẩm bia và rượu trái cây tại Circle K được phục vụ 24/7 với đầy đủ các thương hiệu nổi tiếng trong nước và trên thế giới.  Bạn sẽ không lo cuộc vui của mình bị gián đoạn.','https://www.circlek.com.vn/wp-content/uploads/2016/01/blk-1-BEER-pc-450.png',
+	   'https://www.circlek.com.vn/vi/san-pham-dich-vu/san-pham/',true,false),
+	   (5,'BÁNH KẸO','BÁNH KẸO',0,'Chủng loại bánh, kẹo, kẹo cao su, sô-cô-la đa dạng tại Circle K sẽ mang đến nhiều niềm vui cho bữa ăn nhẹ thường ngày của bạn.','https://www.circlek.com.vn/wp-content/uploads/2016/01/candy-biscuit_4701.png',
+	   'https://www.circlek.com.vn/vi/san-pham-dich-vu/san-pham/',true,false),
+	   (6,'BÁNH MÌ TƯƠI','BÁNH MÌ TƯƠI',0,'Các loại bánh tươi đa dạng đươc chế biến bằng nguyên liệu cao cấp, bảo đảm an toàn vê sinh thực phẩm, có xuất xứ trong nước và nước ngoài với các thương hiệu nổi tiếng như SAVOURE, D-PLUS, SAMPLIP,LEELA… cùng nhiều mùi vị hấp dẫn sẽ mang đến cho khách hàng những trải nghiệm thú vị.',
+		'https://www.circlek.com.vn/wp-content/uploads/2018/04/Bakery.png',
+	   'https://www.circlek.com.vn/vi/san-pham-dich-vu/san-pham/',true,false),
+	   (7,'SNACK','SNACK',0,'Tại Circle K Việt Nam, Snack là ngành hàng đa dạng nhất với nhiều lựa chọn từ các nhãn hàng trong nước, quốc tế đến các sản phẩm nhập khẩu của riêng Circle K như các loại hạt, rong biển, thịt/ cá khô…'
+		,'https://www.circlek.com.vn/wp-content/uploads/2016/01/blk-5-SNACK-pc1.png',
+	   'https://www.circlek.com.vn/vi/san-pham-dich-vu/san-pham/',true,false),
+	   (8,'KEM','KEM',0,'Kem tại Circle K luôn đa dạng về chủng loại (kem que, ốc quế, kem hộp) và phong phú về hương vị, dung tích, thương hiệu (của Việt Nam, Hàn Quốc, New Zealand, Mỹ…)'
+		,'https://www.circlek.com.vn/wp-content/uploads/2016/01/Product-Ice-cream-update-san-pham.png',
+	   'https://www.circlek.com.vn/vi/san-pham-dich-vu/san-pham/',true,false),
+	   (9,'SỮA & SẢN PHẨM TỪ SỮA','SỮA & SẢN PHẨM TỪ SỮA',0,'Circle K cung cấp các loại sản phẩm sữa tươi, sữa tiệt trùng và các sản phẩm chế biến từ sữa …'
+		,'https://www.circlek.com.vn/wp-content/uploads/2016/01/blk-6-DAIRY-pc1.png',
+	   'https://www.circlek.com.vn/vi/san-pham-dich-vu/san-pham/',true,false);
+
 
 CREATE TABLE product_in_pd_category(
    pipc_id serial,
@@ -266,3 +292,11 @@ ALTER TABLE customer ADD COLUMN total_offer int;
 ALTER TABLE customer ALTER COLUMN is_deleted
 SET DEFAULT 'FALSE';
 
+-- 2019/05/29 : update table product  (image , web_link)
+ALTER TABLE product ADD COLUMN image text,
+ADD COLUMN web_link text,
+ADD COLUMN has_new boolean;
+
+-- 2019/05/29 : update table product_category  (image , web_link)
+ALTER TABLE product_category ADD COLUMN image text,
+ADD COLUMN web_link text;

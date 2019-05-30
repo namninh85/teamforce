@@ -10,24 +10,16 @@ public class Product {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
-    @Column(name = "product_id")
-    private Long product_id;
-
-    @Column(name = "code")
+    @Column(nullable = true)
+    private Long productId;
     private String code;
-
-    @Column(name = "name")
     private String name;
-
-    @Column(name = "description")
     private String description;
-
-    @Column(name = "is_active")
-    private boolean is_active;
-
-    @Column(name = "is_deleted")
-    private boolean is_deleted;
+    private String image;
+    private String webLink;
+    private boolean hasNew;
+    private boolean isActive;
+    private boolean isDeleted;
 
 
     @ManyToMany(fetch = FetchType.EAGER)
@@ -38,40 +30,97 @@ public class Product {
 
     private List<Category> categories;
 
-    public Product(String code, String name, String description, boolean is_active, boolean is_deleted, List<Category> categories) {
+    public Product(){}
+    public Product(String code, String name, String description, String image, String webLink,
+                   boolean hasNew, boolean isActive, boolean isDeleted, List<Category> categories) {
         this.name = name;
         this.code = code;
         this.description = description;
-        this.is_active = is_active;
-        this.is_deleted = is_deleted;
+        this.image = image;
+        this.webLink = webLink;
+        this.hasNew = hasNew;
+        this.isActive = isActive;
+        this.isDeleted = isDeleted;
         this.categories = categories;
     }
 
-    public Long getProduct_id() {
-        return product_id;
+    public Long getProductId() {
+        return productId;
+    }
+
+    public void setProductId(Long productId) {
+        this.productId = productId;
     }
 
     public String getCode() {
         return code;
     }
 
+    public void setCode(String code) {
+        this.code = code;
+    }
+
     public String getName() {
         return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getDescription() {
         return description;
     }
 
-    public boolean isIs_active() {
-        return is_active;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
-    public boolean isIs_deleted() {
-        return is_deleted;
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public String getWebLink() {
+        return webLink;
+    }
+
+    public void setWebLink(String webLink) {
+        this.webLink = webLink;
+    }
+
+    public boolean isHasNew() {
+        return hasNew;
+    }
+
+    public void setHasNew(boolean hasNew) {
+        this.hasNew = hasNew;
+    }
+
+    public boolean isActive() {
+        return isActive;
+    }
+
+    public void setActive(boolean active) {
+        isActive = active;
+    }
+
+    public boolean isDeleted() {
+        return isDeleted;
+    }
+
+    public void setDeleted(boolean deleted) {
+        isDeleted = deleted;
     }
 
     public List<Category> getCategories() {
         return categories;
+    }
+
+    public void setCategories(List<Category> categories) {
+        this.categories = categories;
     }
 }
