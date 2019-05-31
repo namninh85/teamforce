@@ -303,3 +303,30 @@ values(1,'BIA – RƯỢU TRÁI CÂY','BIA – RƯỢU TRÁI CÂY',0,'Sản ph�
 	   (9,'SỮA & SẢN PHẨM TỪ SỮA','SỮA & SẢN PHẨM TỪ SỮA',0,'Circle K cung cấp các loại sản phẩm sữa tươi, sữa tiệt trùng và các sản phẩm chế biến từ sữa …'
 		,'https://www.circlek.com.vn/wp-content/uploads/2016/01/blk-6-DAIRY-pc1.png',
 	   'https://www.circlek.com.vn/vi/san-pham-dich-vu/san-pham/',true,false);
+
+--2019/05/30 - Dieu - Create table store_utility
+CREATE TABLE store_utility(
+   store_utility_id serial,
+   name VARCHAR(250),
+   image text,
+   web_link text,
+   store_id int,
+   PRIMARY KEY(store_utility_id)
+);
+
+--2019/31/05  - Dieu - Update table product_in_store
+DROP TABLE IF EXISTS product_in_store;
+CREATE TABLE product_in_store(
+   product_id int,
+   store_id int,
+   stock_amount int,
+   is_active boolean,
+   is_deleted boolean,
+   PRIMARY KEY(product_id,store_id)
+);
+
+-- 2019/05/31 :Dieu -  update table store  (ward , country)
+ALTER TABLE store ADD COLUMN ward VARCHAR(250),
+ADD COLUMN country VARCHAR(250),
+ADD COLUMN phone VARCHAR(50);
+
