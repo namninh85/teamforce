@@ -10,7 +10,6 @@ import java.util.Set;
 public class Store {
     @Id
     @GeneratedValue
-    @Column(nullable = true)
     private Long storeId;
     private String name;
     private String street;
@@ -19,6 +18,8 @@ public class Store {
     private String city;
     private String country;
     private String phone;
+    private Boolean isActive;
+    private Boolean isDeleted;
 
 
     @ManyToMany(fetch = FetchType.EAGER)
@@ -35,9 +36,9 @@ public class Store {
     public Store() {
     }
 
-    public Store(Long storeId, String name, String ward, String district, String city,
-                 String street, String country, String phone,
-                  Set<StoreUtility> storeUtilities,List<Product> products) {
+    public Store(Long storeId, String name, String street, String ward, String district, String city,
+                 String country, String phone, Boolean isActive, Boolean isDeleted,
+                 List<Product> products, Set<StoreUtility> storeUtilities) {
         this.storeId = storeId;
         this.name = name;
         this.street = street;
@@ -46,6 +47,8 @@ public class Store {
         this.city = city;
         this.country = country;
         this.phone = phone;
+        this.isActive = isActive;
+        this.isDeleted = isDeleted;
         this.products = products;
         this.storeUtilities = storeUtilities;
     }
@@ -114,12 +117,28 @@ public class Store {
         this.phone = phone;
     }
 
-    public void setProducts(List<Product> products) {
-        this.products = products;
+    public Boolean getActive() {
+        return isActive;
+    }
+
+    public void setActive(Boolean active) {
+        isActive = active;
+    }
+
+    public Boolean getDeleted() {
+        return isDeleted;
+    }
+
+    public void setDeleted(Boolean deleted) {
+        isDeleted = deleted;
     }
 
     public List<Product> getProducts() {
         return products;
+    }
+
+    public void setProducts(List<Product> products) {
+        this.products = products;
     }
 
     public Set<StoreUtility> getStoreUtilities() {

@@ -19,7 +19,7 @@ public class StoreService {
         this.storeRepository = storeRepository;
     }
 
-    public List<Store> findByProductId (String productId , String storeName, String street){
+    public List<Store> findByProductId (Long productId , String storeName, String street){
         return storeRepository.findByProductId(productId,storeName,street);
     }
 }

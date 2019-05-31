@@ -3,6 +3,7 @@ package com.nin.service;
 import com.nin.model.Product;
 import com.nin.model.Store;
 import com.nin.repository.StoreRepository;
+import org.hibernate.type.StandardBasicTypes;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Component;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import java.util.List;
 import java.util.Optional;
@@ -21,14 +23,16 @@ public class StoreRepositoryImpl implements StoreRepository {
     EntityManager em;
 
     @Override
-    public List<Store> findByProductId(String productId, String storeName, String street) {
-        TypedQuery<Store> query = em.createQuery("SELECT s,u FROM Store s " +
-                "INNER JOIN Store_utility u ON s.store_id = u.store_id " +
-                "WHERE s.store_id =(SELECT store_id FROM product_in_store WHERE product_id=:productId) " +
-                "AND s.name LIKE :storeName AND s.street LIKE :street", Store.class);
-        query.setParameter("productId", productId);
-        query.setParameter("storeName", "%" + storeName + "%");
-        query.setParameter("street", "%" + street + "%");
+    public List<Store> findByProductId(Long productId, String storeName, String street) {
+
+        String sql = "SELECT s FROM Store s " +
+                "WHERE s.isActive=true AND s.isDeleted=false " +
+                "AND s.storeId in (SELECT p.storeId AS storeId FROM ProductInStore p WHERE p.productId=:productId) " +
+                "AND s.name LIKE :storeName AND s.street LIKE :street ORDER BY s.name";
+        TypedQuery<Store> query = em.createQuery(sql,Store.class);
+                query.setParameter("productId", productId);
+                query.setParameter("storeName", "%" + storeName + "%");
+                query.setParameter("street", "%" + street + "%");
         return query.getResultList();
     }
 

@@ -10,7 +10,6 @@ import java.util.List;
 public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(nullable = true)
     private Long productCategoryId;
     private String code;
     private String name;
@@ -18,8 +17,8 @@ public class Category {
     private String image;
     private String webLink;
     private Long parentId;
-    private boolean isActive;
-    private boolean isDeleted;
+    private Boolean isActive;
+    private Boolean isDeleted;
 
 
     @ManyToMany(fetch = FetchType.EAGER)
@@ -34,10 +33,11 @@ public class Category {
     public Category() {
     }
 
-    public Category(String code, String name, String description, String image, String webLink,
-                    Long parentId, boolean isActive, boolean isDeleted, List<Product> products) {
-        this.name = name;
+    public Category(Long productCategoryId, String code, String name, String description, String image, String webLink,
+                    Long parentId, Boolean isActive, Boolean isDeleted, List<Product> products) {
+        this.productCategoryId = productCategoryId;
         this.code = code;
+        this.name = name;
         this.description = description;
         this.image = image;
         this.webLink = webLink;
@@ -103,19 +103,19 @@ public class Category {
         this.parentId = parentId;
     }
 
-    public boolean isActive() {
+    public Boolean getActive() {
         return isActive;
     }
 
-    public void setActive(boolean active) {
+    public void setActive(Boolean active) {
         isActive = active;
     }
 
-    public boolean isDeleted() {
+    public Boolean getDeleted() {
         return isDeleted;
     }
 
-    public void setDeleted(boolean deleted) {
+    public void setDeleted(Boolean deleted) {
         isDeleted = deleted;
     }
 

@@ -32,9 +32,7 @@ public class ApiProductController {
             obj.put("image", product.getImage());
             obj.put("web_link", product.getWebLink());
             obj.put("description", product.getDescription());
-            obj.put("has_new", product.isHasNew());
-            obj.put("categories" , product.getCategories());
-            obj.put("stores" ,product.getStores());
+            obj.put("has_new", product.getHasNew());
 
             result.add(obj);
         }

@@ -25,7 +25,7 @@ public class CategoryRepositoryImpl implements CategoryRepository {
     @Override
     public List<Category> findAllCategory() {
         TypedQuery<Category> query = em.createQuery(
-                "SELECT c FROM Category c WHERE c.isActive = true AND isDeleted = false", Category.class);
+                "SELECT c FROM Category c WHERE c.isActive = true AND c.isDeleted = false ORDER BY c.productCategoryId", Category.class);
         return query.getResultList();
     }
 

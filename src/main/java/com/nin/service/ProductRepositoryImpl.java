@@ -22,8 +22,9 @@ public class ProductRepositoryImpl implements ProductRepository  {
 
     @Override
     public List<Product> findByName(String name) {
+
         TypedQuery<Product> query = em.createQuery(
-                "SELECT c FROM Product c WHERE c.name LIKE :name ORDER BY c.name", Product.class);
+                "SELECT c FROM Product c WHERE c.name LIKE :name AND c.isActive=true AND c.isDeleted=false ORDER BY c.name", Product.class);
         return query.setParameter("name",  "%"+name+"%").getResultList();
     }
 

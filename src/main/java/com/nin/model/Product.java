@@ -13,16 +13,15 @@ public class Product {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(nullable = true)
     private Long productId;
     private String code;
     private String name;
     private String description;
     private String image;
     private String webLink;
-    private boolean hasNew;
-    private boolean isActive;
-    private boolean isDeleted;
+    private Boolean hasNew;
+    private Boolean isActive;
+    private Boolean isDeleted;
 
 
     @ManyToMany(fetch = FetchType.EAGER)
@@ -44,11 +43,12 @@ public class Product {
     public Product() {
     }
 
-    public Product(String code, String name, String description, String image, String webLink,
-                   boolean hasNew, boolean isActive, boolean isDeleted,
+    public Product(Long productId, String code, String name, String description, String image,
+                   String webLink, Boolean hasNew, Boolean isActive, Boolean isDeleted,
                    List<Category> categories, List<Store> stores) {
-        this.name = name;
+        this.productId = productId;
         this.code = code;
+        this.name = name;
         this.description = description;
         this.image = image;
         this.webLink = webLink;
@@ -107,30 +107,29 @@ public class Product {
         this.webLink = webLink;
     }
 
-    public boolean isHasNew() {
+    public Boolean getHasNew() {
         return hasNew;
     }
 
-    public void setHasNew(boolean hasNew) {
+    public void setHasNew(Boolean hasNew) {
         this.hasNew = hasNew;
     }
 
-    public boolean isActive() {
+    public Boolean getActive() {
         return isActive;
     }
 
-    public void setActive(boolean active) {
+    public void setActive(Boolean active) {
         isActive = active;
     }
 
-    public boolean isDeleted() {
+    public Boolean getDeleted() {
         return isDeleted;
     }
 
-    public void setDeleted(boolean deleted) {
+    public void setDeleted(Boolean deleted) {
         isDeleted = deleted;
     }
-
 
     public List<Category> getCategories() {
         return categories;
