@@ -3,8 +3,11 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Where;
+
 @Entity
 @Table(name = "special_offer")
+@Where(clause = "is_deleted = 'false'")
 public class SpecialOffer implements java.io.Serializable{
 	
 	/**
