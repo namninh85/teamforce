@@ -25,23 +25,32 @@ public class ApiSpecialOfferController {
         this.specialOfferService = specialOfferService;
     }
 
+    
 
     @GetMapping()
     public ResponseEntity<Map<String, Object>> listSpecialOffer() {
-        List<SpecialOffer> currentSpecialOffer = specialOfferService.findAllActive();
-        List<Map<String, Object>> result = new ArrayList<>();
-        for(SpecialOffer specialOffer : currentSpecialOffer) {
-            Map<String, Object> obj = new HashMap<>();
-            obj.put("id", specialOffer.getSpecialOfferId());
-            obj.put("image", specialOffer.getImage());
-            obj.put("webLink", specialOffer.getWebLink());
-            result.add(obj);
-        }
-        Map<String, Object> out = new HashMap<String, Object>() {{
-            put("data", result);
-            put("error", 0);
+        try {
+			List<SpecialOffer> currentSpecialOffer = specialOfferService.findAllActive();
+			List<Map<String, Object>> result = new ArrayList<>();
+			for(SpecialOffer specialOffer : currentSpecialOffer) {
+			    Map<String, Object> obj = new HashMap<>();
+			    obj.put("id", specialOffer.getSpecialOfferId());
+			    obj.put("image", specialOffer.getImage());
+			    obj.put("webLink", specialOffer.getWebLink());
+			    result.add(obj);
+			}
+			Map<String, Object> out = new HashMap<String, Object>() {{
+			    put("data", result);
+			    put("error", 0);
 
-        }};
-        return new ResponseEntity<>(out, HttpStatus.OK);
+			}};
+			return new ResponseEntity<>(out, HttpStatus.OK);
+		} catch (Exception e) {
+			Map<String, Object> responseMap = new HashMap<String, Object>();
+			responseMap.put("Message", e.getMessage());
+			responseMap.put("data", responseMap);
+			responseMap.put("error", -1);
+			return new ResponseEntity<>(responseMap, HttpStatus.BAD_REQUEST);
+		}
     }
 }
