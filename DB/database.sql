@@ -330,3 +330,17 @@ ALTER TABLE store ADD COLUMN ward VARCHAR(250),
 ADD COLUMN country VARCHAR(250),
 ADD COLUMN phone VARCHAR(50);
 
+-- 2019/06/02 : Nin - New Table: special_offer
+CREATE TABLE special_offer
+(
+   special_offer_id serial, 
+   code varchar(250),
+   name varchar(250),
+   image text, 
+   web_link text,
+   is_active boolean,
+   is_deleted boolean,
+   PRIMARY KEY(special_offer_id)
+
+) 
+
