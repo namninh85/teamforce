@@ -344,19 +344,8 @@ CREATE TABLE special_offer
 
 );
 
-INSERT INTO special_offer(
-            special_offer_id, code, name, image, web_link, is_active, is_deleted)
-    VALUES (1,'fast-delicious','fast-delicious','http://triqtran.github.io/images/loyalty/special-offer/fast-delicious.jpg','https://www.circlek.com.vn/vi/thuc-an-thuc-uong/',TRUE,FALSE);
-INSERT INTO special_offer(
-            special_offer_id, code, name, image, web_link, is_active, is_deleted)
-    VALUES (2,'food-box','food-box','http://triqtran.github.io/images/loyalty/special-offer/food-box.jpg','https://www.circlek.com.vn/vi/thuc-an-thuc-uong/thuc-an/',TRUE,FALSE);
-INSERT INTO special_offer(
-            special_offer_id, code, name, image, web_link, is_active, is_deleted)
-    VALUES (3,'drink-box','drink-box','http://triqtran.github.io/images/loyalty/special-offer/drink-box.jpg','https://www.circlek.com.vn/vi/',TRUE,FALSE);
-INSERT INTO special_offer(
-            special_offer_id, code, name, image, web_link, is_active, is_deleted)
-    VALUES (4,'promotion','promotion','http://triqtran.github.io/images/loyalty/special-offer/promotion.png','https://www.circlek.com.vn/vi/uu-dai-dac-biet/?l=tp-ho-chi-minh-1',TRUE,FALSE);
-INSERT INTO special_offer(
-            special_offer_id, code, name, image, web_link, is_active, is_deleted)
-    VALUES (5,'products-services','products-services','http://triqtran.github.io/images/loyalty/special-offer/products-services.jpg','https://www.circlek.com.vn/vi/san-pham-dich-vu/',TRUE,FALSE);
-
+INSERT INTO public.special_offer(special_offer_id, code, name, image, web_link, is_active, is_deleted) VALUES (1,'fast-delicious','fast-delicious','http://triqtran.github.io/images/loyalty/special-offer/fast-delicious.jpg','https://www.circlek.com.vn/vi/thuc-an-thuc-uong/',TRUE,FALSE);
+INSERT INTO public.special_offer(special_offer_id, code, name, image, web_link, is_active, is_deleted) VALUES (2,'food-box','food-box','http://triqtran.github.io/images/loyalty/special-offer/food-box.jpg','https://www.circlek.com.vn/vi/thuc-an-thuc-uong/thuc-an/',TRUE,FALSE);
+INSERT INTO public.special_offer( special_offer_id, code, name, image, web_link, is_active, is_deleted) VALUES (3,'drink-box','drink-box','http://triqtran.github.io/images/loyalty/special-offer/drink-box.jpg','https://www.circlek.com.vn/vi/',TRUE,FALSE);
+INSERT INTO public.special_offer( special_offer_id, code, name, image, web_link, is_active, is_deleted) VALUES (4,'promotion','promotion','http://triqtran.github.io/images/loyalty/special-offer/promotion.png','https://www.circlek.com.vn/vi/uu-dai-dac-biet/?l=tp-ho-chi-minh-1',TRUE,FALSE);
+INSERT INTO public.special_offer(special_offer_id, code, name, image, web_link, is_active, is_deleted) VALUES (5,'products-services','products-services','http://triqtran.github.io/images/loyalty/special-offer/products-services.jpg','https://www.circlek.com.vn/vi/san-pham-dich-vu/',TRUE,FALSE);
