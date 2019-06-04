@@ -3,7 +3,6 @@ package com.nin.service;
 import com.nin.model.Product;
 import com.nin.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,7 +11,6 @@ import java.util.List;
 public class ProductService {
 
     @Autowired
-    @Qualifier("productRepositoryImpl")
     private ProductRepository productRepository;
 
     @Autowired
@@ -20,7 +18,7 @@ public class ProductService {
 
         this.productRepository = productRepository;
     }
-    public List<Product> findByName (String name){
-        return productRepository.findByName(name);
+    public List<Product> findProductByName (String name){
+        return productRepository.findByNameAndIsActive(name,true);
     }
 }

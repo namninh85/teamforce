@@ -7,6 +7,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "product_category")
+@Where(clause = "is_deleted='false'")
 public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -1,12 +1,12 @@
 package com.nin.model;
 
+import org.hibernate.annotations.Where;
 import javax.persistence.*;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 @Entity
 @Table(name = "store")
+@Where(clause = "is_deleted='false'")
 public class Store {
     @Id
     @GeneratedValue
@@ -18,6 +18,7 @@ public class Store {
     private String city;
     private String country;
     private String phone;
+    private String utilities;
     private Boolean isActive;
     private Boolean isDeleted;
 
@@ -28,17 +29,10 @@ public class Store {
             inverseJoinColumns = {@JoinColumn(name = "product_id", nullable = false, updatable = false)}
     )
     private List<Product> products;
-
-    @OneToMany(cascade = CascadeType.ALL,
-            fetch = FetchType.LAZY,
-            mappedBy = "store")
-    private Set<StoreUtility> storeUtilities = new HashSet<>();
-    public Store() {
-    }
-
+    public Store(){}
     public Store(Long storeId, String name, String street, String ward, String district, String city,
-                 String country, String phone, Boolean isActive, Boolean isDeleted,
-                 List<Product> products, Set<StoreUtility> storeUtilities) {
+                 String country, String phone, Boolean isActive, Boolean isDeleted,String utilities,
+                 List<Product> products) {
         this.storeId = storeId;
         this.name = name;
         this.street = street;
@@ -47,10 +41,10 @@ public class Store {
         this.city = city;
         this.country = country;
         this.phone = phone;
+        this.utilities = utilities;
         this.isActive = isActive;
         this.isDeleted = isDeleted;
         this.products = products;
-        this.storeUtilities = storeUtilities;
     }
 
     public Long getStoreId() {
@@ -141,11 +135,12 @@ public class Store {
         this.products = products;
     }
 
-    public Set<StoreUtility> getStoreUtilities() {
-        return storeUtilities;
+    public String getUtilities() {
+        return utilities;
     }
 
-    public void setStoreUtilities(Set<StoreUtility> storeUtilities) {
-        this.storeUtilities = storeUtilities;
+    public void setUtilities(String utilities) {
+        this.utilities = utilities;
     }
+
 }

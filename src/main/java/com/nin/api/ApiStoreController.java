@@ -2,7 +2,9 @@ package com.nin.api;
 
 import com.nin.model.Product;
 import com.nin.model.Store;
+import com.nin.model.Utility;
 import com.nin.service.StoreService;
+import com.nin.service.UtilityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,35 +22,48 @@ import java.util.Map;
 @RequestMapping("/api/v1")
 public class ApiStoreController {
     private StoreService storeService;
+    private UtilityService utilityService;
 
     @Autowired
-    public ApiStoreController(StoreService storeService) {
+    public ApiStoreController(StoreService storeService , UtilityService utilityService) {
+        this.utilityService = utilityService;
         this.storeService = storeService;
     }
 
 
     @GetMapping("/store")
     public ResponseEntity<Map<String, Object>> listStore(@RequestParam(value = "productId") Long productId, @RequestParam(value = "storeName") String storeName, @RequestParam(value = "street") String street) {
-        List<Store> currentStore = storeService.findByProductId(productId, storeName, street);
-        List<Map<String, Object>> result = new ArrayList<>();
-        for(Store store : currentStore) {
-            Map<String, Object> obj = new HashMap<>();
-            obj.put("id", store.getStoreId());
-            obj.put("name", store.getName());
-            obj.put("street", store.getStreet());
-            obj.put("ward", store.getWard());
-            obj.put("district", store.getDistrict());
-            obj.put("city", store.getCity());
-            obj.put("country", store.getCountry());
-            obj.put("phone", store.getPhone());
-            obj.put("utility", store.getStoreUtilities());
+       try {
+           List<Store> currentStore = storeService.findByProductId(productId, storeName, street);
+           List<Map<String, Object>> result = new ArrayList<>();
+           for(Store store : currentStore) {
+               Map<String, Object> obj = new HashMap<>();
+               obj.put("id", store.getStoreId());
+               obj.put("name", store.getName());
+               obj.put("street", store.getStreet());
+               obj.put("ward", store.getWard());
+               obj.put("district", store.getDistrict());
+               obj.put("city", store.getCity());
+               obj.put("country", store.getCountry());
+               obj.put("phone", store.getPhone());
+               List<String> utilities = utilityService.findByListId(store.getUtilities());
+               obj.put("utilities",utilities);
+               result.add(obj);
+           }
+           Map<String, Object> out = new HashMap<String, Object>() {{
+               put("data", result);
+               put("error", 0);
 
-            result.add(obj);
-        }
-        Map<String, Object> out = new HashMap<String, Object>() {{
-            put("data", result);
+           }};
+           return new ResponseEntity<>(out, HttpStatus.OK);
 
-        }};
-        return new ResponseEntity<>(out, HttpStatus.OK);
+       }catch (Exception e) {
+           Map<String, Object> responseMap = new HashMap<String, Object>();
+           responseMap.put("Message", e.getMessage());
+           responseMap.put("data", responseMap);
+           responseMap.put("error", -1);
+           return new ResponseEntity<>(responseMap, HttpStatus.BAD_REQUEST);
+       }
+
     }
 }

@@ -21,25 +21,36 @@ public class ApiProductController {
     }
 
     @GetMapping("/product")
-    public ResponseEntity<Map<String, Object>> listProduct(@RequestParam(value = "name") String name ) {
-        List<Product> currentProduct = productService.findByName(name);
-        List<Map<String, Object>> result = new ArrayList<>();
-        for(Product product : currentProduct) {
-            Map<String, Object> obj = new HashMap<>();
-            obj.put("id", product.getProductId());
-            obj.put("code", product.getCode());
-            obj.put("name", product.getName());
-            obj.put("image", product.getImage());
-            obj.put("web_link", product.getWebLink());
-            obj.put("description", product.getDescription());
-            obj.put("has_new", product.getHasNew());
+    public ResponseEntity<Map<String, Object>> findProductByName(@RequestParam(value = "name") String name ) {
+        try {
+            List<Product> currentProduct = productService.findProductByName(name);
+            List<Map<String, Object>> result = new ArrayList<>();
+            for(Product product : currentProduct) {
+                Map<String, Object> obj = new HashMap<>();
+                obj.put("id", product.getProductId());
+                obj.put("code", product.getCode());
+                obj.put("name", product.getName());
+                obj.put("image", product.getImage());
+                obj.put("web_link", product.getWebLink());
+                obj.put("description", product.getDescription());
+                obj.put("has_new", product.getHasNew());
 
-            result.add(obj);
+                result.add(obj);
+            }
+            Map<String, Object> out = new HashMap<String, Object>() {{
+                put("data", result);
+                put("error", 0);
+
+            }};
+            return new ResponseEntity<>(out, HttpStatus.OK);
+
+        }catch (Exception e) {
+            Map<String, Object> responseMap = new HashMap<String, Object>();
+            responseMap.put("Message", e.getMessage());
+            responseMap.put("data", responseMap);
+            responseMap.put("error", -1);
+            return new ResponseEntity<>(responseMap, HttpStatus.BAD_REQUEST);
         }
-        Map<String, Object> out = new HashMap<String, Object>() {{
-            put("data", result);
 
-        }};
-        return new ResponseEntity<>(out, HttpStatus.OK);
     }
 }

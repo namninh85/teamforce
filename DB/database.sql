@@ -304,14 +304,15 @@ values(1,'BIA – RƯỢU TRÁI CÂY','BIA – RƯỢU TRÁI CÂY',0,'Sản ph�
 		,'https://www.circlek.com.vn/wp-content/uploads/2016/01/blk-6-DAIRY-pc1.png',
 	   'https://www.circlek.com.vn/vi/san-pham-dich-vu/san-pham/',true,false);
 
---2019/05/30 - Dieu - Create table store_utility
-CREATE TABLE store_utility(
-   store_utility_id serial,
+--2019/05/30 - Dieu - Create table utility
+CREATE TABLE utility(
+   utility_id serial,
    name VARCHAR(250),
    image text,
    web_link text,
-   store_id int,
-   PRIMARY KEY(store_utility_id)
+   is_active boolean,
+   is_deleted boolean,
+   PRIMARY KEY(utility_id)
 );
 
 --2019/31/05  - Dieu - Update table product_in_store
@@ -328,15 +329,22 @@ CREATE TABLE product_in_store(
 -- 2019/05/31 :Dieu -  update table store  (ward , country)
 ALTER TABLE store ADD COLUMN ward VARCHAR(250),
 ADD COLUMN country VARCHAR(250),
-ADD COLUMN phone VARCHAR(50);
+ADD COLUMN phone VARCHAR(50),
+ADD COLUMN  utilities varchar(20);
+
+--2019/06/03 : Dieu - update table voucher
+ALTER TABLE voucher ADD COLUMN name VARCHAR(250),
+ADD COLUMN image text ,
+ADD COLUMN currency VARCHAR(50),
+ADD COLUMN number_date_use int;
 
 -- 2019/06/02 : Nin - New Table: special_offer
 CREATE TABLE special_offer
 (
-   special_offer_id serial, 
+   special_offer_id serial,
    code varchar(250),
    name varchar(250),
-   image text, 
+   image text,
    web_link text,
    is_active boolean,
    is_deleted boolean,
@@ -354,3 +362,8 @@ INSERT INTO special_offer(special_offer_id, code, name, image, web_link, is_acti
 
 
 
+
+--2019/06/03 : Dieu - update table loyalty_program
+ALTER TABLE loyalty_program ADD COLUMN point int ,
+ADD COLUMN total_release int,
+ADD COLUMN available int ;

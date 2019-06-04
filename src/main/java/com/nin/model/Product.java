@@ -2,6 +2,7 @@ package com.nin.model;
 
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
+import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
 import java.util.List;
@@ -9,6 +10,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "product")
+@Where(clause = "is_deleted='false'")
 public class Product {
 
     @Id

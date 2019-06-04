@@ -4,12 +4,13 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
+@Table(name = "product_in_store")
 public class ProductInStore  implements Serializable {
     @Id
-    @Column(name = "store_id",nullable = true)
+    @Column(name = "store_id",nullable = false , insertable = false,updatable = false)
     private Long storeId;
     @Id
-    @Column(name = "product_id",nullable = true)
+    @Column(name = "product_id",nullable = false, insertable = false,updatable = false)
     private Long productId;
     private Integer stockAmount;
     private boolean isActive;
