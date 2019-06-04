@@ -35,18 +35,14 @@ public class ApiLoyaltyProgramController {
             for (LoyaltyProgram loyaltyProgram : currentLoyaltyProgram) {
                 Voucher voucher =voucherService.findByVoucherId(loyaltyProgram.getVoucherId());
                 Map<String, Object> obj = new HashMap<>();
-                obj.put("voucher_id", voucher.getVoucherId());
-                obj.put("name", voucher.getName());
+                obj.put("voucherId", voucher.getVoucherId());
+                obj.put("voucherName", voucher.getName());
                 obj.put("image", voucher.getImage());
-                obj.put("description", voucher.getDescription());
-                obj.put("value", voucher.getValue());
+                obj.put("price", voucher.getValue());
                 obj.put("currency", voucher.getCurrency());
-                obj.put("number_date_use", voucher.getNumberDateUse());
-                obj.put("loyalty_program_id", loyaltyProgram.getLoyaltyProgramId());
+                obj.put("releasesTotal", loyaltyProgram.getTotal_release());
                 obj.put("point", loyaltyProgram.getPoint());
-                obj.put("total_release", loyaltyProgram.getTotal_release());
-                obj.put("available", loyaltyProgram.getAvailable());
-
+                obj.put("availables", loyaltyProgram.getAvailable());
                 result.add(obj);
             }
             Map<String, Object> out = new HashMap<String, Object>() {{

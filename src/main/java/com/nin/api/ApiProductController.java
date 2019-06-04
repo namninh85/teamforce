@@ -27,14 +27,13 @@ public class ApiProductController {
             List<Map<String, Object>> result = new ArrayList<>();
             for(Product product : currentProduct) {
                 Map<String, Object> obj = new HashMap<>();
-                obj.put("id", product.getProductId());
+                obj.put("productId", product.getProductId());
                 obj.put("code", product.getCode());
-                obj.put("name", product.getName());
+                obj.put("tile", product.getName());
                 obj.put("image", product.getImage());
-                obj.put("web_link", product.getWebLink());
+                obj.put("webLink", product.getWebLink());
                 obj.put("description", product.getDescription());
-                obj.put("has_new", product.getHasNew());
-
+                obj.put("hasNew", product.getHasNew());
                 result.add(obj);
             }
             Map<String, Object> out = new HashMap<String, Object>() {{

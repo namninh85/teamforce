@@ -31,11 +31,11 @@ public class ApiCategoryController {
             List<Map<String, Object>> result = new ArrayList<>();
             for (Category category : currentCategory) {
                 Map<String, Object> obj = new HashMap<>();
-                obj.put("id", category.getProductCategoryId());
+                obj.put("categoryId", category.getProductCategoryId());
                 obj.put("code", category.getCode());
-                obj.put("name", category.getName());
+                obj.put("title", category.getName());
                 obj.put("image", category.getImage());
-                obj.put("web_link", category.getWebLink());
+                obj.put("webLink", category.getWebLink());
                 obj.put("description", category.getDescription());
                 obj.put("parent_id", category.getParentId());
 

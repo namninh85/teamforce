@@ -38,13 +38,9 @@ public class ApiStoreController {
            List<Map<String, Object>> result = new ArrayList<>();
            for(Store store : currentStore) {
                Map<String, Object> obj = new HashMap<>();
-               obj.put("id", store.getStoreId());
+               obj.put("storeId", store.getStoreId());
                obj.put("name", store.getName());
-               obj.put("street", store.getStreet());
-               obj.put("ward", store.getWard());
-               obj.put("district", store.getDistrict());
-               obj.put("city", store.getCity());
-               obj.put("country", store.getCountry());
+               obj.put("address", String.format("%s - %s - %s - %s - %s",store.getStreet(),store.getWard(),store.getDistrict(),store.getCity(), store.getCountry()));
                obj.put("phone", store.getPhone());
                List<String> utilities = utilityService.findByListId(store.getUtilities());
                obj.put("utilities",utilities);
