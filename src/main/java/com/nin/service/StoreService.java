@@ -18,6 +18,6 @@ public class StoreService {
     }
 
     public List<Store> findByProductId (Long productId , String storeName, String street){
-        return storeRepository.findByProductId(productId,storeName,street);
+        return storeRepository.findByProductId(productId,storeName.toLowerCase(),street.toLowerCase());
     }
 }

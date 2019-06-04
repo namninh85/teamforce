@@ -19,6 +19,6 @@ public class ProductService {
         this.productRepository = productRepository;
     }
     public List<Product> findProductByName (String name){
-        return productRepository.findByNameAndIsActive(name,true);
+        return productRepository.findProductByName(name.toLowerCase());
     }
 }
