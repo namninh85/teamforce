@@ -77,3 +77,27 @@ VALUES(1,'Dolpan Sam','https://salt.tikicdn.com/cache/w1200/ts/product/2a/fd/5e/
  (8,5,20190621,20190625,4000,200,50,true,false),
  (9,3,20190625,20190627,4000,200,50,true,false),
  (10,4,20190625,20190627,4000,200,50,true,false);
+
+ -- 2019/06/05 - Nin - Data sample for customer_rewards_log
+ INSERT INTO public.customer_rewards_log(customer_rewards_log_id, customer_id, point_burn_earn, loyalty_program_id, voucher_code_id, reward_date, is_active, is_deleted)
+VALUES (1,1,-4000,1,NULL,1559687829,TRUE,FALSE);
+INSERT INTO public.customer_rewards_log(customer_rewards_log_id, customer_id, point_burn_earn, loyalty_program_id, voucher_code_id, reward_date, is_active, is_deleted)
+VALUES (2,1,-4000,2,NULL,1559687829,TRUE,FALSE);
+INSERT INTO public.customer_rewards_log(customer_rewards_log_id, customer_id, point_burn_earn, loyalty_program_id, voucher_code_id, reward_date, is_active, is_deleted)
+VALUES (3,1,-4000,3,NULL,1559687829,TRUE,FALSE);
+INSERT INTO public.customer_rewards_log(customer_rewards_log_id, customer_id, point_burn_earn, loyalty_program_id, voucher_code_id, reward_date, is_active, is_deleted)
+VALUES (4,1,-4000,4,NULL,1559687829,TRUE,FALSE);
+INSERT INTO public.customer_rewards_log(customer_rewards_log_id, customer_id, point_burn_earn, loyalty_program_id, voucher_code_id, reward_date, is_active, is_deleted)
+VALUES (5,1,-4000,5,NULL,1559687829,TRUE,FALSE);
+INSERT INTO public.customer_rewards_log(customer_rewards_log_id, customer_id, point_burn_earn, loyalty_program_id, voucher_code_id, reward_date, is_active, is_deleted)
+VALUES (6,1,-4000,6,NULL,1559687829,TRUE,FALSE);
+INSERT INTO public.customer_rewards_log(customer_rewards_log_id, customer_id, point_burn_earn, loyalty_program_id, voucher_code_id, reward_date, is_active, is_deleted)
+VALUES (7,1,-4000,7,NULL,1559687829,TRUE,FALSE);
+INSERT INTO public.customer_rewards_log(customer_rewards_log_id, customer_id, point_burn_earn, loyalty_program_id, voucher_code_id, reward_date, is_active, is_deleted)
+VALUES (8,1,-4000,8,NULL,1559687829,TRUE,FALSE);
+INSERT INTO public.customer_rewards_log(customer_rewards_log_id, customer_id, point_burn_earn, loyalty_program_id, voucher_code_id, reward_date, is_active, is_deleted)
+VALUES (9,1,-4000,9,NULL,1559687829,TRUE,FALSE);
+INSERT INTO public.customer_rewards_log(customer_rewards_log_id, customer_id, point_burn_earn, loyalty_program_id, voucher_code_id, reward_date, is_active, is_deleted)
+VALUES (10,1,-4000,1,NULL,1559687829,TRUE,FALSE);
+INSERT INTO public.customer_rewards_log(customer_rewards_log_id, customer_id, point_burn_earn, loyalty_program_id, voucher_code_id, reward_date, is_active, is_deleted)
+VALUES (11,1,-4000,2,NULL,1559687829,TRUE,FALSE);
