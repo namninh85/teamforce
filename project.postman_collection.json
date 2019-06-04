@@ -295,6 +295,54 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"id": "0ad464a9-d78b-4eca-be16-71166642d14f",
+			"name": "Get special-offer",
+			"url": "http://nin-loyalty-backend.herokuapp.com/api/v1/specialoffer",
+			"description": null,
+			"data": null,
+			"dataMode": null,
+			"headerData": [
+				{
+					"key": "Authorization",
+					"value": "Bearer f5d06ec2-9355-4278-a651-cabf5126e020",
+					"enabled": true
+				}
+			],
+			"method": "GET",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": null,
+			"folder": null,
+			"headers": "Authorization: Bearer f5d06ec2-9355-4278-a651-cabf5126e020\n",
+			"pathVariables": {}
+		},
+		{
+			"id": "1103b09b-5415-4a04-9b3c-7d55c49e8455",
+			"name": "Login & Create New",
+			"url": "https://nin-loyalty-backend.herokuapp.com/auth/login-create",
+			"description": "",
+			"data": [],
+			"dataMode": "raw",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"method": "POST",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": null,
+			"folder": null,
+			"rawModeData": "{\r\n\"username\": \"email2@email.com\",\r\n\"password\": \"password\"\r\n}\r\n",
+			"headers": "Content-Type: application/json\n",
+			"pathVariables": {}
 		}
 	]
 }
