@@ -53,3 +53,27 @@ VALUES(1,1,10,true,false),
 (3,1,2,true,false),
 (2,1,30,true,false),
 (4,1,5,true,false);
+
+--2019/06/04 -Dieu - Insert data to voucher
+INSERT INTO voucher(voucher_id,name,image,value,currency,description,number_date_use,is_active,is_deleted)
+VALUES(1,'Dolpan Sam','https://salt.tikicdn.com/cache/w1200/ts/product/2a/fd/5e/16efa91c73dc1dd97812ed897e03f92e.png',179,'VND','Dolpan Sam - Voucher Buffet Nướng Trị Giá 179K',30,true,false),
+(2,'Voucher 2 bia tươi Gammer và 1 xúc xích','https://salt.tikicdn.com/cache/w1200/ts/product/2a/fd/5e/d897e092e.png',300,'VND','Voucher 2 bia tươi Gammer và 1 xúc xích',10,true,false),
+(3,'[E-Voucher] Yến Sào Hồng Sâm Cao Cấp Bionest Ginseng Lọ 70ml','https://salt.tikicdn.com/cache/w1200/ts/product/2a/fd/5e/16ee.png',219,'VND','[E-Voucher] Yến Sào Hồng Sâm Cao Cấp Bionest Ginseng Lọ 70ml',30,true,false),
+(4,'The Coffee House - Voucher Thưởng Thức Toàn Menu Chỉ Có Tại TIKI','https://salt.tikicdn.com/cache/w1200/ts/product/2a/fd/5e/163f92e.png',400000,'VND','The Coffee House - Voucher Thưởng Thức Toàn Menu ',30,true,false),
+(5,'[E-Voucher] Yến Sào Cao Cấp Bionest Gold - Hộp Quà Tặng (6 Lọ X 70ml)','https://salt.tikicdn.com/cache/w1200/ts/d/5e/163f92e.png',400,'VND','[E-Voucher] Yến Sào Cao Cấp Bionest Gold - Hộp Quà Tặng (6 Lọ X 70ml)',20,true,false),
+(6,' Yến Sào Cao Cấp Bionest Gold - Hộp Tiết Kiệm (6 Lọ X 70ml)','https://salt.tikicdn.com/cache/w1200/ts/product/2a/897e03f92e.png',9000,'VND',' Yến Sào Cao Cấp Bionest Gold - Hộp Tiết Kiệm (6 Lọ X 70ml)',10,true,false),
+(7,'Dolpan Sam','https://salt.tikicdn.com/cache/w1200/ts/product/2a/fd/52ed897e03f92e.png',1456,'VND','Dolpan Sam - Voucher Buffet Nướng Trị Giá 179K',15,true,false),
+(8,'Voucher 100Gr Yến Tinh Chế - Yến Sào Cao Cấp Nha Trang NestViet','https://salt.tikicdn.com/cache/w1200/ts/product/2a/fd/5e/16efa93f92e.png',540000,'VND','Voucher 100Gr Yến Tinh Chế - Yến Sào Cao Cấp Nha Trang NestViet',20,true,false);
+
+ --2019/06/04 - Dieu - Insert data table loyalty_program
+ INSERT INTO loyalty_program(loyalty_program_id,voucher_id,start_date,end_date,point,total_release,available,is_active,is_deleted)
+ VALUES(1,1,20190601,20190610,4000,200,50,true,false),
+ (2,2,20190601,20190610,4000,200,50,true,false),
+ (3,3,20190601,20190610,4000,200,50,true,false),
+ (4,1,20190611,20190620,4000,200,50,true,false),
+ (5,3,20190611,20190620,4000,200,50,true,false),
+ (6,4,20190611,20190620,4000,200,50,true,false),
+ (7,2,20190621,20190625,4000,200,50,true,false),
+ (8,5,20190621,20190625,4000,200,50,true,false),
+ (9,3,20190625,20190627,4000,200,50,true,false),
+ (10,4,20190625,20190627,4000,200,50,true,false);
