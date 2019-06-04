@@ -295,6 +295,29 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"id": "0ad464a9-d78b-4eca-be16-71166642d14f",
+			"name": "Get special-offer",
+			"url": "http://nin-loyalty-backend.herokuapp.com/api/v1/specialoffer",
+			"description": null,
+			"data": null,
+			"dataMode": null,
+			"headerData": [
+				{
+					"key": "Authorization",
+					"value": "Bearer f5d06ec2-9355-4278-a651-cabf5126e020",
+					"enabled": true
+				}
+			],
+			"method": "GET",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": null,
+			"folder": null,
+			"headers": "Authorization: Bearer f5d06ec2-9355-4278-a651-cabf5126e020\n",
+			"pathVariables": {}
 		}
 	]
 }
