@@ -343,6 +343,6 @@
 			"rawModeData": "{\r\n\"username\": \"email2@email.com\",\r\n\"password\": \"password\"\r\n}\r\n",
 			"headers": "Content-Type: application/json\n",
 			"pathVariables": {}
-		},
+		}
 	]
 }
