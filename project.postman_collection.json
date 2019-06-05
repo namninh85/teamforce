@@ -206,6 +206,21 @@
 				"url": "http://nin-loyalty-backend.herokuapp.com/api/v1/program"
 			},
 			"response": []
+		},
+		{
+			"name": "Get special offer",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer 83499f4e-b67b-4cc7-9544-49e0c2948e96",
+						"type": "text"
+					}
+				],
+				"url": "http://nin-loyalty-backend.herokuapp.com/api/v1/specialoffer"
+			},
+			"response": []
 		}
 	]
 }
