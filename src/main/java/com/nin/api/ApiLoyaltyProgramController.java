@@ -44,6 +44,7 @@ public class ApiLoyaltyProgramController {
                 obj.put("releasesTotal", loyaltyProgram.getTotal_release());
                 obj.put("point", loyaltyProgram.getPoint());
                 obj.put("availables", loyaltyProgram.getAvailable());
+                obj.put("uAvailables", 0);
                 result.add(obj);
             }
             Map<String, Object> out = new HashMap<String, Object>() {{
