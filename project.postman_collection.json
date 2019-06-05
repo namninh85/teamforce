@@ -17,7 +17,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n\"username\": \"email2@email.com\",\r\n\"password\": \"password\"\r\n}\r\n"
+					"raw": "{\r\n\"username\": \"email@email.com\",\r\n\"password\": \"password\"\r\n}\r\n"
 				},
 				"url": "https://nin-loyalty-backend.herokuapp.com/auth/login-create"
 			},
