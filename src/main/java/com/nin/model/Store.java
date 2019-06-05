@@ -12,11 +12,9 @@ public class Store {
     @GeneratedValue
     private Long storeId;
     private String name;
-    private String street;
-    private String ward;
-    private String district;
-    private String city;
-    private String country;
+    private String address;
+    private Double latitude;
+    private Double longitude;
     private String phone;
     private String utilities;
     private Boolean isActive;
@@ -30,16 +28,13 @@ public class Store {
     )
     private List<Product> products;
     public Store(){}
-    public Store(Long storeId, String name, String street, String ward, String district, String city,
-                 String country, String phone, Boolean isActive, Boolean isDeleted,String utilities,
-                 List<Product> products) {
+
+    public Store(Long storeId, String name, String address, Double latitude, Double longitude, String phone, String utilities, Boolean isActive, Boolean isDeleted, List<Product> products) {
         this.storeId = storeId;
         this.name = name;
-        this.street = street;
-        this.ward = ward;
-        this.district = district;
-        this.city = city;
-        this.country = country;
+        this.address = address;
+        this.latitude = latitude;
+        this.longitude = longitude;
         this.phone = phone;
         this.utilities = utilities;
         this.isActive = isActive;
@@ -63,44 +58,28 @@ public class Store {
         this.name = name;
     }
 
-    public String getStreet() {
-        return street;
+    public String getAddress() {
+        return address;
     }
 
-    public void setStreet(String street) {
-        this.street = street;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
-    public String getWard() {
-        return ward;
+    public Double getLatitude() {
+        return latitude;
     }
 
-    public void setWard(String ward) {
-        this.ward = ward;
+    public void setLatitude(Double latitude) {
+        this.latitude = latitude;
     }
 
-    public String getDistrict() {
-        return district;
+    public Double getLongitude() {
+        return longitude;
     }
 
-    public void setDistrict(String district) {
-        this.district = district;
-    }
-
-    public String getCity() {
-        return city;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
-    }
-
-    public String getCountry() {
-        return country;
-    }
-
-    public void setCountry(String country) {
-        this.country = country;
+    public void setLongitude(Double longitude) {
+        this.longitude = longitude;
     }
 
     public String getPhone() {
@@ -109,6 +88,14 @@ public class Store {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    public String getUtilities() {
+        return utilities;
+    }
+
+    public void setUtilities(String utilities) {
+        this.utilities = utilities;
     }
 
     public Boolean getActive() {
@@ -134,13 +121,4 @@ public class Store {
     public void setProducts(List<Product> products) {
         this.products = products;
     }
-
-    public String getUtilities() {
-        return utilities;
-    }
-
-    public void setUtilities(String utilities) {
-        this.utilities = utilities;
-    }
-
 }

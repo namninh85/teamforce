@@ -25,41 +25,46 @@ public class ApiStoreController {
     private UtilityService utilityService;
 
     @Autowired
-    public ApiStoreController(StoreService storeService , UtilityService utilityService) {
+    public ApiStoreController(StoreService storeService, UtilityService utilityService) {
         this.utilityService = utilityService;
         this.storeService = storeService;
     }
 
 
     @GetMapping("/store")
-    public ResponseEntity<Map<String, Object>> listStore(@RequestParam(value = "productId") Long productId, @RequestParam(value = "storeName") String storeName, @RequestParam(value = "street") String street) {
-       try {
-           List<Store> currentStore = storeService.findByProductId(productId, storeName, street);
-           List<Map<String, Object>> result = new ArrayList<>();
-           for(Store store : currentStore) {
-               Map<String, Object> obj = new HashMap<>();
-               obj.put("storeId", store.getStoreId());
-               obj.put("name", store.getName());
-               obj.put("address", String.format("%s - %s - %s - %s - %s",store.getStreet(),store.getWard(),store.getDistrict(),store.getCity(), store.getCountry()));
-               obj.put("phone", store.getPhone());
-               List<String> utilities = utilityService.findByListId(store.getUtilities());
-               obj.put("utilities",utilities);
-               result.add(obj);
-           }
-           Map<String, Object> out = new HashMap<String, Object>() {{
-               put("data", result);
-               put("error", 0);
+    public ResponseEntity<Map<String, Object>> listStore(@RequestParam(value = "productId") Long productId,
+                                                         @RequestParam(value = "storeName") String storeName,
+                                                         @RequestParam(value = "address") String address,
+                                                         @RequestParam(value = "phone") String phone) {
+        try {
+            List<Store> currentStore = storeService.findByProductId(productId, storeName, address, phone);
+            List<Map<String, Object>> result = new ArrayList<>();
+            for (Store store : currentStore) {
+                Map<String, Object> obj = new HashMap<>();
+                obj.put("storeId", store.getStoreId());
+                obj.put("name", store.getName());
+                obj.put("address", store.getAddress());
+                obj.put("phone", store.getPhone());
+                obj.put("latitude",store.getLatitude());
+                obj.put("longitude",store.getLongitude());
+                List<String> utilities = utilityService.findByListId(store.getUtilities());
+                obj.put("utilities", utilities);
+                result.add(obj);
+            }
+            Map<String, Object> out = new HashMap<String, Object>() {{
+                put("data", result);
+                put("error", 0);
 
-           }};
-           return new ResponseEntity<>(out, HttpStatus.OK);
+            }};
+            return new ResponseEntity<>(out, HttpStatus.OK);
 
-       }catch (Exception e) {
-           Map<String, Object> responseMap = new HashMap<String, Object>();
-           responseMap.put("Message", e.getMessage());
-           responseMap.put("data", responseMap);
-           responseMap.put("error", -1);
-           return new ResponseEntity<>(responseMap, HttpStatus.BAD_REQUEST);
-       }
+        } catch (Exception e) {
+            Map<String, Object> responseMap = new HashMap<String, Object>();
+            responseMap.put("Message", e.getMessage());
+            responseMap.put("data", responseMap);
+            responseMap.put("error", -1);
+            return new ResponseEntity<>(responseMap, HttpStatus.BAD_REQUEST);
+        }
 
     }
 }

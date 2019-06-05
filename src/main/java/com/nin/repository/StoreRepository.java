@@ -9,7 +9,10 @@ import java.util.List;
 
 @Repository
 public interface StoreRepository extends JpaRepository<Store,Long> {
-    @Query("SELECT s FROM Store s WHERE s.isActive=true AND s.storeId in (SELECT p.storeId AS storeId FROM ProductInStore p WHERE p.productId=:productId) AND lower(s.name) LIKE %"+":storeName"+"% AND lower(s.street) LIKE %"+":street"+"%")
-    List<Store> findByProductId(@Param("productId") Long productId ,@Param("storeName") String storeName ,@Param("street") String street);
+    @Query("SELECT s FROM Store s WHERE s.isActive=true AND s.storeId in (SELECT p.storeId AS storeId FROM ProductInStore p WHERE p.productId=:productId)" +
+            " AND lower(s.name) LIKE %"+":storeName"+"% " +
+            " AND lower(s.address) LIKE %"+":address"+"% " +
+            "AND lower(s.phone) LIKE %"+":phone"+"%")
+    List<Store> findByProductId(@Param("productId") Long productId ,@Param("storeName") String storeName ,@Param("address") String address , @Param("phone") String phone);
 
 }
