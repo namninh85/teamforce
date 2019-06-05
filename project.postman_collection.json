@@ -221,6 +221,21 @@
 				"url": "http://nin-loyalty-backend.herokuapp.com/api/v1/specialoffer"
 			},
 			"response": []
+		},
+		{
+			"name": "Get voucher of customer",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "token",
+						"value": "791209c1-ccad-4228-addd-5a3f83335df7",
+						"type": "string"
+					}
+				],
+				"url":  "http://nin-loyalty-backend.herokuapp.com/api/my-rewards"
+			},
+			"response": []
 		}
 	]
 }
