@@ -102,12 +102,7 @@
 		{
 			"name": "Find Product",
 			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": {
-						"token": ""
-					}
-				},
+				
 				"method": "GET",
 				"header": [
 					{
@@ -157,12 +152,7 @@
 		{
 			"name": "Find Store",
 			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": {
-						"token": ""
-					}
-				},
+				
 				"method": "GET",
 				"header": [
 					{
@@ -206,12 +196,6 @@
 		{
 			"name": "Program",
 			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": {
-						"token": ""
-					}
-				},
 				"method": "GET",
 				"header": [
 					{
