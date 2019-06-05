@@ -29,7 +29,7 @@ public class ApiProductController {
                 Map<String, Object> obj = new HashMap<>();
                 obj.put("productId", product.getProductId());
                 obj.put("code", product.getCode());
-                obj.put("tile", product.getName());
+                obj.put("title", product.getName());
                 obj.put("image", product.getImage());
                 obj.put("webLink", product.getWebLink());
                 obj.put("description", product.getDescription());
