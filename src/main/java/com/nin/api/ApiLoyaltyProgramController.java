@@ -36,6 +36,7 @@ public class ApiLoyaltyProgramController {
                 Voucher voucher =voucherService.findByVoucherId(loyaltyProgram.getVoucherId());
                 Map<String, Object> obj = new HashMap<>();
                 obj.put("voucherId", voucher.getVoucherId());
+                obj.put("loyaltyProgramId", loyaltyProgram.getLoyaltyProgramId());
                 obj.put("voucherName", voucher.getName());
                 obj.put("image", voucher.getImage());
                 obj.put("price", voucher.getValue());
