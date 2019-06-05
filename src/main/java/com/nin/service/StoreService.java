@@ -17,7 +17,7 @@ public class StoreService {
         this.storeRepository = storeRepository;
     }
 
-    public List<Store> findByProductId (Long productId , String storeName, String address , String phone){
-        return storeRepository.findByProductId(productId,storeName.toLowerCase(),address.toLowerCase(),phone.toLowerCase());
+    public List<Store> findByProductId (Long productId , String key){
+        return storeRepository.findByProductId(productId,key.toLowerCase());
     }
 }

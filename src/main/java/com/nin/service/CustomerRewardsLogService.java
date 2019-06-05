@@ -1,4 +1,22 @@
 package com.nin.service;
 
+import com.nin.model.CustomerRewardsLog;
+import com.nin.repository.CustomerRewardsLogRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
+@Service
 public class CustomerRewardsLogService {
+    @Autowired
+    private CustomerRewardsLogRepository customerRewardsLogRepository;
+    @Autowired
+    public CustomerRewardsLogService(CustomerRewardsLogRepository customerRewardsLogRepository) {
+        this.customerRewardsLogRepository = customerRewardsLogRepository;
+    }
+
+    public List<Object[]> findCustomerRewardsLogByCustomerId(Long Id){
+        return customerRewardsLogRepository.findCustomerRewardsLogByCustomerId(Id);
+    }
 }

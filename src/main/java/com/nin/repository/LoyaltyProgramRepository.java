@@ -12,4 +12,5 @@ public interface LoyaltyProgramRepository extends JpaRepository<LoyaltyProgram,L
     @Query("SELECT  p FROM LoyaltyProgram p WHERE p.isActive=true " +
             "AND CAST(to_char(now(),'YYYYMMDD') AS integer) BETWEEN p.startDate AND p.endDate")
     List<LoyaltyProgram> findLoyaltyProgramByDate();
+    LoyaltyProgram findByLoyaltyProgramId(Long Id);
 }

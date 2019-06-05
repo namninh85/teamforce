@@ -4,6 +4,8 @@ import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
 import java.math.BigInteger;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "loyalty_program")
@@ -21,9 +23,13 @@ public class LoyaltyProgram {
     private Boolean isActive;
     private Boolean isDeleted;
 
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "loyaltyProgramId")
+    private List<CustomerRewardsLog> customerRewardsLogs =new ArrayList<>();
+
     public LoyaltyProgram(){}
 
-    public LoyaltyProgram(Long loyaltyProgramId, Long voucherId, BigInteger startDate, BigInteger endDate, Integer point, Integer total_release, Integer available, Boolean isActive, Boolean isDeleted, Voucher voucher) {
+    public LoyaltyProgram(Long loyaltyProgramId, Long voucherId, BigInteger startDate, BigInteger endDate, Integer point, Integer total_release, Integer available, Boolean isActive, Boolean isDeleted, List<CustomerRewardsLog> customerRewardsLogs) {
         this.loyaltyProgramId = loyaltyProgramId;
         this.voucherId = voucherId;
         this.startDate = startDate;
@@ -33,6 +39,7 @@ public class LoyaltyProgram {
         this.available = available;
         this.isActive = isActive;
         this.isDeleted = isDeleted;
+        this.customerRewardsLogs = customerRewardsLogs;
     }
 
     public Long getLoyaltyProgramId() {
@@ -107,4 +114,11 @@ public class LoyaltyProgram {
         isDeleted = deleted;
     }
 
+    public List<CustomerRewardsLog> getCustomerRewardsLogs() {
+        return customerRewardsLogs;
+    }
+
+    public void setCustomerRewardsLogs(List<CustomerRewardsLog> customerRewardsLogs) {
+        this.customerRewardsLogs = customerRewardsLogs;
+    }
 }

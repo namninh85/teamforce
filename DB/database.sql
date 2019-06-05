@@ -422,13 +422,6 @@ VALUES (1,'seat','https://www.circlek.com.vn/wp-content/uploads/2016/01/seat.png
 (6,'game','https://www.circlek.com.vn/wp-content/uploads/2016/01/73.png','https://www.circlek.com.vn/wp-content/uploads/2016/01/73',true,false);
 
 
---2019/06/04 - Dieu - Insert data to table store
-INSERT INTO public.store(store_id,name,street,ward,district,city,country,phone,position_map,utilities,is_active,is_deleted)
-VALUES (1,'CÔNG TY TNHH PHƯƠNG VIỆT INTERNATIONAL','216 Võ Văn Ngân','Phường Bình Thọ','Quận Thủ Đức','TP Hồ Chí Minh','VN','093436636','123,556','1,2,3',true,false),
-(2,'CÔNG TY TNHH PHUCCA','18 Cộng Hòa','Phường 4','Quận Thủ Đức','TP Hồ Chí Minh','VN','013436636','123345,522356','1,2,3,6',true,false),
-(3,'CÔNG TY CỔ PHẦN SÀI THÀNH FOODS','Số 10 Nguyễn Tư Giản','Phường 12','Quận Gò Vấp,','TP Hồ Chí Minh','VN','092676636','12345,522356','1,2,3,5',true,false),
-(4,'CÔNG TY CỔ PHẦN COHOTA','115/11/7/1C Đường 11','Khu Phố 9, Phường Trường Thọ','Quận Thủ Đức,','TP Hồ Chí Minh','VN','092676636','12345,522356','1,2',true,false);
-
 
 --2019/06/04 - Dieu - insert data to table product_in_store
 INSERT INTO product_in_store(product_id,store_id,stock_amount,is_active,is_deleted)
@@ -490,6 +483,7 @@ INSERT INTO public.customer_rewards_log(customer_rewards_log_id, customer_id, po
 VALUES (11,1,-4000,2,NULL,1559687829,TRUE,FALSE);
 
 --2019/06/05 - Dieu - inset data to table store
+DELETE FROM public.store
 INSERT INTO public.store(store_id,name,address,phone,utilities,is_active,is_deleted,latitude,longitude)
 VALUES ('1','Circle K','33 Hoàng Hoa Thám, Phường 11, Quận Tân Bình, Tp HCM, Việt Nam','+84 28 3526 1003','1,2,3,4,5,6',true,false,10.7992202,106.6471282),
 ('2','Circle K','Landmark 1, Phường 22, Quận Bình Thạnh, Tp Hcm, Việt Nam','+84 28 3526 1003','1,2,3,4,5,6',true,false,10.7955759,106.7192569),

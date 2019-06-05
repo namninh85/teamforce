@@ -33,11 +33,9 @@ public class ApiStoreController {
 
     @GetMapping("/store")
     public ResponseEntity<Map<String, Object>> listStore(@RequestParam(value = "productId") Long productId,
-                                                         @RequestParam(value = "storeName") String storeName,
-                                                         @RequestParam(value = "address") String address,
-                                                         @RequestParam(value = "phone") String phone) {
+                                                         @RequestParam(value = "key") String key) {
         try {
-            List<Store> currentStore = storeService.findByProductId(productId, storeName, address, phone);
+            List<Store> currentStore = storeService.findByProductId(productId,key);
             List<Map<String, Object>> result = new ArrayList<>();
             for (Store store : currentStore) {
                 Map<String, Object> obj = new HashMap<>();

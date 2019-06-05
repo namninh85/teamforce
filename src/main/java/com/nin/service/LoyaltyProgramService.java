@@ -21,5 +21,9 @@ public class LoyaltyProgramService {
       return  loyaltyProgramRepository.findLoyaltyProgramByDate();
     }
 
+    public LoyaltyProgram finByLoyaltyProgramId(Long Id){
+        return loyaltyProgramRepository.findByLoyaltyProgramId(Id);
+    }
+
 
 }
