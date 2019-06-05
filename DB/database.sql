@@ -385,6 +385,7 @@ CREATE TABLE public.store (
 );
 
 --2019/06/04 : Dieu - Insert data product to table product
+DELETE FROM public.product
 INSERT INTO public.product(product_id ,code,name,description,image,web_link,is_active,is_deleted,has_new)
 values(1,'BIA – RƯỢU TRÁI CÂY','BIA – RƯỢU TRÁI CÂY','Sản phẩm bia và rượu trái cây tại Circle K được phục vụ 24/7 với đầy đủ các thương hiệu nổi tiếng trong nước và trên thế giới.Bạn sẽ không lo cuộc vui của mình bị gián đoạn.','https://www.circlek.com.vn/wp-content/uploads/2016/01/blk-1-BEER-pc-450.png',
 	   'https://www.circlek.com.vn/vi/san-pham-dich-vu/san-pham/',true,false,true),
