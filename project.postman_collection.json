@@ -233,7 +233,7 @@
 						"type": "string"
 					}
 				],
-				"url":  "http://nin-loyalty-backend.herokuapp.com/api/my-rewards"
+				"url":  "http://nin-loyalty-backend.herokuapp.com/api/v1/my-rewards"
 			},
 			"response": []
 		}
