@@ -47,11 +47,8 @@ public class ApiCustomerRewardsLogController {
             List<Map<String, Object>> result = new ArrayList<>();
             System.out.println(listCustomerRewardsLog.toString());
             for (Object[] customerRewardsLog : listCustomerRewardsLog) {
-                System.out.println(customerRewardsLog.toString());
-                System.out.println(customerRewardsLog[1].toString());
-                System.out.println(customerRewardsLog[1].toString());
                 LoyaltyProgram loyaltyProgram = loyaltyProgramService.finByLoyaltyProgramId(Long.parseLong(customerRewardsLog[0].toString()));
-                Voucher voucher = voucherService.findByVoucherId(Long.parseLong(customerRewardsLog[1].toString()));
+                Voucher voucher = voucherService.findByVoucherId(loyaltyProgram.getVoucherId());
                 Map<String, Object> obj = new HashMap<>();
                 obj.put("voucherId", voucher.getVoucherId());
                 obj.put("loyaltyProgramId", loyaltyProgram.getLoyaltyProgramId());
@@ -62,7 +59,7 @@ public class ApiCustomerRewardsLogController {
                 obj.put("releasesTotal", loyaltyProgram.getTotal_release());
                 obj.put("point", loyaltyProgram.getPoint());
                 obj.put("availables", loyaltyProgram.getAvailable());
-                obj.put("uAvailables", customerRewardsLog[2].toString());
+                obj.put("uAvailables", customerRewardsLog[1].toString());
 
                 result.add(obj);
             }

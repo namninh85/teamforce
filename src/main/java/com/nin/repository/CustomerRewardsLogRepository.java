@@ -10,8 +10,8 @@ import java.util.List;
 
 @Repository
 public interface CustomerRewardsLogRepository extends JpaRepository<CustomerRewardsLog,Long> {
-    @Query(value = "SELECT c.voucher_code_id, c.loyalty_program_id,COUNT(c.customer_rewards_log_id) AS uAvailable" +
+    @Query(value = "SELECT c.loyalty_program_id,COUNT(c.customer_rewards_log_id) AS uAvailable" +
             " FROM customer_rewards_log c WHERE  c.customer_id =:Id " +
-            "GROUP BY c.voucher_code_id, c.loyalty_program_id",nativeQuery = true)
+            "GROUP BY c.loyalty_program_id",nativeQuery = true)
     List<Object[]> findCustomerRewardsLogByCustomerId(@Param("Id") Long Id);
 }
