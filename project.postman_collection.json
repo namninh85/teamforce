@@ -236,6 +236,21 @@
 				"url":  "http://nin-loyalty-backend.herokuapp.com/api/v1/my-rewards"
 			},
 			"response": []
+		},
+		{
+			"name": "Get app-data-config",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "token",
+						"value": "791209c1-ccad-4228-addd-5a3f83335df7",
+						"type": "string"
+					}
+				],
+				"url":  "http://nin-loyalty-backend.herokuapp.com/api/v1/app-data"
+			},
+			"response": []
 		}
 	]
 }
