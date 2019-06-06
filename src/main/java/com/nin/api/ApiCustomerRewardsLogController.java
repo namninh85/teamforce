@@ -59,7 +59,7 @@ public class ApiCustomerRewardsLogController {
                 obj.put("releasesTotal", loyaltyProgram.getTotal_release());
                 obj.put("point", loyaltyProgram.getPoint());
                 obj.put("availables", loyaltyProgram.getAvailable());
-                obj.put("uAvailables", customerRewardsLog[1].toString());
+                obj.put("uAvailables", customerRewardsLog[1]);
 
                 result.add(obj);
             }

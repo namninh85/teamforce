@@ -19,7 +19,7 @@ public class ResourceServerConfiguration extends
     @Override
     public void configure(HttpSecurity http) throws Exception {
         http.csrf().disable().authorizeRequests()
-        .antMatchers("/auth/**").permitAll().and()
+        .antMatchers("/auth/**","/api/v1/app-data").permitAll().and()
                 .authorizeRequests()
                 .antMatchers("/api/v{[0-9]+}/user").hasRole("USER")
                 .anyRequest().authenticated()
