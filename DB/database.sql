@@ -379,13 +379,13 @@ CREATE TABLE public.store (
     utilities character varying(20),
     address character varying(255),
     latitude double precision,
-    longitude double precision
+    longitude double precision,
     PRIMARY KEY(store_id)
 
 );
 
 --2019/06/04 : Dieu - Insert data product to table product
-DELETE FROM public.product
+DELETE FROM public.product;
 INSERT INTO public.product(product_id ,code,name,description,image,web_link,is_active,is_deleted,has_new)
 values(1,'BIA – RƯỢU TRÁI CÂY','BIA – RƯỢU TRÁI CÂY','Sản phẩm bia và rượu trái cây tại Circle K được phục vụ 24/7 với đầy đủ các thương hiệu nổi tiếng trong nước và trên thế giới.Bạn sẽ không lo cuộc vui của mình bị gián đoạn.','https://www.circlek.com.vn/wp-content/uploads/2016/01/blk-1-BEER-pc-450.png',
 	   'https://www.circlek.com.vn/vi/san-pham-dich-vu/san-pham/',true,false,true),
@@ -483,7 +483,7 @@ INSERT INTO public.customer_rewards_log(customer_rewards_log_id, customer_id, po
 VALUES (11,1,-4000,2,NULL,1559687829,TRUE,FALSE);
 
 --2019/06/05 - Dieu - inset data to table store
-DELETE FROM public.store
+DELETE FROM public.store;
 INSERT INTO public.store(store_id,name,address,phone,utilities,is_active,is_deleted,latitude,longitude)
 VALUES ('1','Circle K','33 Hoàng Hoa Thám, Phường 11, Quận Tân Bình, Tp HCM, Việt Nam','+84 28 3526 1003','1,2,3,4,5,6',true,false,10.7992202,106.6471282),
 ('2','Circle K','Landmark 1, Phường 22, Quận Bình Thạnh, Tp Hcm, Việt Nam','+84 28 3526 1003','1,2,3,4,5,6',true,false,10.7955759,106.7192569),
