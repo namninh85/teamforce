@@ -1,8 +1,11 @@
 package com.nin.api;
 
 import com.nin.model.LoyaltyProgram;
+import com.nin.model.User;
 import com.nin.model.Voucher;
+import com.nin.service.CustomerRewardsLogService;
 import com.nin.service.LoyaltyProgramService;
+import com.nin.service.UserService;
 import com.nin.service.VoucherService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,16 +24,22 @@ public class ApiLoyaltyProgramController {
 
     private LoyaltyProgramService loyaltyProgramService;
     private VoucherService voucherService;
+    private UserService userService;
+    private CustomerRewardsLogService customerRewardsLogService;
 
-    public ApiLoyaltyProgramController(LoyaltyProgramService loyaltyProgramService, VoucherService voucherService) {
+    public ApiLoyaltyProgramController(LoyaltyProgramService loyaltyProgramService, VoucherService voucherService, UserService userService, CustomerRewardsLogService customerRewardsLogService) {
         this.loyaltyProgramService = loyaltyProgramService;
         this.voucherService = voucherService;
+        this.userService = userService;
+        this.customerRewardsLogService = customerRewardsLogService;
     }
 
     @GetMapping("/program")
     public ResponseEntity<Map<String, Object>> findLoyaltyProgramByDate() {
         try {
             List<LoyaltyProgram> currentLoyaltyProgram = loyaltyProgramService.findLoyaltyProgramByDate();
+            User currentUser = userService.getCurrentUser();
+            Map<Long, Long> mapLoyaltyIdUAvailables = loadMapLoyaltyIdUAvailables(currentUser.getId());
             List<Map<String, Object>> result = new ArrayList<>();
             for (LoyaltyProgram loyaltyProgram : currentLoyaltyProgram) {
                 Voucher voucher =voucherService.findByVoucherId(loyaltyProgram.getVoucherId());
@@ -44,7 +53,8 @@ public class ApiLoyaltyProgramController {
                 obj.put("releasesTotal", loyaltyProgram.getTotal_release());
                 obj.put("point", loyaltyProgram.getPoint());
                 obj.put("availables", loyaltyProgram.getAvailable());
-                obj.put("uAvailables", 0);
+                long uAvailables = mapLoyaltyIdUAvailables.get(loyaltyProgram.getLoyaltyProgramId()) != null ? mapLoyaltyIdUAvailables.get(loyaltyProgram.getLoyaltyProgramId()) :  0;
+                obj.put("uAvailables", uAvailables);
                 result.add(obj);
             }
             Map<String, Object> out = new HashMap<String, Object>() {{
@@ -60,4 +70,28 @@ public class ApiLoyaltyProgramController {
             return new ResponseEntity<>(responseMap, HttpStatus.BAD_REQUEST);
         }
     }
+
+	private Map<Long, Long> loadMapLoyaltyIdUAvailables(Long currentCustomerId) {
+		Map<Long, Long> mapLoyaltyIdUAvailables = new HashMap<Long, Long>();
+		List<Object[]> listCustomerRewardsLog = customerRewardsLogService.findCustomerRewardsLogByCustomerId(currentCustomerId);
+        
+        System.out.println(listCustomerRewardsLog.toString());
+        for (Object[] customerRewardsLog : listCustomerRewardsLog) {
+        	long loyaltyId = 0;
+        	try {
+				loyaltyId = Long.parseLong(customerRewardsLog[0].toString());
+			} catch (Exception e) {
+				
+			}
+        	
+        	long uAvailables = 0;
+        	try {
+        		uAvailables = Long.parseLong(customerRewardsLog[1].toString());
+			} catch (Exception e) {
+				
+			}
+        	mapLoyaltyIdUAvailables.put(loyaltyId, uAvailables);
+        }
+		return mapLoyaltyIdUAvailables;
+	}
 }

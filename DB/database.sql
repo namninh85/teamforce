@@ -395,7 +395,7 @@ CREATE TABLE app_data_config(
     is_active boolean,
     is_deleted boolean,
     PRIMARY KEY(app_data_config_id)
-)
+);
 
 --2019/06/06 - Dieu - Create table interested_field
 
@@ -405,7 +405,7 @@ CREATE TABLE interested_field (
     is_active boolean,
     is_deleted boolean,
     PRIMARY KEY (interested_field_id)
-)
+);
 
 
 --2019/06/04 : Dieu - Insert data product to table product
@@ -523,8 +523,8 @@ VALUES ('1','Circle K','33 Hoàng Hoa Thám, Phường 11, Quận Tân Bình, Tp
 
 --2019/06/06 - Dieu - Insert data to table app_data_config
 INSERT INTO public.app_data_config(app_data_config_id,banner_header_img,interested_fields,logo,privacy_link,term_conditions_link,is_active,is_deleted)
-VALUES(1,'http://triqtran.github.io/images/loyalty/others/bg-header.png','1,2,3,4','http://triqtran.github.io/images/loyalty/others/logo-loyalty.png','https://www.circlek.com.vn/vi/chinh-sach-bao-mat/','https://www.circlek.com.vn/vi/dieu-khoan-su-dung',true,false)
+VALUES(1,'http://triqtran.github.io/images/loyalty/others/bg-header.png','1,2,3,4','http://triqtran.github.io/images/loyalty/others/logo-loyalty.png','https://www.circlek.com.vn/vi/chinh-sach-bao-mat/','https://www.circlek.com.vn/vi/dieu-khoan-su-dung',true,false);
 
 --2019/06/06 - Dieu - Insert data to table interested_field
 INSERT INTO public.interested_field(interested_field_id,name,is_active,is_deleted)
-VALUES(1,'Special Offers',true,false),(2,'Food',true,false),(3,'Drinks',true,false),(4,'Phone Cards',true,false)
+VALUES(1,'Special Offers',true,false),(2,'Food',true,false),(3,'Drinks',true,false),(4,'Phone Cards',true,false);
