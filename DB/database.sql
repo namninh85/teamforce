@@ -460,14 +460,14 @@ VALUES(1,1,10,true,false),
 
 --2019/06/04 -Dieu - Insert data to voucher
 INSERT INTO voucher(voucher_id,name,image,value,currency,description,number_date_use,is_active,is_deleted)
-VALUES(1,'Dolpan Sam','https://salt.tikicdn.com/cache/w1200/ts/product/2a/fd/5e/16efa91c73dc1dd97812ed897e03f92e.png',179,'VND','Dolpan Sam - Voucher Buffet Nướng Trị Giá 179K',30,true,false),
-(2,'Voucher 2 bia tươi Gammer và 1 xúc xích','https://salt.tikicdn.com/cache/w1200/ts/product/2a/fd/5e/d897e092e.png',300,'VND','Voucher 2 bia tươi Gammer và 1 xúc xích',10,true,false),
-(3,'[E-Voucher] Yến Sào Hồng Sâm Cao Cấp Bionest Ginseng Lọ 70ml','https://salt.tikicdn.com/cache/w1200/ts/product/2a/fd/5e/16ee.png',219,'VND','[E-Voucher] Yến Sào Hồng Sâm Cao Cấp Bionest Ginseng Lọ 70ml',30,true,false),
-(4,'The Coffee House - Voucher Thưởng Thức Toàn Menu Chỉ Có Tại TIKI','https://salt.tikicdn.com/cache/w1200/ts/product/2a/fd/5e/163f92e.png',400000,'VND','The Coffee House - Voucher Thưởng Thức Toàn Menu ',30,true,false),
-(5,'[E-Voucher] Yến Sào Cao Cấp Bionest Gold - Hộp Quà Tặng (6 Lọ X 70ml)','https://salt.tikicdn.com/cache/w1200/ts/d/5e/163f92e.png',400,'VND','[E-Voucher] Yến Sào Cao Cấp Bionest Gold - Hộp Quà Tặng (6 Lọ X 70ml)',20,true,false),
-(6,' Yến Sào Cao Cấp Bionest Gold - Hộp Tiết Kiệm (6 Lọ X 70ml)','https://salt.tikicdn.com/cache/w1200/ts/product/2a/897e03f92e.png',9000,'VND',' Yến Sào Cao Cấp Bionest Gold - Hộp Tiết Kiệm (6 Lọ X 70ml)',10,true,false),
-(7,'Dolpan Sam','https://salt.tikicdn.com/cache/w1200/ts/product/2a/fd/52ed897e03f92e.png',1456,'VND','Dolpan Sam - Voucher Buffet Nướng Trị Giá 179K',15,true,false),
-(8,'Voucher 100Gr Yến Tinh Chế - Yến Sào Cao Cấp Nha Trang NestViet','https://salt.tikicdn.com/cache/w1200/ts/product/2a/fd/5e/16efa93f92e.png',540000,'VND','Voucher 100Gr Yến Tinh Chế - Yến Sào Cao Cấp Nha Trang NestViet',20,true,false);
+VALUES(1,'Dolpan Sam','https://media.ifind.vn/data/images/media/2bp-1531454945731.png',179,'VND','Dolpan Sam - Voucher Buffet Nướng Trị Giá 179K',30,true,false),
+(2,'Voucher 2 bia tươi Gammer và 1 xúc xích','http://myway.com.vn/admin/webroot/upload/image/images/2018-07-03%20ND_Facebook%20Combo%20bia-01.jpg',300,'VND','Voucher 2 bia tươi Gammer và 1 xúc xích',10,true,false),
+(3,'[E-Voucher] Yến Sào Hồng Sâm Cao Cấp Bionest Ginseng Lọ 70ml','https://i-shop.vnecdn.net/resize/560/560/images/2018/10/17/5bc746d179780-Combo4GINSENG.jpg',219,'VND','[E-Voucher] Yến Sào Hồng Sâm Cao Cấp Bionest Ginseng Lọ 70ml',30,true,false),
+(4,'The Coffee House - Voucher Thưởng Thức Toàn Menu Chỉ Có Tại TIKI','https://cafebiz.cafebizcdn.vn/thumb_w/600/2015/the-coffee-house-1441102961552-crop-1441123481946.jpg',400000,'VND','The Coffee House - Voucher Thưởng Thức Toàn Menu ',30,true,false),
+(5,'[E-Voucher] Yến Sào Cao Cấp Bionest Gold - Hộp Quà Tặng (6 Lọ X 70ml)','https://daily24h.vn/storage/public/vu-anh-619/folder01.jpg',400,'VND','[E-Voucher] Yến Sào Cao Cấp Bionest Gold - Hộp Quà Tặng (6 Lọ X 70ml)',20,true,false),
+(6,' Yến Sào Cao Cấp Bionest Gold - Hộp Tiết Kiệm (6 Lọ X 70ml)','https://oms.hotdeal.vn/images/editors/sources/000354049677/354049-354049-body%20(11).jpg',9000,'VND',' Yến Sào Cao Cấp Bionest Gold - Hộp Tiết Kiệm (6 Lọ X 70ml)',10,true,false),
+(7,'Dolpan Sam','http://dolpansam.vn/menu/data1/images/6.jpg',1456,'VND','Dolpan Sam - Voucher Buffet Nướng Trị Giá 179K',15,true,false),
+(8,'Voucher 100Gr Yến Tinh Chế - Yến Sào Cao Cấp Nha Trang NestViet','https://static.hotdeal.vn/images/1575/1574791/60x60/354049-qua-tet-y-nghia-to-yen-nhan-sam-chung-duong-phen-bionest-kid-danh-cho-moi-nguoi-cua-yen-sao-cao-cap-bionest.jpg',540000,'VND','Voucher 100Gr Yến Tinh Chế - Yến Sào Cao Cấp Nha Trang NestViet',20,true,false);
 
  --2019/06/04 - Dieu - Insert data table loyalty_program
  DELETE FROM public.loyalty_program;
