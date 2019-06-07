@@ -459,6 +459,7 @@ VALUES(1,1,10,true,false),
 (4,1,5,true,false);
 
 --2019/06/04 -Dieu - Insert data to voucher
+DELETE FROM public.voucher;
 INSERT INTO voucher(voucher_id,name,image,value,currency,description,number_date_use,is_active,is_deleted)
 VALUES(1,'Dolpan Sam','https://media.ifind.vn/data/images/media/2bp-1531454945731.png',179,'VND','Dolpan Sam - Voucher Buffet Nướng Trị Giá 179K',30,true,false),
 (2,'Voucher 2 bia tươi Gammer và 1 xúc xích','http://myway.com.vn/admin/webroot/upload/image/images/2018-07-03%20ND_Facebook%20Combo%20bia-01.jpg',300,'VND','Voucher 2 bia tươi Gammer và 1 xúc xích',10,true,false),
