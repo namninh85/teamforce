@@ -4,7 +4,6 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -72,30 +71,25 @@ public class ApiUserController {
 						put("qrcodeImage", aCustomer.getQrcodeImg());
 
 						String interestedFields = aCustomer.getInterestedFields();
-						List<Integer> interests = new ArrayList<>();
-						for(String i : interestedFields.split(",")) {
-							interests.add(Integer.parseInt(i));
+						ArrayList<Map<String, Object>> interestedFieldsMap = new ArrayList<Map<String, Object>>();
+						if (!StringUtils.isEmpty(interestedFields)) {
+							String[] ary = interestedFields.split(",");
+							for (int i = 0; i < ary.length; i++) {
+								InterestedField field = null;
+								try {
+									field = InterestedField.valueOf("_" + ary[i]);
+								}
+								catch(Exception e) {
+								}
+								if (field != null) {
+									Map<String, Object> interestedFieldObj = new HashMap<String, Object>();
+									interestedFieldObj.put("value", Integer.parseInt(ary[i]));
+									interestedFieldObj.put("name", field.getstringValue());
+									interestedFieldsMap.add(interestedFieldObj);
+								}
+							}
 						}
-						put("interestedFields", interests);
-//						ArrayList<Map<String, Object>> interestedFieldsMap = new ArrayList<Map<String, Object>>();
-//						if (!StringUtils.isEmpty(interestedFields)) {
-//							String[] ary = interestedFields.split(",");
-//							for (int i = 0; i < ary.length; i++) {
-//								InterestedField field = null;
-//								try {
-//									field = InterestedField.valueOf("_" + ary[i]);
-//								}
-//								catch(Exception e) {
-//								}
-//								if (field != null) {
-//									Map<String, Object> interestedFieldObj = new HashMap<String, Object>();
-//									interestedFieldObj.put("value", Integer.parseInt(ary[i]));
-//									interestedFieldObj.put("name", field.getstringValue());
-//									interestedFieldsMap.add(interestedFieldObj);
-//								}
-//							}
-//						}
-//						put("interestedFields", interestedFieldsMap);
+						put("interestedFields", interestedFieldsMap);
 
 					}
 				}

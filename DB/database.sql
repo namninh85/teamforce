@@ -470,17 +470,18 @@ VALUES(1,'Dolpan Sam','https://salt.tikicdn.com/cache/w1200/ts/product/2a/fd/5e/
 (8,'Voucher 100Gr Yến Tinh Chế - Yến Sào Cao Cấp Nha Trang NestViet','https://salt.tikicdn.com/cache/w1200/ts/product/2a/fd/5e/16efa93f92e.png',540000,'VND','Voucher 100Gr Yến Tinh Chế - Yến Sào Cao Cấp Nha Trang NestViet',20,true,false);
 
  --2019/06/04 - Dieu - Insert data table loyalty_program
+ DELETE FROM public.loyalty_program;
  INSERT INTO loyalty_program(loyalty_program_id,voucher_id,start_date,end_date,point,total_release,available,is_active,is_deleted)
- VALUES(1,1,20190601,20190610,4000,200,50,true,false),
- (2,2,20190601,20190610,4000,200,50,true,false),
- (3,3,20190601,20190610,4000,200,50,true,false),
- (4,1,20190611,20190620,4000,200,50,true,false),
- (5,3,20190611,20190620,4000,200,50,true,false),
- (6,4,20190611,20190620,4000,200,50,true,false),
- (7,2,20190621,20190625,4000,200,50,true,false),
- (8,5,20190621,20190625,4000,200,50,true,false),
- (9,3,20190625,20190627,4000,200,50,true,false),
- (10,4,20190625,20190627,4000,200,50,true,false);
+ VALUES(1,1,1559350800,1560128400,4000,200,50,true,false),
+ (2,2,1559350800,1560128400,4000,200,50,true,false),
+ (3,3,1559350800,1560128400,4000,200,50,true,false),
+ (4,1,1559350800,1560128400,4000,200,50,true,false),
+ (5,3,1560214800,1560992400,4000,200,50,true,false),
+ (6,4,1560214800,1560992400,4000,200,50,true,false),
+ (7,2,1560214800,1560992400,4000,200,50,true,false),
+ (8,5,1561078800,1561856400,4000,200,50,true,false),
+ (9,3,1561078800,1561856400,4000,200,50,true,false),
+ (10,4,1561078800,1561856400,4000,200,50,true,false);
 
  -- 2019/06/05 - Nin - Data sample for customer_rewards_log
  INSERT INTO public.customer_rewards_log(customer_rewards_log_id, customer_id, point_burn_earn, loyalty_program_id, voucher_code_id, reward_date, is_active, is_deleted)
@@ -532,11 +533,11 @@ VALUES(1,'Special Offers',true,false),(2,'Food',true,false),(3,'Drinks',true,fal
 -- 2019/06/07 - Ninh - data sample for voucher_code
 INSERT INTO public.voucher_code(
  voucher_code_id, voucher_id, voucher_code, is_active, is_deleted)
- VALUES ('1', '1' ,'ABC' ,true ,false), 
-('2', '2' ,'ABC2' ,true ,false), 
-('3', '3' ,'ABC3' ,true ,false), 
-('4', '4' ,'ABC4' ,true ,false), 
-('5', '5' ,'ABC5' ,true ,false), 
-('6', '6' ,'ABC6' ,true ,false), 
-('7', '7' ,'ABC7' ,true ,false), 
+ VALUES ('1', '1' ,'ABC' ,true ,false),
+('2', '2' ,'ABC2' ,true ,false),
+('3', '3' ,'ABC3' ,true ,false),
+('4', '4' ,'ABC4' ,true ,false),
+('5', '5' ,'ABC5' ,true ,false),
+('6', '6' ,'ABC6' ,true ,false),
+('7', '7' ,'ABC7' ,true ,false),
 ('8', '8' ,'ABC8' ,true ,false);
