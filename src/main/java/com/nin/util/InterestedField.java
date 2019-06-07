@@ -2,8 +2,10 @@ package com.nin.util;
 
 public enum InterestedField
 {
-    _0("Special Offers"),
-    _1("Food");
+    _1("Special Offers"),
+    _2("Food"),
+    _3("Drinks"),
+    _4("Phone Cards");
  
     private String stringValue;
  
