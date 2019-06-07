@@ -13,7 +13,7 @@ import java.util.Set;
 @Where(clause = "is_deleted='false'")
 public class Voucher {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long voucherId;
     private String name;
     private String description;
@@ -28,11 +28,14 @@ public class Voucher {
     @JoinColumn(name = "voucherId")
     private List<LoyaltyProgram> loyaltyPrograms =new ArrayList<>();
 
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "voucherId")
+    private List<VoucherCode> voucherCodes =new ArrayList<>();
     public Voucher(){
 
     }
 
-    public Voucher(Long voucherId, String name, String description, String image, Integer value, String currency, Integer numberDateUse, Boolean isActive, Boolean isDeleted, List<LoyaltyProgram> loyaltyPrograms) {
+    public Voucher(Long voucherId, String name, String description, String image, Integer value, String currency, Integer numberDateUse, Boolean isActive, Boolean isDeleted, List<LoyaltyProgram> loyaltyPrograms, List<VoucherCode> voucherCodes) {
         this.voucherId = voucherId;
         this.name = name;
         this.description = description;
@@ -43,6 +46,7 @@ public class Voucher {
         this.isActive = isActive;
         this.isDeleted = isDeleted;
         this.loyaltyPrograms = loyaltyPrograms;
+        this.voucherCodes = voucherCodes;
     }
 
     public Long getVoucherId() {
@@ -123,5 +127,13 @@ public class Voucher {
 
     public void setLoyaltyPrograms(List<LoyaltyProgram> loyaltyPrograms) {
         this.loyaltyPrograms = loyaltyPrograms;
+    }
+
+    public List<VoucherCode> getVoucherCodes() {
+        return voucherCodes;
+    }
+
+    public void setVoucherCodes(List<VoucherCode> voucherCodes) {
+        this.voucherCodes = voucherCodes;
     }
 }

@@ -9,7 +9,7 @@ import java.util.List;
 @Where(clause = "is_deleted='false'")
 public class Store {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long storeId;
     private String name;
     private String address;
@@ -23,8 +23,8 @@ public class Store {
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "product_in_store", joinColumns = {
-            @JoinColumn(name = "store_id", nullable = false, updatable = false)},
-            inverseJoinColumns = {@JoinColumn(name = "product_id", nullable = false, updatable = false)}
+            @JoinColumn(name = "store_id", nullable = false)},
+            inverseJoinColumns = {@JoinColumn(name = "product_id", nullable = false)}
     )
     private List<Product> products;
     public Store(){}

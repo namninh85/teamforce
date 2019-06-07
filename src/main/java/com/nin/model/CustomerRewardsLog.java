@@ -2,19 +2,19 @@ package com.nin.model;
 
 import org.hibernate.annotations.Where;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.io.Serializable;
 import java.math.BigInteger;
 
 @Entity
 @Table(name = "customer_rewards_log")
-public class CustomerRewardsLog {
+public class CustomerRewardsLog implements Serializable {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long customerRewardsLogId;
+    @Column(name = "customer_id", nullable = false)
     private Long customerId;
+    @Column(name = "loyalty_program_id", nullable = false)
     private Long loyaltyProgramId;
     private Long voucherCodeId;
     private Integer pointBurnEarn;
@@ -25,7 +25,7 @@ public class CustomerRewardsLog {
     public CustomerRewardsLog() {
     }
 
-    public CustomerRewardsLog(Long customerRewardsLogId, Long customerId, Long loyaltyProgramId, Long voucherCodeId, Integer pointBurnEarn, BigInteger rewardDate,  Boolean isActive, Boolean isDeleted) {
+    public CustomerRewardsLog(Long customerRewardsLogId, Long customerId, Long loyaltyProgramId, Long voucherCodeId, Integer pointBurnEarn, BigInteger rewardDate, Boolean isActive, Boolean isDeleted) {
         this.customerRewardsLogId = customerRewardsLogId;
         this.customerId = customerId;
         this.loyaltyProgramId = loyaltyProgramId;

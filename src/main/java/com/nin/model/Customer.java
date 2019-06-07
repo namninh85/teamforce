@@ -1,9 +1,11 @@
 package com.nin.model;
 // Generated May 28, 2019 6:18:43 AM by Hibernate Tools 5.4.2.Final
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "customer")
@@ -32,6 +34,20 @@ public class Customer implements java.io.Serializable {
 	private String bannerHeaderImg;
 	private String qrcodeImg;
 
+	@ManyToMany(fetch = FetchType.EAGER)
+	@Fetch(value = FetchMode.SUBSELECT)
+	@JoinTable(name = "customer_has_voucher", joinColumns = {
+			@JoinColumn(name = "customer_id", nullable = false)},
+			inverseJoinColumns = {@JoinColumn(name = "voucher_code_id", nullable = false)}
+	)
+	private List<VoucherCode> voucherCodes;
+	@ManyToMany(fetch = FetchType.EAGER)
+	@Fetch(value = FetchMode.SUBSELECT)
+	@JoinTable(name = "customer_rewards_log", joinColumns = {
+			@JoinColumn(name = "customer_id", nullable = false)},
+			inverseJoinColumns = {@JoinColumn(name = "loyalty_program_id", nullable = false)}
+	)
+	private List<LoyaltyProgram> loyaltyPrograms;
 	public Customer() {
 	}
 
@@ -41,7 +57,7 @@ public class Customer implements java.io.Serializable {
 
 	public Customer(int customerId, String firstName, String lastName, String email, String phone, String lang,
 			Integer totalVoucher, Boolean isActive, String interestedFields, String address,
-			String avartarImg, String bannerHeaderImg, String qrcodeImg) {
+			String avartarImg, String bannerHeaderImg, String qrcodeImg , List<VoucherCode> voucherCodes,List<LoyaltyProgram> loyaltyPrograms) {
 		this.customerId = customerId;
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -56,6 +72,9 @@ public class Customer implements java.io.Serializable {
 		this.avartarImg = avartarImg;
 		this.bannerHeaderImg = bannerHeaderImg;
 		this.qrcodeImg = qrcodeImg;
+
+		this.voucherCodes = voucherCodes;
+		this.loyaltyPrograms = loyaltyPrograms;
 	}
 
 	public long getCustomerId() {
@@ -187,4 +206,19 @@ public class Customer implements java.io.Serializable {
 		this.qrcodeImg = qrcodeImg;
 	}
 
+	public List<VoucherCode> getVoucherCodes() {
+		return voucherCodes;
+	}
+
+	public void setVoucherCodes(List<VoucherCode> voucherCodes) {
+		this.voucherCodes = voucherCodes;
+	}
+
+	public List<LoyaltyProgram> getLoyaltyPrograms() {
+		return loyaltyPrograms;
+	}
+
+	public void setLoyaltyPrograms(List<LoyaltyProgram> loyaltyPrograms) {
+		this.loyaltyPrograms = loyaltyPrograms;
+	}
 }

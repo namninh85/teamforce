@@ -52,7 +52,6 @@ public class ApiLoyaltyProgramController {
                 obj.put("currency", voucher.getCurrency());
                 obj.put("releasesTotal", loyaltyProgram.getTotal_release());
                 obj.put("point", loyaltyProgram.getPoint());
-                obj.put("availables", loyaltyProgram.getAvailable());
                 long uAvailables = mapLoyaltyIdUAvailables.get(loyaltyProgram.getLoyaltyProgramId()) != null ? mapLoyaltyIdUAvailables.get(loyaltyProgram.getLoyaltyProgramId()) :  0;
                 obj.put("uAvailables", uAvailables);
                 result.add(obj);

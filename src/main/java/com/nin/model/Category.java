@@ -24,8 +24,8 @@ public class Category {
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "product_in_pd_category", joinColumns = {
-            @JoinColumn(name = "product_category_id", nullable = false, updatable = false)},
-            inverseJoinColumns = {@JoinColumn(name = "product_id", nullable = false, updatable = false)}
+            @JoinColumn(name = "product_category_id", nullable = false)},
+            inverseJoinColumns = {@JoinColumn(name = "product_id", nullable = false)}
     )
 
 

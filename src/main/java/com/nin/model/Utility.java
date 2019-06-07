@@ -9,7 +9,7 @@ import javax.persistence.*;
 @Where(clause = "is_deleted='false'")
 public class Utility {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long utilityId;
     private String name;
     private String image;

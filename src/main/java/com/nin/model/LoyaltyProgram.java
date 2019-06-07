@@ -12,7 +12,7 @@ import java.util.List;
 @Where(clause = "is_deleted ='false'")
 public class LoyaltyProgram {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long loyaltyProgramId ;
     private Long voucherId;
     private BigInteger startDate;
@@ -24,12 +24,17 @@ public class LoyaltyProgram {
     private Boolean isDeleted;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinColumn(name = "loyaltyProgramId")
+    @JoinColumn(name = "loyalty_program_id")
     private List<CustomerRewardsLog> customerRewardsLogs =new ArrayList<>();
-
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "customer_rewards_log", joinColumns = {
+            @JoinColumn(name = "loyalty_program_id", nullable = false)},
+            inverseJoinColumns = {@JoinColumn(name = "customer_id", nullable = false)}
+    )
+    private List<Customer> customers;
     public LoyaltyProgram(){}
 
-    public LoyaltyProgram(Long loyaltyProgramId, Long voucherId, BigInteger startDate, BigInteger endDate, Integer point, Integer total_release, Integer available, Boolean isActive, Boolean isDeleted, List<CustomerRewardsLog> customerRewardsLogs) {
+    public LoyaltyProgram(Long loyaltyProgramId, Long voucherId, BigInteger startDate, BigInteger endDate, Integer point, Integer total_release, Integer available, Boolean isActive, Boolean isDeleted, List<CustomerRewardsLog> customerRewardsLogs, List<Customer> customers) {
         this.loyaltyProgramId = loyaltyProgramId;
         this.voucherId = voucherId;
         this.startDate = startDate;
@@ -40,6 +45,7 @@ public class LoyaltyProgram {
         this.isActive = isActive;
         this.isDeleted = isDeleted;
         this.customerRewardsLogs = customerRewardsLogs;
+        this.customers = customers;
     }
 
     public Long getLoyaltyProgramId() {
@@ -120,5 +126,13 @@ public class LoyaltyProgram {
 
     public void setCustomerRewardsLogs(List<CustomerRewardsLog> customerRewardsLogs) {
         this.customerRewardsLogs = customerRewardsLogs;
+    }
+
+    public List<Customer> getCustomers() {
+        return customers;
+    }
+
+    public void setCustomers(List<Customer> customers) {
+        this.customers = customers;
     }
 }

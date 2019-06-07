@@ -2,10 +2,7 @@ package com.nin.model;
 
 import org.hibernate.annotations.Where;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "app_data_config")
@@ -13,7 +10,7 @@ import javax.persistence.Table;
 public class AppDataConfig {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long appDataConfigId;
     private String bannerHeaderImg;
     private String interestedFields;

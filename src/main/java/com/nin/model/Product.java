@@ -29,16 +29,16 @@ public class Product {
     @ManyToMany(fetch = FetchType.EAGER)
     @Fetch(value = FetchMode.SUBSELECT)
     @JoinTable(name = "product_in_pd_category", joinColumns = {
-            @JoinColumn(name = "product_id", nullable = false, updatable = false)},
-            inverseJoinColumns = {@JoinColumn(name = "product_category_id", nullable = false, updatable = false)}
+            @JoinColumn(name = "product_id", nullable = false)},
+            inverseJoinColumns = {@JoinColumn(name = "product_category_id", nullable = false)}
     )
     private List<Category> categories;
 
     @ManyToMany(fetch = FetchType.EAGER)
     @Fetch(value = FetchMode.SUBSELECT)
     @JoinTable(name = "product_in_store", joinColumns = {
-            @JoinColumn(name = "product_id", nullable = false, updatable = false)},
-            inverseJoinColumns = {@JoinColumn(name = "store_id", nullable = false, updatable = false)}
+            @JoinColumn(name = "product_id", nullable = false)},
+            inverseJoinColumns = {@JoinColumn(name = "store_id", nullable = false)}
     )
     private List<Store> stores;
 
