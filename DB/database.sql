@@ -528,3 +528,15 @@ VALUES(1,'http://triqtran.github.io/images/loyalty/others/bg-header.png','1,2,3,
 --2019/06/06 - Dieu - Insert data to table interested_field
 INSERT INTO public.interested_field(interested_field_id,name,is_active,is_deleted)
 VALUES(1,'Special Offers',true,false),(2,'Food',true,false),(3,'Drinks',true,false),(4,'Phone Cards',true,false);
+
+-- 2019/06/07 - Ninh - data sample for voucher_code
+INSERT INTO public.voucher_code(
+ voucher_code_id, voucher_id, voucher_code, is_active, is_deleted)
+ VALUES ('1', '1' ,'ABC' ,true ,false), 
+('2', '2' ,'ABC2' ,true ,false), 
+('3', '3' ,'ABC3' ,true ,false), 
+('4', '4' ,'ABC4' ,true ,false), 
+('5', '5' ,'ABC5' ,true ,false), 
+('6', '6' ,'ABC6' ,true ,false), 
+('7', '7' ,'ABC7' ,true ,false), 
+('8', '8' ,'ABC8' ,true ,false);
