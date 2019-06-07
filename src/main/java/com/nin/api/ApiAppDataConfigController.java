@@ -38,14 +38,17 @@ public class ApiAppDataConfigController {
             Map<String, Object> obj = new HashMap<>();
             obj.put("appDataConfigId", appDataConfig.getAppDataConfigId());
             obj.put("bannerHeaderImage", appDataConfig.getBannerHeaderImg());
-            List<Object[]> interestedFields = interestedFieldService.findByListId(appDataConfig.getInterestedFields());
             List<Map<String, Object>> listFields = new ArrayList<>();
-            for (Object[] field : interestedFields) {
-                Map<String, Object> fieldObj = new HashMap<>();
-                fieldObj.put("value", field[0]);
-                fieldObj.put("name", field[1]);
-                listFields.add(fieldObj);
+            if (appDataConfig.getInterestedFields() != null){
+                List<Object[]> interestedFields = interestedFieldService.findByListId(appDataConfig.getInterestedFields());
+                for (Object[] field : interestedFields) {
+                    Map<String, Object> fieldObj = new HashMap<>();
+                    fieldObj.put("value", field[0]);
+                    fieldObj.put("name", field[1]);
+                    listFields.add(fieldObj);
+                }
             }
+
             obj.put("interestedFields", listFields);
             obj.put("logo", appDataConfig.getLogo());
             obj.put("privacyLink", appDataConfig.getPrivacyLink());

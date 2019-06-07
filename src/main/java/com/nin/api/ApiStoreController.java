@@ -45,7 +45,11 @@ public class ApiStoreController {
                 obj.put("phone", store.getPhone());
                 obj.put("latitude",store.getLatitude());
                 obj.put("longitude",store.getLongitude());
-                List<String> utilities = utilityService.findByListId(store.getUtilities());
+                List<String> utilities = new ArrayList<>();
+                if (store.getUtilities() != null){
+                    utilities = utilityService.findByListId(store.getUtilities());
+                }
+
                 obj.put("utilities", utilities);
                 result.add(obj);
             }

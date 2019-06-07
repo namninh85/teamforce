@@ -45,7 +45,6 @@ public class ApiCustomerRewardsLogController {
             User currentUser = userService.getCurrentUser();
             List<Object[]> listCustomerRewardsLog = customerRewardsLogService.findCustomerRewardsLogByCustomerId(currentUser.getId());
             List<Map<String, Object>> result = new ArrayList<>();
-            System.out.println(listCustomerRewardsLog.toString());
             for (Object[] customerRewardsLog : listCustomerRewardsLog) {
                 LoyaltyProgram loyaltyProgram = loyaltyProgramService.finByLoyaltyProgramId(Long.parseLong(customerRewardsLog[0].toString()));
                 Voucher voucher = voucherService.findByVoucherId(loyaltyProgram.getVoucherId());
