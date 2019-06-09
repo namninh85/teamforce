@@ -19,6 +19,11 @@ public class CustomerRewardsLogService {
     public List<Object[]> findCustomerRewardsLogByCustomerId(Long Id){
         return customerRewardsLogRepository.findCustomerRewardsLogByCustomerId(Id);
     }
+    
+    public List<CustomerRewardsLog> findAllCustomerRewardsLogByCustomerIdActive(Long customerId){
+        return customerRewardsLogRepository.findByCustomerIdAndIsActive(customerId, true);
+    }
+
 
     public void createCustomerRewardsLog(CustomerRewardsLog customerRewardsLog) {
         customerRewardsLogRepository.save(customerRewardsLog);

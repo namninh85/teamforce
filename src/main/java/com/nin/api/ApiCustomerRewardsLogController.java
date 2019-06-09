@@ -74,4 +74,40 @@ public class ApiCustomerRewardsLogController {
             return new ResponseEntity<>(responseMap, HttpStatus.BAD_REQUEST);
         }
     }
+    
+    @GetMapping("/redeem-histories")
+    public ResponseEntity<Map<String,Object>> redeemHistories(){
+        try {
+            User currentUser = userService.getCurrentUser();
+            List<CustomerRewardsLog> listCustomerRewardsLog = customerRewardsLogService.findAllCustomerRewardsLogByCustomerIdActive(currentUser.getId());
+            List<Map<String, Object>> result = new ArrayList<>();
+            for (CustomerRewardsLog customerRewardsLog : listCustomerRewardsLog) {
+            	if(customerRewardsLog.getLoyaltyProgramId() != null) {
+            		LoyaltyProgram loyaltyProgram = loyaltyProgramService.finByLoyaltyProgramId(customerRewardsLog.getLoyaltyProgramId());
+                    Voucher voucher = voucherService.findByVoucherId(loyaltyProgram.getVoucherId());
+                    Map<String, Object> obj = new HashMap<>();
+                    obj.put("voucherId", voucher.getVoucherId());
+                    obj.put("loyaltyProgramId", loyaltyProgram.getLoyaltyProgramId());
+                    obj.put("voucherName", voucher.getName());
+                    obj.put("image", voucher.getImage());
+                    obj.put("price", voucher.getValue());
+                    obj.put("currency", voucher.getCurrency());
+                    obj.put("point", loyaltyProgram.getPoint());
+                    result.add(obj);
+            	}
+                 
+            }
+            Map<String, Object> out = new HashMap<String, Object>() {{
+                put("data", result);
+                put("error", 0);
+            }};
+            return new ResponseEntity<>(out, HttpStatus.OK);
+        }catch (Exception e) {
+            Map<String, Object> responseMap = new HashMap<String, Object>();
+            responseMap.put("Message", e.getMessage());
+            responseMap.put("data", responseMap);
+            responseMap.put("error", -1);
+            return new ResponseEntity<>(responseMap, HttpStatus.BAD_REQUEST);
+        }
+    }
 }

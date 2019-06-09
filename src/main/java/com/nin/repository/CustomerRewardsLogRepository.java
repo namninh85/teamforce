@@ -14,4 +14,6 @@ public interface CustomerRewardsLogRepository extends JpaRepository<CustomerRewa
             " FROM customer_rewards_log c WHERE  c.customer_id =:Id " +
             "GROUP BY c.loyalty_program_id",nativeQuery = true)
     List<Object[]> findCustomerRewardsLogByCustomerId(@Param("Id") Long Id);
+    List<CustomerRewardsLog> findByCustomerIdAndIsActive(long customerId, boolean isActive);
+    
 }
