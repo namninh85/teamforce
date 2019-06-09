@@ -69,6 +69,7 @@ public class ApiUserController {
 						put("offers", aCustomer.getTotalOffer());
 						put("bannerHeaderImage", aCustomer.getBannerHeaderImg());
 						put("qrcodeImage", aCustomer.getQrcodeImg());
+						put("dateOfBirth", aCustomer.getQrcodeImg());
 
 						String interestedFields = aCustomer.getInterestedFields();
 						ArrayList<Map<String, Object>> interestedFieldsMap = new ArrayList<Map<String, Object>>();

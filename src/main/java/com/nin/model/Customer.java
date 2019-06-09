@@ -5,6 +5,8 @@ import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
+
+import java.math.BigInteger;
 import java.util.List;
 
 @Entity
@@ -33,6 +35,7 @@ public class Customer implements java.io.Serializable {
 	private String avartarImg;
 	private String bannerHeaderImg;
 	private String qrcodeImg;
+	private BigInteger dob;
 
 	@ManyToMany(fetch = FetchType.EAGER)
 	@Fetch(value = FetchMode.SUBSELECT)
@@ -221,4 +224,14 @@ public class Customer implements java.io.Serializable {
 	public void setLoyaltyPrograms(List<LoyaltyProgram> loyaltyPrograms) {
 		this.loyaltyPrograms = loyaltyPrograms;
 	}
+
+	public BigInteger getDob() {
+		return dob;
+	}
+
+	public void setDob(BigInteger dob) {
+		this.dob = dob;
+	}
+	
+	
 }

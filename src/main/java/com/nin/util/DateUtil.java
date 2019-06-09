@@ -4,6 +4,7 @@ import java.time.Instant;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
+import java.util.Calendar;
 import java.util.Locale;
 
 public class DateUtil {
@@ -16,4 +17,11 @@ public class DateUtil {
 		String output = formatter.format( instant );
 		return output;
 	}
+	
+	public static String longDateToString(long longDate) {
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTimeInMillis(longDate);
+		return instantToString(calendar.toInstant());
+	}
+
 }

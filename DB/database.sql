@@ -407,6 +407,8 @@ CREATE TABLE interested_field (
     PRIMARY KEY (interested_field_id)
 );
 
+-- 2019/05/29: update customer (dob)
+ALTER TABLE customer ADD COLUMN dob bigint;
 
 --2019/06/04 : Dieu - Insert data product to table product
 DELETE FROM public.product;
