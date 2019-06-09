@@ -8,6 +8,7 @@ import com.nin.service.CustomerRewardsLogService;
 import com.nin.service.LoyaltyProgramService;
 import com.nin.service.UserService;
 import com.nin.service.VoucherService;
+import com.nin.util.DateUtil;
 
 import org.apache.commons.lang3.ArrayUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -91,7 +92,14 @@ public class ApiCustomerRewardsLogController {
                  			 Voucher voucher = voucherService.findByVoucherId(loyaltyProgram.getVoucherId());
                               Map<String, Object> obj = new HashMap<>();
                               obj.put("loyaltyProgramId", loyaltyProgram.getLoyaltyProgramId());
-                              obj.put("point", loyaltyProgram.getPoint());
+                              obj.put("point", customerRewardsLog.getPointBurnEarn());
+                              if(customerRewardsLog.getRewardDate() != null) {
+                            	  obj.put("rewardDate", DateUtil.longDateToString(customerRewardsLog.getRewardDate().longValue()));
+                              }
+                              else {
+                            	  obj.put("rewardDate", "");
+                              }
+                             
                               if(voucher != null) {
                              	 obj.put("voucherId", voucher.getVoucherId());
                              	 obj.put("voucherName", voucher.getName());
