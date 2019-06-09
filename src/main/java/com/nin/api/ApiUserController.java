@@ -58,24 +58,26 @@ public class ApiUserController {
 					put("id", currentUser.getId());
 					put("email", currentUser.getEmail());
 					if (aCustomer != null) {
-						put("name", aCustomer.getFirstName() + " " + aCustomer.getLastName());
-						put("phone", aCustomer.getPhone());
-						put("address", aCustomer.getAddress());
-						put("language", aCustomer.getLang());
-						put("avatarImage", aCustomer.getAvartarImg());
+						put("name",
+								aCustomer.getFirstName() == null ? ""
+										: aCustomer.getFirstName() + " " + aCustomer.getLastName() == null ? ""
+												: aCustomer.getLastName());
+						put("phone", aCustomer.getPhone() == null ? "" : aCustomer.getPhone());
+						put("address", aCustomer.getAddress() == null ? "" : aCustomer.getAddress());
+						put("language", aCustomer.getLang() == null ? "" : aCustomer.getLang());
+						put("avatarImage", aCustomer.getAvartarImg() == null ? "" : aCustomer.getAvartarImg());
 						put("registerDate", DateUtil.instantToString(currentUser.getCreated()));
 						put("currentBalancePoints", aCustomer.getTotalPoint());
 						put("vouchers", aCustomer.getTotalVoucher());
 						put("offers", aCustomer.getTotalOffer());
-						put("bannerHeaderImage", aCustomer.getBannerHeaderImg());
-						put("qrcodeImage", aCustomer.getQrcodeImg());
-						if(aCustomer.getDob()!= null) {
+						put("bannerHeaderImage",
+								aCustomer.getBannerHeaderImg() == null ? "" : aCustomer.getBannerHeaderImg());
+						put("qrcodeImage", aCustomer.getQrcodeImg() == null ? "" : aCustomer.getQrcodeImg());
+						if (aCustomer.getDob() != null) {
 							put("dateOfBirth", DateUtil.longDateToString(aCustomer.getDob()));
-						}
-						else {
+						} else {
 							put("dateOfBirth", "");
 						}
-						
 
 						String interestedFields = aCustomer.getInterestedFields();
 						ArrayList<Map<String, Object>> interestedFieldsMap = new ArrayList<Map<String, Object>>();
@@ -85,8 +87,7 @@ public class ApiUserController {
 								InterestedField field = null;
 								try {
 									field = InterestedField.valueOf("_" + ary[i]);
-								}
-								catch(Exception e) {
+								} catch (Exception e) {
 								}
 								if (field != null) {
 									Map<String, Object> interestedFieldObj = new HashMap<String, Object>();
@@ -136,14 +137,15 @@ public class ApiUserController {
 				aCustomer.setLastName(profileDTO.get("lastName").toString());
 			}
 			
-			
-			if (profileDTO.get("phone") != null) {
-				aCustomer.setPhone(profileDTO.get("phone").toString());
+			if (profileDTO.get("dateOfBirth") != null) {
+				aCustomer.setDob(DateUtil.strindDateToLong(profileDTO.get("dateOfBirth").toString()));
 			}
 			
 			if (profileDTO.get("phone") != null) {
 				aCustomer.setPhone(profileDTO.get("phone").toString());
 			}
+			
+			
 			if (profileDTO.get("address") != null) {
 				aCustomer.setAddress(profileDTO.get("address").toString());
 			}
@@ -173,7 +175,7 @@ public class ApiUserController {
 
 			Customer saved = userService.createOrUpdateCustomer(aCustomer);
 			Map<String, Object> out = new HashMap<String, Object>();
-			out.put("data", saved);
+			out.put("data", profileDTO);
 			out.put("error", 0);
 			return new ResponseEntity<>(out, HttpStatus.OK);
 		} catch (Exception e) {
