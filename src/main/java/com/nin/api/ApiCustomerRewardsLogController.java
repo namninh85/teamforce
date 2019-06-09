@@ -8,6 +8,8 @@ import com.nin.service.CustomerRewardsLogService;
 import com.nin.service.LoyaltyProgramService;
 import com.nin.service.UserService;
 import com.nin.service.VoucherService;
+
+import org.apache.commons.lang3.ArrayUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -81,22 +83,32 @@ public class ApiCustomerRewardsLogController {
             User currentUser = userService.getCurrentUser();
             List<CustomerRewardsLog> listCustomerRewardsLog = customerRewardsLogService.findAllCustomerRewardsLogByCustomerIdActive(currentUser.getId());
             List<Map<String, Object>> result = new ArrayList<>();
-            for (CustomerRewardsLog customerRewardsLog : listCustomerRewardsLog) {
-            	if(customerRewardsLog.getLoyaltyProgramId() != null) {
-            		LoyaltyProgram loyaltyProgram = loyaltyProgramService.finByLoyaltyProgramId(customerRewardsLog.getLoyaltyProgramId());
-                    Voucher voucher = voucherService.findByVoucherId(loyaltyProgram.getVoucherId());
-                    Map<String, Object> obj = new HashMap<>();
-                    obj.put("voucherId", voucher.getVoucherId());
-                    obj.put("loyaltyProgramId", loyaltyProgram.getLoyaltyProgramId());
-                    obj.put("voucherName", voucher.getName());
-                    obj.put("image", voucher.getImage());
-                    obj.put("price", voucher.getValue());
-                    obj.put("currency", voucher.getCurrency());
-                    obj.put("point", loyaltyProgram.getPoint());
-                    result.add(obj);
-            	}
-                 
+            if(listCustomerRewardsLog != null) {
+            	 for (CustomerRewardsLog customerRewardsLog : listCustomerRewardsLog) {
+                 	if(customerRewardsLog.getLoyaltyProgramId() != null) {
+                 		LoyaltyProgram loyaltyProgram = loyaltyProgramService.finByLoyaltyProgramId(customerRewardsLog.getLoyaltyProgramId());
+                 		 if(loyaltyProgram != null) {
+                 			 Voucher voucher = voucherService.findByVoucherId(loyaltyProgram.getVoucherId());
+                              Map<String, Object> obj = new HashMap<>();
+                              obj.put("loyaltyProgramId", loyaltyProgram.getLoyaltyProgramId());
+                              obj.put("point", loyaltyProgram.getPoint());
+                              if(voucher != null) {
+                             	 obj.put("voucherId", voucher.getVoucherId());
+                             	 obj.put("voucherName", voucher.getName());
+                                  obj.put("image", voucher.getImage());
+                                  obj.put("price", voucher.getValue());
+                                  obj.put("currency", voucher.getCurrency());
+                                  result.add(obj);
+                             	 
+                              }
+                             
+                 		 }
+                 		
+                 	}
+                      
+                 }
             }
+           
             Map<String, Object> out = new HashMap<String, Object>() {{
                 put("data", result);
                 put("error", 0);
