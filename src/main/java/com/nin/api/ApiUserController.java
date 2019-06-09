@@ -52,11 +52,15 @@ public class ApiUserController {
 
 		try {
 			User currentUser = userService.getCurrentUser();
-			Customer aCustomer = userService.findByCustomerIdAndEmail(currentUser.getId(), currentUser.getEmail());
+			Customer dbCustomer = userService.findByCustomerIdAndEmail(currentUser.getId(), currentUser.getEmail());
+			
 			Map<String, Object> out = new HashMap<String, Object>() {
 				{
 					put("id", currentUser.getId());
 					put("email", currentUser.getEmail());
+					Customer aCustomer = dbCustomer != null?dbCustomer: new Customer() ;
+					
+					
 					if (aCustomer != null) {
 						put("name",
 								aCustomer.getFirstName() == null ? ""
