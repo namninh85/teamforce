@@ -4,6 +4,7 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.nin.model.Customer;
 import com.nin.model.User;
+import com.nin.service.InterestedFieldService;
 import com.nin.service.UserService;
 import com.nin.util.DateUtil;
 import com.nin.util.InterestedField;
@@ -27,10 +29,12 @@ import com.nin.util.InterestedField;
 public class ApiUserController {
 
 	private UserService userService;
+	private InterestedFieldService interestedFieldService;
 
 	@Autowired
-	public ApiUserController(UserService userService) {
+	public ApiUserController(UserService userService, InterestedFieldService interestedFieldService) {
 		this.userService = userService;
+		this.interestedFieldService = interestedFieldService;
 	}
 
 	@GetMapping
@@ -81,27 +85,14 @@ public class ApiUserController {
 						}
 
 						String interestedFields = aCustomer.getInterestedFields();
-						ArrayList<Map<String, Object>> interestedFieldsMap = new ArrayList<Map<String, Object>>();
-						if (!StringUtils.isEmpty(interestedFields)) {
-							String[] ary = interestedFields.split(",");
-							for (int i = 0; i < ary.length; i++) {
-								InterestedField field = null;
-								try {
-									field = InterestedField.valueOf("_" + ary[i]);
-								} catch (Exception e) {
-								}
-								if (field != null) {
-									Map<String, Object> interestedFieldObj = new HashMap<String, Object>();
-									interestedFieldObj.put("value", Integer.parseInt(ary[i]));
-									interestedFieldObj.put("name", field.getstringValue());
-									interestedFieldsMap.add(interestedFieldObj);
-								}
-							}
-						}
+						ArrayList<Map<String, Object>> interestedFieldsMap = getInfoInterestFields(interestedFields);
+						
 						put("interestedFields", interestedFieldsMap);
 
 					}
 				}
+
+				
 			};
 			Map<String, Object> responseMap = new HashMap<String, Object>();
 			responseMap.put("data", out);
@@ -162,6 +153,14 @@ public class ApiUserController {
 			if (profileDTO.get("bannerHeaderImage") != null) {
 				aCustomer.setBannerHeaderImg(profileDTO.get("bannerHeaderImage").toString());
 			}
+			
+			//update email, must logout user, if not the app will be crashed
+			if (profileDTO.get("email") != null) {
+				if(!StringUtils.isEmpty(profileDTO.get("email").toString())) {
+					aCustomer.setEmail(profileDTO.get("email").toString());
+				}
+				
+			}
 
 			if (profileDTO.get("interestedFields") != null) {
 				String myNum = profileDTO.get("interestedFields").toString() ;
@@ -174,7 +173,18 @@ public class ApiUserController {
 						generateQRCode(aCustomer.getCustomerId(), aCustomer.getEmail(), aCustomer.getFirstName()));
 			}
 
+			if (profileDTO.get("email") != null) {
+				if(!StringUtils.isEmpty(profileDTO.get("email").toString())) {
+					userService.updateUser(currentUser.getId(), profileDTO.get("email").toString(), null);
+					
+				}
+				
+			}
 			Customer saved = userService.createOrUpdateCustomer(aCustomer);
+			
+			
+
+			
 			Map<String, Object> out = new HashMap<String, Object>();
 			out.put("data", profileDTO);
 			out.put("error", 0);
@@ -198,6 +208,25 @@ public class ApiUserController {
 			e.printStackTrace();
 		}
 		return url;
+	}
+	
+	private ArrayList<Map<String,Object>> getInfoInterestFields(String interestedFields) {
+		ArrayList<Map<String, Object>> interestedFieldsMap = new ArrayList<Map<String,Object>>();
+		if (!StringUtils.isEmpty(interestedFields)) {
+			String[] ary = interestedFields.split(",");
+			if(ary != null && ary.length > 0) {
+				 List<Object[]> ifObjects = interestedFieldService.findByListId(interestedFields.replaceAll("\\s+",""));
+				
+				for (Object[] field : ifObjects) {
+	                Map<String, Object> fieldObj = new HashMap<>();
+	                fieldObj.put("value", field[0]);
+	                fieldObj.put("name", field[1]);
+	                interestedFieldsMap.add(fieldObj);
+				}
+				System.out.println(interestedFields);
+			}
+		}
+		return interestedFieldsMap;
 	}
 
 }

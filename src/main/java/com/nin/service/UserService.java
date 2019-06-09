@@ -5,6 +5,8 @@ import com.nin.model.Role;
 import com.nin.model.User;
 import com.nin.repository.CustomerRepository;
 import com.nin.repository.UserRepository;
+
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -13,6 +15,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Optional;
 
 @Service
 public class UserService {
@@ -40,6 +43,22 @@ public class UserService {
             userRepository.save(user);
             return user;
         }
+        return null;
+    }
+    
+    public User updateUser(Long id, String email, String password) {
+    	Optional<User> userOptional = userRepository.findById(id);
+    	if (userOptional.isPresent()){
+    		User user = userOptional.get();
+    		if(StringUtils.isNoneBlank(email)) {
+    			user.setEmail(email);
+    		}
+    		if(StringUtils.isNoneBlank(password)) {
+    			user.setPassword(hashPassword(password));
+    		}
+    		userRepository.save(user);
+    	}
+    	
         return null;
     }
     

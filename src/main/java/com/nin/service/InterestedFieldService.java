@@ -2,6 +2,8 @@ package com.nin.service;
 
 import com.nin.model.InterestedField;
 import com.nin.repository.InterestedFieldRepository;
+
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,6 +24,7 @@ public class InterestedFieldService {
 
     public List<Object[]> findByListId(String Id){
         List<Integer> listIds = new ArrayList<>();
+        if(StringUtils.isBlank(Id)) return new ArrayList<Object[]>();
         Arrays.asList(Id.split(",")).forEach(id -> {
             listIds.add(Integer.parseInt(id));
         });
