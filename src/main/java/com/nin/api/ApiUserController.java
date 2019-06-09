@@ -62,10 +62,7 @@ public class ApiUserController {
 					
 					
 					if (aCustomer != null) {
-						put("name",
-								aCustomer.getFirstName() == null ? ""
-										: aCustomer.getFirstName() + " " + aCustomer.getLastName() == null ? ""
-												: aCustomer.getLastName());
+						put("name",( aCustomer.getFirstName() == null ? "" : aCustomer.getFirstName()) + " " + (aCustomer.getLastName() == null ? "": aCustomer.getLastName()));
 						put("phone", aCustomer.getPhone() == null ? "" : aCustomer.getPhone());
 						put("address", aCustomer.getAddress() == null ? "" : aCustomer.getAddress());
 						put("language", aCustomer.getLang() == null ? "" : aCustomer.getLang());
