@@ -69,7 +69,13 @@ public class ApiUserController {
 						put("offers", aCustomer.getTotalOffer());
 						put("bannerHeaderImage", aCustomer.getBannerHeaderImg());
 						put("qrcodeImage", aCustomer.getQrcodeImg());
-						put("dateOfBirth", aCustomer.getQrcodeImg());
+						if(aCustomer.getDob()!= null) {
+							put("dateOfBirth", DateUtil.longDateToString(aCustomer.getDob()));
+						}
+						else {
+							put("dateOfBirth", "");
+						}
+						
 
 						String interestedFields = aCustomer.getInterestedFields();
 						ArrayList<Map<String, Object>> interestedFieldsMap = new ArrayList<Map<String, Object>>();

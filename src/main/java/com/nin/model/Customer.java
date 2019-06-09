@@ -35,7 +35,7 @@ public class Customer implements java.io.Serializable {
 	private String avartarImg;
 	private String bannerHeaderImg;
 	private String qrcodeImg;
-	private BigInteger dob;
+	private Long dob;
 
 	@ManyToMany(fetch = FetchType.EAGER)
 	@Fetch(value = FetchMode.SUBSELECT)
@@ -225,11 +225,11 @@ public class Customer implements java.io.Serializable {
 		this.loyaltyPrograms = loyaltyPrograms;
 	}
 
-	public BigInteger getDob() {
+	public Long getDob() {
 		return dob;
 	}
 
-	public void setDob(BigInteger dob) {
+	public void setDob(Long dob) {
 		this.dob = dob;
 	}
 	

@@ -9,7 +9,7 @@ import java.util.Locale;
 
 public class DateUtil {
 	static DateTimeFormatter formatter =
-		    DateTimeFormatter.ofLocalizedDateTime( FormatStyle.LONG )
+			DateTimeFormatter.ofPattern("dd/MM/yyyy")
 		                     .withLocale( Locale.UK )
 		                     .withZone( ZoneId.systemDefault() );
 	
@@ -19,6 +19,9 @@ public class DateUtil {
 	}
 	
 	public static String longDateToString(long longDate) {
+		if(longDate < 10000000000L) {
+			longDate = longDate * 1000;
+		}
 		Calendar calendar = Calendar.getInstance();
 		calendar.setTimeInMillis(longDate);
 		return instantToString(calendar.toInstant());
