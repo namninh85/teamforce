@@ -79,57 +79,88 @@ public class ApiCustomerRewardsLogController {
     }
     
     @GetMapping("/redeem-histories")
-    public ResponseEntity<Map<String,Object>> redeemHistories(){
-        try {
-            User currentUser = userService.getCurrentUser();
-            List<CustomerRewardsLog> listCustomerRewardsLog = customerRewardsLogService.findAllCustomerRewardsLogByCustomerIdActive(currentUser.getId());
-            List<Map<String, Object>> result = new ArrayList<>();
-            if(listCustomerRewardsLog != null) {
-            	 for (CustomerRewardsLog customerRewardsLog : listCustomerRewardsLog) {
-                 	if(customerRewardsLog.getLoyaltyProgramId() != null) {
-                 		LoyaltyProgram loyaltyProgram = loyaltyProgramService.finByLoyaltyProgramId(customerRewardsLog.getLoyaltyProgramId());
-                 		 if(loyaltyProgram != null) {
-                 			 Voucher voucher = voucherService.findByVoucherId(loyaltyProgram.getVoucherId());
-                              Map<String, Object> obj = new HashMap<>();
-                              obj.put("loyaltyProgramId", loyaltyProgram.getLoyaltyProgramId());
-                               if(customerRewardsLog.getPointBurnEarn() != null) {
-                            	  obj.put("point", customerRewardsLog.getPointBurnEarn()*-1);
-                              }
-                              if(customerRewardsLog.getRewardDate() != null) {
-                            	  obj.put("rewardDate", DateUtil.longDateToString(customerRewardsLog.getRewardDate().longValue()));
-                              }
-                              else {
-                            	  obj.put("rewardDate", "");
-                              }
-                             
-                              if(voucher != null) {
-                             	 obj.put("voucherId", voucher.getVoucherId());
-                             	 obj.put("voucherName", voucher.getName());
-                                  obj.put("image", voucher.getImage());
-                                  obj.put("price", voucher.getValue());
-                                  obj.put("currency", voucher.getCurrency());
-                                  result.add(obj);
-                             	 
-                              }
-                             
-                 		 }
-                 		
-                 	}
-                      
-                 }
-            }
-           
-            Map<String, Object> out = new HashMap<String, Object>() {{
-                put("data", result);
-                put("error", 0);
-            }};
-            return new ResponseEntity<>(out, HttpStatus.OK);
-        }catch (Exception e) {
-            Map<String, Object> responseMap = new HashMap<String, Object>();
-            responseMap.put("Message", e.getMessage());
-            responseMap.put("data", responseMap);
-            responseMap.put("error", -1);
-            return new ResponseEntity<>(responseMap, HttpStatus.BAD_REQUEST);
-        }
-    }
+	public ResponseEntity<Map<String, Object>> redeemHistories() {
+		try {
+			User currentUser = userService.getCurrentUser();
+			List<CustomerRewardsLog> listCustomerRewardsLog = customerRewardsLogService
+					.findAllCustomerRewardsLogByCustomerIdActive(currentUser.getId());
+			List<Map<String, Object>> result = new ArrayList<>();
+			Map<Long, LoyaltyProgram> mapLoyaltyProgram = new HashMap<Long, LoyaltyProgram>();
+			if (listCustomerRewardsLog != null) {
+				Map<String, List<CustomerRewardsLog>> mapCountCustomerRewardsLog = new HashMap<String, List<CustomerRewardsLog>>();
+				for (CustomerRewardsLog customerRewardsLog : listCustomerRewardsLog) {
+					if (customerRewardsLog.getLoyaltyProgramId() != null) {
+						LoyaltyProgram loyaltyProgram = loyaltyProgramService
+								.finByLoyaltyProgramId(customerRewardsLog.getLoyaltyProgramId());
+						if (loyaltyProgram != null) {
+							mapLoyaltyProgram.put(loyaltyProgram.getLoyaltyProgramId(), loyaltyProgram);
+							String keyMap = customerRewardsLog.getLoyaltyProgramId() + "_"
+									+ customerRewardsLog.getRewardDate();
+							if (mapCountCustomerRewardsLog.get(keyMap) == null) {
+								List<CustomerRewardsLog> listObjects = new ArrayList<CustomerRewardsLog>();
+								listObjects.add(customerRewardsLog);
+								mapCountCustomerRewardsLog.put(keyMap, listObjects);
+							} else {
+								mapCountCustomerRewardsLog.get(keyMap).add(customerRewardsLog);
+							}
+
+						}
+
+					}
+
+				}
+
+				for (String key : mapCountCustomerRewardsLog.keySet()) {
+					List<CustomerRewardsLog> customerRewardsLogs = mapCountCustomerRewardsLog.get(key);
+					if (customerRewardsLogs != null && customerRewardsLogs.size() > 0) {
+						CustomerRewardsLog customerRewardsLog = customerRewardsLogs.get(0);
+						LoyaltyProgram loyaltyProgram = mapLoyaltyProgram.get(customerRewardsLog.getLoyaltyProgramId());
+						if (loyaltyProgram != null) {
+							Voucher voucher = voucherService.findByVoucherId(loyaltyProgram.getVoucherId());
+							Map<String, Object> obj = new HashMap<>();
+
+							if (voucher != null) {
+								obj.put("voucherId", voucher.getVoucherId());
+								obj.put("voucherName", voucher.getName());
+								obj.put("image", voucher.getImage());
+								obj.put("price", voucher.getValue());
+								obj.put("currency", voucher.getCurrency());
+								obj.put("uAvailables", customerRewardsLogs.size());
+								obj.put("loyaltyProgramId", loyaltyProgram.getLoyaltyProgramId());
+								if (customerRewardsLog.getPointBurnEarn() != null) {
+									obj.put("point",
+											customerRewardsLog.getPointBurnEarn() * -1);
+								}
+								if (customerRewardsLog.getRewardDate() != null) {
+									obj.put("rewardDate",
+											DateUtil.longDateToString(customerRewardsLog.getRewardDate().longValue()));
+								} else {
+									obj.put("rewardDate", "");
+								}
+								result.add(obj);
+
+							}
+						}
+
+					}
+
+				}
+
+			}
+
+			Map<String, Object> out = new HashMap<String, Object>() {
+				{
+					put("data", result);
+					put("error", 0);
+				}
+			};
+			return new ResponseEntity<>(out, HttpStatus.OK);
+		} catch (Exception e) {
+			Map<String, Object> responseMap = new HashMap<String, Object>();
+			responseMap.put("Message", e.getMessage());
+			responseMap.put("data", responseMap);
+			responseMap.put("error", -1);
+			return new ResponseEntity<>(responseMap, HttpStatus.BAD_REQUEST);
+		}
+	}
 }
