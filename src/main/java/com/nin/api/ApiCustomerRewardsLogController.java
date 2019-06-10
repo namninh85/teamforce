@@ -84,55 +84,72 @@ public class ApiCustomerRewardsLogController {
             User currentUser = userService.getCurrentUser();
             List<CustomerRewardsLog> listCustomerRewardsLog = customerRewardsLogService.findAllCustomerRewardsLogByCustomerIdActive(currentUser.getId());
             List<Map<String, Object>> result = new ArrayList<>();
+            Map<Long, LoyaltyProgram> mapLoyaltyProgram = new HashMap<Long, LoyaltyProgram>();
             if(listCustomerRewardsLog != null) {
-            	Map<String, Integer> mapCountLoyalty = new HashMap<String, Integer>();
+            	Map<String, List<CustomerRewardsLog>> mapCountCustomerRewardsLog = new HashMap<String, List<CustomerRewardsLog>>();
             	 for (CustomerRewardsLog customerRewardsLog : listCustomerRewardsLog) {
                  	if(customerRewardsLog.getLoyaltyProgramId() != null) {
                  		LoyaltyProgram loyaltyProgram = loyaltyProgramService.finByLoyaltyProgramId(customerRewardsLog.getLoyaltyProgramId());
                  		 if(loyaltyProgram != null) {
-                 			 Voucher voucher = voucherService.findByVoucherId(loyaltyProgram.getVoucherId());
-                              Map<String, Object> obj = new HashMap<>();
-                              obj.put("loyaltyProgramId", loyaltyProgram.getLoyaltyProgramId());
-                               if(customerRewardsLog.getPointBurnEarn() != null) {
-                            	  obj.put("point", customerRewardsLog.getPointBurnEarn()*-1);
-                              }
-                              if(customerRewardsLog.getRewardDate() != null) {
-                            	  obj.put("rewardDate", DateUtil.longDateToString(customerRewardsLog.getRewardDate().longValue()));
-                              }
-                              else {
-                            	  obj.put("rewardDate", "");
-                              }
-                             
-                              if(voucher != null) {
-                            	 String keyMap = customerRewardsLog.getLoyaltyProgramId()+"_"+customerRewardsLog.getRewardDate();
-                            	 if(mapCountLoyalty.get(keyMap) == null) {
-                            		 mapCountLoyalty.put(keyMap, 1);
-                            	 }
-                            	 else {
-                            		 mapCountLoyalty.put(keyMap, mapCountLoyalty.get(keyMap)+1);
-                            	 }
-                             	 obj.put("voucherId", voucher.getVoucherId());
-                             	 obj.put("voucherName", voucher.getName());
-                                 obj.put("image", voucher.getImage());
-                                 obj.put("price", voucher.getValue());
-                                 obj.put("currency", voucher.getCurrency());
-                                 obj.put("uAvailables", mapCountLoyalty.get(keyMap));
-                                   
-                                 result.add(obj);
-                             	 
-                              }
+                 			mapLoyaltyProgram.put(loyaltyProgram.getLoyaltyProgramId(), loyaltyProgram);
+                 			String keyMap = customerRewardsLog.getLoyaltyProgramId()+"_"+customerRewardsLog.getRewardDate();
+                        	 if(mapCountCustomerRewardsLog.get(keyMap) == null) {
+                        		 List<CustomerRewardsLog> listObjects = new ArrayList<CustomerRewardsLog>();
+                        		 listObjects.add(customerRewardsLog);
+                        		 mapCountCustomerRewardsLog.put(keyMap, listObjects);
+                        	 }
+                        	 else {
+                        		 mapCountCustomerRewardsLog.get(keyMap).add(customerRewardsLog);
+                        	 }   
                              
                  		 }
                  		
                  	}
                       
                  }
-            }
-           
-            Map<String, Object> out = new HashMap<String, Object>() {{
-                put("data", result);
-                put("error", 0);
-            }};
+            	 
+				for (String key : mapCountCustomerRewardsLog.keySet()) {
+					List<CustomerRewardsLog> customerRewardsLogs = mapCountCustomerRewardsLog.get(key);
+					if (customerRewardsLogs != null && customerRewardsLogs.size() > 0) {
+						CustomerRewardsLog customerRewardsLog = customerRewardsLogs.get(0);
+						LoyaltyProgram loyaltyProgram = mapLoyaltyProgram.get(customerRewardsLog.getLoyaltyProgramId());
+						if (loyaltyProgram != null) {
+							Voucher voucher = voucherService.findByVoucherId(loyaltyProgram.getVoucherId());
+							Map<String, Object> obj = new HashMap<>();
+							obj.put("loyaltyProgramId", loyaltyProgram.getLoyaltyProgramId());
+							if (customerRewardsLog.getPointBurnEarn() != null) {
+								obj.put("point", customerRewardsLog.getPointBurnEarn() * -1);
+							}
+							if (customerRewardsLog.getRewardDate() != null) {
+								obj.put("rewardDate", DateUtil.longDateToString(customerRewardsLog.getRewardDate().longValue()));
+							} else {
+								obj.put("rewardDate", "");
+							}
+
+							if (voucher != null) {
+								obj.put("voucherId", voucher.getVoucherId());
+								obj.put("voucherName", voucher.getName());
+								obj.put("image", voucher.getImage());
+								obj.put("price", voucher.getValue());
+								obj.put("currency", voucher.getCurrency());
+								obj.put("uAvailables", customerRewardsLogs.size());
+								result.add(obj);
+
+							}
+						}
+
+					}
+
+				}
+
+			}
+
+			Map<String, Object> out = new HashMap<String, Object>() {
+				{
+					put("data", result);
+					put("error", 0);
+				}
+			};
             return new ResponseEntity<>(out, HttpStatus.OK);
         }catch (Exception e) {
             Map<String, Object> responseMap = new HashMap<String, Object>();
