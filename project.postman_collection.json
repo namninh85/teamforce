@@ -266,6 +266,36 @@
 				"url": "http://nin-loyalty-backend.herokuapp.com/api/v1/redeem-histories"
 			},
 			"response": []
+		},
+		{
+			"name": "Redeem voucher",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "0fdb3715-7a51-4625-99ea-497f84172bc8",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"loyaltyProgramId\":2,\n\t\"availableVoucher\":3\n}"
+				},
+				"url":  "http://nin-loyalty-backend.herokuapp.com/api/v1/redeem",
+			},
+			"response": []
 		}
 	]
 }
