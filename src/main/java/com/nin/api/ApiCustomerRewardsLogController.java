@@ -85,6 +85,7 @@ public class ApiCustomerRewardsLogController {
             List<CustomerRewardsLog> listCustomerRewardsLog = customerRewardsLogService.findAllCustomerRewardsLogByCustomerIdActive(currentUser.getId());
             List<Map<String, Object>> result = new ArrayList<>();
             if(listCustomerRewardsLog != null) {
+            	Map<String, Integer> mapCountLoyalty = new HashMap<String, Integer>();
             	 for (CustomerRewardsLog customerRewardsLog : listCustomerRewardsLog) {
                  	if(customerRewardsLog.getLoyaltyProgramId() != null) {
                  		LoyaltyProgram loyaltyProgram = loyaltyProgramService.finByLoyaltyProgramId(customerRewardsLog.getLoyaltyProgramId());
@@ -103,12 +104,21 @@ public class ApiCustomerRewardsLogController {
                               }
                              
                               if(voucher != null) {
+                            	 String keyMap = customerRewardsLog.getLoyaltyProgramId()+"_"+customerRewardsLog.getRewardDate();
+                            	 if(mapCountLoyalty.get(keyMap) == null) {
+                            		 mapCountLoyalty.put(keyMap, 1);
+                            	 }
+                            	 else {
+                            		 mapCountLoyalty.put(keyMap, mapCountLoyalty.get(keyMap)+1);
+                            	 }
                              	 obj.put("voucherId", voucher.getVoucherId());
                              	 obj.put("voucherName", voucher.getName());
-                                  obj.put("image", voucher.getImage());
-                                  obj.put("price", voucher.getValue());
-                                  obj.put("currency", voucher.getCurrency());
-                                  result.add(obj);
+                                 obj.put("image", voucher.getImage());
+                                 obj.put("price", voucher.getValue());
+                                 obj.put("currency", voucher.getCurrency());
+                                 obj.put("uAvailables", mapCountLoyalty.get(keyMap));
+                                   
+                                 result.add(obj);
                              	 
                               }
                              
