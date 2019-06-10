@@ -97,8 +97,7 @@ public class ApiCustomerRewardsLogController {
 								.finByLoyaltyProgramId(customerRewardsLog.getLoyaltyProgramId());
 						if (loyaltyProgram != null) {
 							mapLoyaltyProgram.put(loyaltyProgram.getLoyaltyProgramId(), loyaltyProgram);
-							String keyMap = customerRewardsLog.getLoyaltyProgramId() + "_"
-									+ customerRewardsLog.getRewardDate();
+							String keyMap = customerRewardsLog.getRewardDate() + "_" +customerRewardsLog.getLoyaltyProgramId() ;
 							if (mapCountCustomerRewardsLog.get(keyMap) == null) {
 								List<CustomerRewardsLog> listObjects = new ArrayList<CustomerRewardsLog>();
 								listObjects.add(customerRewardsLog);
@@ -112,8 +111,11 @@ public class ApiCustomerRewardsLogController {
 					}
 
 				}
+				
+				List<String> sortedKeys=new ArrayList(mapCountCustomerRewardsLog.keySet());
+				Collections.sort(sortedKeys, Collections.reverseOrder());
 
-				for (String key : mapCountCustomerRewardsLog.keySet()) {
+				for (String key : sortedKeys) {
 					List<CustomerRewardsLog> customerRewardsLogs = mapCountCustomerRewardsLog.get(key);
 					if (customerRewardsLogs != null && customerRewardsLogs.size() > 0) {
 						CustomerRewardsLog customerRewardsLog = customerRewardsLogs.get(0);
@@ -132,7 +134,7 @@ public class ApiCustomerRewardsLogController {
 								obj.put("loyaltyProgramId", loyaltyProgram.getLoyaltyProgramId());
 								if (customerRewardsLog.getPointBurnEarn() != null) {
 									obj.put("point",
-											customerRewardsLog.getPointBurnEarn() * -1);
+											customerRewardsLog.getPointBurnEarn() * -1 * customerRewardsLogs.size());
 								}
 								if (customerRewardsLog.getRewardDate() != null) {
 									obj.put("rewardDate",
