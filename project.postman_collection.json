@@ -251,6 +251,21 @@
 				"url":  "http://nin-loyalty-backend.herokuapp.com/api/v1/app-data"
 			},
 			"response": []
+		},
+		{
+			"name": "redeem-histories",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer 2b49af15-b571-47dc-bce2-97983094157f",
+						"type": "string"
+					}
+				],
+				"url": "http://nin-loyalty-backend.herokuapp.com/api/v1/redeem-histories"
+			},
+			"response": []
 		}
 	]
 }
