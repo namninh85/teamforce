@@ -38,17 +38,47 @@ public class ApiVoucherController {
     @PostMapping("/redeem")
     public ResponseEntity<Map<String, Object>> redeemVoucher(@RequestBody Map<String, Object> redeemDTO) {
         try {
+            Map<String, Object> out = new HashMap<>();
+            Map<String, Object> message = new HashMap<>();
+            out.put("error", -1);
             Long date = new Date().getTime() / 1000;
             User currentUser = userService.getCurrentUser();
             Customer customer = customerService.findByCustomerId(currentUser.getId());
-            if (redeemDTO.get("loyaltyProgramId") != null) {
-                LoyaltyProgram loyaltyProgram = loyaltyProgramService.finByLoyaltyProgramId(Long.parseLong(redeemDTO.get("loyaltyProgramId").toString()));
-                Voucher voucher = voucherService.findByVoucherId(loyaltyProgram.getVoucherId());
-                Long voucherCode = voucherCodeService.findVoucherCodeByVoucherId(loyaltyProgram.getVoucherId());
+            //Check null
+            if (redeemDTO.get("loyaltyProgramId").toString() == "") {
+                message.put("Message", "Loyalty Program ID is null !");
+                out.put("data", message);
+                return new ResponseEntity<>(out, HttpStatus.BAD_REQUEST);
+
+            }
+            if (Integer.parseInt(redeemDTO.get("availableVoucher").toString()) <= 0) {
+                message.put("Message", "Available Voucher is null or smaller than 0 !");
+                out.put("data", message);
+                return new ResponseEntity<>(out, HttpStatus.BAD_REQUEST);
+
+            }
+            //Find loyalty program by ID and expire date
+            LoyaltyProgram loyaltyProgram = loyaltyProgramService.findLoyaltyProgramByIdAndDate(date, Long.parseLong(redeemDTO.get("loyaltyProgramId").toString()));
+            if (loyaltyProgram == null) {
+                message.put("Message", "Loyalty Program  is not available !");
+                out.put("data", message);
+                return new ResponseEntity<>(out, HttpStatus.BAD_REQUEST);
+
+            }
+            Integer totalPoint = loyaltyProgram.getPoint() * Integer.parseInt(redeemDTO.get("availableVoucher").toString());
+            if (customer.getTotalPoint() < totalPoint) {
+                message.put("Message", "Point is not enough !");
+                out.put("data", message);
+                return new ResponseEntity<>(out, HttpStatus.BAD_REQUEST);
+            }
+
+            Voucher voucher = voucherService.findByVoucherId(loyaltyProgram.getVoucherId());
+            Long voucherCode = voucherCodeService.findVoucherCodeByVoucherId(loyaltyProgram.getVoucherId());
+            for (Integer i=0;i<Integer.parseInt(redeemDTO.get("availableVoucher").toString());i++){
                 //Insert CustomerRewardsLog
                 CustomerRewardsLog customerRewardsLog = new CustomerRewardsLog();
                 customerRewardsLog.setCustomerId(customer.getCustomerId());
-                customerRewardsLog.setPointBurnEarn(-1*loyaltyProgram.getPoint());
+                customerRewardsLog.setPointBurnEarn(-1 * loyaltyProgram.getPoint());
                 customerRewardsLog.setLoyaltyProgramId(loyaltyProgram.getLoyaltyProgramId());
                 customerRewardsLog.setVoucherCodeId(voucherCode.longValue());
                 customerRewardsLog.setRewardDate(BigInteger.valueOf(date.longValue()));
@@ -60,20 +90,18 @@ public class ApiVoucherController {
                 customerHasVoucher.setCustomerId(customer.getCustomerId());
                 customerHasVoucher.setVoucherCodeId(voucherCode);
                 customerHasVoucher.setReceivedDate(BigInteger.valueOf(date.longValue()));
-                customerHasVoucher.setExpiredDate(BigInteger.valueOf(date + 86400*voucher.getNumberDateUse()));
+                customerHasVoucher.setExpiredDate(BigInteger.valueOf(date + 86400 * voucher.getNumberDateUse()));
                 customerHasVoucher.setActive(true);
                 customerHasVoucher.setDeleted(false);
                 customerHasVoucherService.createCustomerHasVoucher(customerHasVoucher);
-                //Update table Customer
-                Integer totalVoucher = customerHasVoucherService.countVoucherByCustomerId(currentUser.getId());
-                customer.setTotalVoucher(totalVoucher.intValue());
-                customer.setTotalPoint(customer.getTotalPoint()+loyaltyProgram.getPoint());
-                customerService.updateVoucherAndPointCustomer(customer);
             }
+            //Update table Customer
+            Integer totalVoucher = customerHasVoucherService.countVoucherByCustomerId(currentUser.getId());
+            customer.setTotalVoucher(totalVoucher.intValue());
+            customer.setTotalPoint(customer.getTotalPoint() - totalPoint);
+            customerService.updateVoucherAndPointCustomer(customer);
 
-            Map<String, Object> message = new HashMap<>();
-            message.put("Message","You’ve just earned "+ redeemDTO.get("availableVoucher") +" gift vouchers");
-            Map<String, Object> out = new HashMap<>();
+            message.put("Message", "You’ve just earned " + redeemDTO.get("availableVoucher") + " gift vouchers");
             out.put("data", message);
             out.put("error", 0);
             return new ResponseEntity<>(out, HttpStatus.OK);
