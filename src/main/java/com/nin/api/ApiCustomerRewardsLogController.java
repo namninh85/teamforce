@@ -92,7 +92,9 @@ public class ApiCustomerRewardsLogController {
                  			 Voucher voucher = voucherService.findByVoucherId(loyaltyProgram.getVoucherId());
                               Map<String, Object> obj = new HashMap<>();
                               obj.put("loyaltyProgramId", loyaltyProgram.getLoyaltyProgramId());
-                              obj.put("point", customerRewardsLog.getPointBurnEarn());
+                               if(customerRewardsLog.getPointBurnEarn() != null) {
+                            	  obj.put("point", customerRewardsLog.getPointBurnEarn()*-1);
+                              }
                               if(customerRewardsLog.getRewardDate() != null) {
                             	  obj.put("rewardDate", DateUtil.longDateToString(customerRewardsLog.getRewardDate().longValue()));
                               }
