@@ -18,10 +18,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @RestController
 @RequestMapping("/api/v1")
@@ -45,6 +42,7 @@ public class ApiCustomerRewardsLogController {
     @GetMapping("/my-rewards")
     public ResponseEntity<Map<String,Object>> findCustomerRewardsLogByCustomerId(){
         try {
+        	Long date = new Date().getTime()/1000;
             User currentUser = userService.getCurrentUser();
             List<Object[]> listCustomerRewardsLog = customerRewardsLogService.findCustomerRewardsLogByCustomerId(currentUser.getId());
             List<Map<String, Object>> result = new ArrayList<>();
@@ -61,6 +59,11 @@ public class ApiCustomerRewardsLogController {
                 obj.put("releasesTotal", loyaltyProgram.getTotal_release());
                 obj.put("point", loyaltyProgram.getPoint());
                 obj.put("uAvailables", customerRewardsLog[1]);
+				if (date >= loyaltyProgram.getStartDate().longValue() && date <= loyaltyProgram.getEndDate().longValue()){
+					obj.put("status",true);
+				}	else{
+					obj.put("status",false);
+				}
 
                 result.add(obj);
             }

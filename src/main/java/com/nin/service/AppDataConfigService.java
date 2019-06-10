@@ -18,4 +18,12 @@ public class AppDataConfigService {
     public AppDataConfig findByIsActive(){
         return appDataConfigRepository.findByIsActive(true);
     }
+
+    public AppDataConfig findByAppDataConfigId(Long Id){
+        return appDataConfigRepository.findByAppDataConfigId(Id);
+    }
+    public void createOrUpdateAppDataConfig(AppDataConfig appDataConfig){
+         appDataConfigRepository.save(appDataConfig);
+         return;
+    }
 }

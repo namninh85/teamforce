@@ -11,7 +11,7 @@ import java.util.List;
 @Repository
 public interface LoyaltyProgramRepository extends JpaRepository<LoyaltyProgram,Long> {
     @Query("SELECT  p FROM LoyaltyProgram p WHERE p.isActive=true " +
-            "AND p.startDate <= CAST(:date AS integer) AND p.endDate >= CAST(:date AS integer)")
+            "AND p.startDate <= CAST(:date AS integer) AND p.endDate >= CAST(:date AS integer) ORDER BY p.startDate DESC ")
     List<LoyaltyProgram> findLoyaltyProgramByDate(@Param("date") Long date);
     LoyaltyProgram findByLoyaltyProgramId(Long Id);
     @Query("SELECT  p FROM LoyaltyProgram p WHERE p.isActive=true AND p.loyaltyProgramId=:id " +
