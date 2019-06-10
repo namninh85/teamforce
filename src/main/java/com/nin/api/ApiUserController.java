@@ -155,12 +155,12 @@ public class ApiUserController {
 			}
 			
 			//update email, must logout user, if not the app will be crashed
-			if (profileDTO.get("email") != null) {
-				if(!StringUtils.isEmpty(profileDTO.get("email").toString())) {
-					aCustomer.setEmail(profileDTO.get("email").toString());
-				}
+// 			if (profileDTO.get("email") != null) {
+// 				if(!StringUtils.isEmpty(profileDTO.get("email").toString())) {
+// 					aCustomer.setEmail(profileDTO.get("email").toString());
+// 				}
 				
-			}
+// 			}
 
 			if (profileDTO.get("interestedFields") != null) {
 				String myNum = profileDTO.get("interestedFields").toString() ;
@@ -173,13 +173,13 @@ public class ApiUserController {
 						generateQRCode(aCustomer.getCustomerId(), aCustomer.getEmail(), aCustomer.getFirstName()));
 			}
 
-			if (profileDTO.get("email") != null) {
-				if(!StringUtils.isEmpty(profileDTO.get("email").toString())) {
-					userService.updateUser(currentUser.getId(), profileDTO.get("email").toString(), null);
+// 			if (profileDTO.get("email") != null) {
+// 				if(!StringUtils.isEmpty(profileDTO.get("email").toString())) {
+// 					userService.updateUser(currentUser.getId(), profileDTO.get("email").toString(), null);
 					
-				}
+// 				}
 				
-			}
+// 			}
 			Customer saved = userService.createOrUpdateCustomer(aCustomer);
 			
 			
