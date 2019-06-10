@@ -129,7 +129,7 @@ public class ApiCustomerRewardsLogController {
 								obj.put("loyaltyProgramId", loyaltyProgram.getLoyaltyProgramId());
 								if (customerRewardsLog.getPointBurnEarn() != null) {
 									obj.put("point",
-											customerRewardsLog.getPointBurnEarn() * -1 * customerRewardsLogs.size());
+											customerRewardsLog.getPointBurnEarn() * -1);
 								}
 								if (customerRewardsLog.getRewardDate() != null) {
 									obj.put("rewardDate",
