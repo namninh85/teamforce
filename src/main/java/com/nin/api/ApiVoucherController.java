@@ -1,5 +1,6 @@
 package com.nin.api;
 
+import com.nin.dto.RedeemDTO;
 import com.nin.model.*;
 import com.nin.service.*;
 import org.springframework.http.HttpStatus;
@@ -13,6 +14,7 @@ import java.math.BigInteger;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 @RestController
 @RequestMapping("/api/v1")
@@ -45,27 +47,28 @@ public class ApiVoucherController {
             User currentUser = userService.getCurrentUser();
             Customer customer = customerService.findByCustomerId(currentUser.getId());
             //Check null
-            if (redeemDTO.get("loyaltyProgramId").toString() == "") {
+            Integer loyaltyProgramId = (Integer) redeemDTO.get("loyaltyProgramId");
+            Integer availableVoucher = (Integer) redeemDTO.get("availableVoucher");
+            if ( loyaltyProgramId == null ||  loyaltyProgramId <= 0 ) {
                 message.put("Message", "Loyalty Program ID is null !");
                 out.put("data", message);
                 return new ResponseEntity<>(out, HttpStatus.BAD_REQUEST);
-
             }
-            if (Integer.parseInt(redeemDTO.get("availableVoucher").toString()) <= 0) {
+            if (availableVoucher == null || availableVoucher <= 0) {
                 message.put("Message", "Available Voucher is null or smaller than 0 !");
                 out.put("data", message);
                 return new ResponseEntity<>(out, HttpStatus.BAD_REQUEST);
 
             }
             //Find loyalty program by ID and expire date
-            LoyaltyProgram loyaltyProgram = loyaltyProgramService.findLoyaltyProgramByIdAndDate(date, Long.parseLong(redeemDTO.get("loyaltyProgramId").toString()));
+            LoyaltyProgram loyaltyProgram = loyaltyProgramService.findLoyaltyProgramByIdAndDate(date, loyaltyProgramId.longValue());
             if (loyaltyProgram == null) {
                 message.put("Message", "Loyalty Program  is not available !");
                 out.put("data", message);
                 return new ResponseEntity<>(out, HttpStatus.BAD_REQUEST);
 
             }
-            Integer totalPoint = loyaltyProgram.getPoint() * Integer.parseInt(redeemDTO.get("availableVoucher").toString());
+            Integer totalPoint = loyaltyProgram.getPoint() * availableVoucher;
             if (customer.getTotalPoint() < totalPoint) {
                 message.put("Message", "Point is not enough !");
                 out.put("data", message);
@@ -74,7 +77,7 @@ public class ApiVoucherController {
 
             Voucher voucher = voucherService.findByVoucherId(loyaltyProgram.getVoucherId());
             Long voucherCode = voucherCodeService.findVoucherCodeByVoucherId(loyaltyProgram.getVoucherId());
-            for (Integer i=0;i<Integer.parseInt(redeemDTO.get("availableVoucher").toString());i++){
+            for (Integer i=0;i<availableVoucher;i++){
                 //Insert CustomerRewardsLog
                 CustomerRewardsLog customerRewardsLog = new CustomerRewardsLog();
                 customerRewardsLog.setCustomerId(customer.getCustomerId());

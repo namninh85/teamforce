@@ -1,15 +1,16 @@
 package com.nin.dto;
 
 public class RedeemDTO {
-    String LoyaltyProgramId;
+    Integer loyaltyProgramId;
     Integer availableVoucher;
 
-    public String getLoyaltyProgramId() {
-        return LoyaltyProgramId;
+
+    public Integer getLoyaltyProgramId() {
+        return loyaltyProgramId;
     }
 
-    public void setLoyaltyProgramId(String loyaltyProgramId) {
-        LoyaltyProgramId = loyaltyProgramId;
+    public void setLoyaltyProgramId(Integer loyaltyProgramId) {
+        this.loyaltyProgramId = loyaltyProgramId;
     }
 
     public Integer getAvailableVoucher() {
