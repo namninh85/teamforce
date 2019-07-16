@@ -8,17 +8,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "loyalty_program")
+@Table(name = "campaign")
 @Where(clause = "is_deleted ='false'")
 public class LoyaltyProgram {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long loyaltyProgramId ;
     private Long voucherId;
+    @Column(name = "startdate")
     private BigInteger startDate;
+    @Column(name = "enddate")
     private BigInteger endDate;
+    @Column(name = "point__c")
     private Integer point;
+    @Column(name = "total_release__c")
     private Integer total_release;
+     @Column(name = "available__c")
     private Integer available;
     private Boolean isActive;
     private Boolean isDeleted;
