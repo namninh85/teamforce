@@ -24,6 +24,7 @@ public class Customer implements java.io.Serializable {
 	private String firstName;
 	private String lastName;
 	private String email;
+	@Column(name = "mobilePhone")
 	private String phone;
 	private String lang;
 	private Integer totalVoucher;
@@ -32,9 +33,11 @@ public class Customer implements java.io.Serializable {
 	private boolean isActive;
 	private String interestedFields;
 	private String address;
+	@Column(name = "pictureURL__c")
 	private String avartarImg;
 	private String bannerHeaderImg;
 	private String qrcodeImg;
+	@Column(name = "birthdate")
 	private Long dob;
 
 	@ManyToMany(fetch = FetchType.EAGER)
