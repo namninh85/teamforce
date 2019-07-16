@@ -5,17 +5,24 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name = "store")
+@Table(name = "store__c")
 @Where(clause = "is_deleted='false'")
 public class Store {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Long storeId;
+    @Column(name = "name__c")
     private String name;
+    @Column(name = "address__c")
     private String address;
+    @Column(name = "latitude__c")
     private Double latitude;
+    @Column(name = "longitude__c")
     private Double longitude;
+    @Column(name = "phone__c")
     private String phone;
+    @Column(name = "utilities__c")
     private String utilities;
     private Boolean isActive;
     private Boolean isDeleted;
