@@ -19,7 +19,9 @@ public class Product {
     private String code;
     private String name;
     private String description;
+    @Column(name = "picture__c")
     private String image;
+    @Column(name = "weblink__c")
     private String webLink;
     private Boolean hasNew;
     private Boolean isActive;
