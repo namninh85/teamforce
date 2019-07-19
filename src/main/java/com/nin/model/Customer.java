@@ -10,7 +10,7 @@ import java.math.BigInteger;
 import java.util.List;
 
 @Entity
-@Table(name = "contact")
+@Table(name = "contact",  schema = "salesforce")
 public class Customer implements java.io.Serializable {
 	
 	/**
