@@ -1,28 +1,28 @@
 @font-face {
   font-family: 'ducati';
-  src: url("https://namninh85.github.io/ducati_website/src/DucatiStyleVN-Regular.eot");
-  src: url("https://namninh85.github.io/ducati_website/src/DucatiStyleVN-Regular.eot?#iefix") format("embedded-opentype"), url("https://namninh85.github.io/ducati_website/src/DucatiStyleVN-Regular.woff2") format("woff2"), url("https://namninh85.github.io/ducati_website/src/DucatiStyleVN-Regular.woff") format("woff");
+  src: url("https://namninh85.github.io/ducati_website/public/DucatiStyleVN-Regular.eot");
+  src: url("https://namninh85.github.io/ducati_website/public/DucatiStyleVN-Regular.eot?#iefix") format("embedded-opentype"), url("https://namninh85.github.io/ducati_website/public/DucatiStyleVN-Regular.woff2") format("woff2"), url("https://namninh85.github.io/ducati_website/public/DucatiStyleVN-Regular.woff") format("woff");
   font-weight: 400;
   font-style: normal; }
 
 @font-face {
   font-family: 'ducati';
-  src: url("https://namninh85.github.io/ducati_website/src/DucatiStyleVN-Bold.eot");
-  src: url("https://namninh85.github.io/ducati_website/src/DucatiStyleVN-Bold.eot?#iefix") format("embedded-opentype"), url("https://namninh85.github.io/ducati_website/src/DucatiStyleVN-Bold.woff2") format("woff2"), url("https://namninh85.github.io/ducati_website/src/DucatiStyleVN-Bold.woff") format("woff");
+  src: url("https://namninh85.github.io/ducati_website/public/DucatiStyleVN-Bold.eot");
+  src: url("https://namninh85.github.io/ducati_website/public/DucatiStyleVN-Bold.eot?#iefix") format("embedded-opentype"), url("https://namninh85.github.io/ducati_website/public/DucatiStyleVN-Bold.woff2") format("woff2"), url("https://namninh85.github.io/ducati_website/public/DucatiStyleVN-Bold.woff") format("woff");
   font-weight: 700;
   font-style: normal; }
 
 @font-face {
   font-family: 'ducati-extended';
-  src: url("https://namninh85.github.io/ducati_website/src/DucatiStyleVN-Expanded.eot");
-  src: url("https://namninh85.github.io/ducati_website/src/DucatiStyleVN-Expanded.eot?#iefix") format("embedded-opentype"), url("https://namninh85.github.io/ducati_website/src/DucatiStyleVN-Expanded.woff2") format("woff2"), url("https://namninh85.github.io/ducati_website/src/DucatiStyleVN-Expanded.woff") format("woff");
+  src: url("https://namninh85.github.io/ducati_website/public/DucatiStyleVN-Expanded.eot");
+  src: url("https://namninh85.github.io/ducati_website/public/DucatiStyleVN-Expanded.eot?#iefix") format("embedded-opentype"), url("https://namninh85.github.io/ducati_website/public/DucatiStyleVN-Expanded.woff2") format("woff2"), url("https://namninh85.github.io/ducati_website/public/DucatiStyleVN-Expanded.woff") format("woff");
   font-weight: 400;
   font-style: normal; }
 
 @font-face {
   font-family: 'ducati-extended';
-  src: url("https://namninh85.github.io/ducati_website/src/DucatiStyleVN-BoldExpanded.eot");
-  src: url("https://namninh85.github.io/ducati_website/src/DucatiStyleVN-BoldExpanded.eot?#iefix") format("embedded-opentype"), url("https://namninh85.github.io/ducati_website/src/DucatiStyleVN-BoldExpanded.woff2") format("woff2"), url("https://namninh85.github.io/ducati_website/src/DucatiStyleVN-BoldExpanded.woff") format("woff");
+  src: url("https://namninh85.github.io/ducati_website/public/DucatiStyleVN-BoldExpanded.eot");
+  src: url("https://namninh85.github.io/ducati_website/public/DucatiStyleVN-BoldExpanded.eot?#iefix") format("embedded-opentype"), url("https://namninh85.github.io/ducati_website/public/DucatiStyleVN-BoldExpanded.woff2") format("woff2"), url("https://namninh85.github.io/ducati_website/public/DucatiStyleVN-BoldExpanded.woff") format("woff");
   font-weight: 700;
   font-style: normal; }
 

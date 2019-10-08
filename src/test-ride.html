@@ -57,8 +57,8 @@
     <link href="https://contact.ducati.com/resource/1505249465000/lgf_favicons/ducati.ico" rel="shortcut icon" type="image/png">
     <link href="https://contact.ducati.com/resource/1510856087000/lgf_resources_18/apple-touch-icon.png" rel="apple-touch-icon">
     <script>var dlib = { assetsPath: "https://assets.ducati.com/dist/0.0.38/", country: "us", gmaps_API_KEY: 'AIzaSyBlM0rK0kyp6wi6qTrx8KBu598UiTM6T7I', lang: 'en' }</script>
-    <link href="https://namninh85.github.io/ducati_website/public/ducati.css" rel="stylesheet" type="text/css">
-    <link href="https://namninh85.github.io/ducati_website/public/styles.css" rel="stylesheet" type="text/css">
+    <link href="https://ducati-html.3forcom.biz/assets/css/ducati.css" rel="stylesheet" type="text/css">
+    <link href="https://ducati-html.3forcom.biz/assets/css/styles.css" rel="stylesheet" type="text/css">
 </head>
 <body id="bodyId">
     <noscript>
@@ -1763,7 +1763,7 @@
         }
 
         //SF embed code
-        function actionSFWebToLead (form,fieldName, value) {
+        function actionSFWebToLead () {
             var formActionURL = "https://test.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8";
             //Thank you page after submit
             var returnURL = "https://ducati-html.3forcom.biz/test-ride.html";
@@ -1789,7 +1789,7 @@
             $(".callingCode").each(function() {
                 var valueCode = $(this).val();
                 if(valueCode.length > 0){
-                    //callingCode = "+" + ($(this).val().replace(/[^0-9\.]+/g, "")) + " ";
+                    callingCode = "+" + ($(this).val().replace(/[^0-9\.]+/g, "")) + " ";
                 }
                 
             });
