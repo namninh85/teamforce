@@ -1737,15 +1737,15 @@
 
             createSFInputField (form, "phone", leadData.phone);
 
-            createSFInputField (form, "00N6D0000036MrH", leadData.dealer);
+            createSFInputField (form, "00N2v00000URG68", leadData.dealer);
 
-            createSFInputField (form, "00N2v00000RDE6U", leadData.family);
+            createSFInputField (form, "00N2v00000URG69", leadData.family);
 
-            createSFInputField (form, "00N6D0000036Mr7", leadData.model);
+            createSFInputField (form, "00N2v00000URG6B", leadData.model);
 
             createSFInputField (form, "lead_source", "Website");
 
-            createSFInputField (form, "00N6D0000036bc6", leadData.leadType);
+            createSFInputField (form, "00N2v00000URG6C", leadData.leadType);
 
             createSFInputField (form, "street", leadData.street);
 
@@ -1764,10 +1764,10 @@
 
         //SF embed code
         function actionSFWebToLead (form,fieldName, value) {
-            var formActionURL = "https://test.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8";
+            var formActionURL = "https://webto.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8";
             //Thank you page after submit
-            var returnURL = "https://ducati-html.3forcom.biz/test-ride.html";
-            var oid = "00D6D0000008eiG";
+            var returnURL = "https://ducativietnam.com/";
+            var oid = "00D2v0000013Br0";
             //salutation, firstName, lastName, email, phone, dealer, family, model, leadSource, leadType, street, city, state, zipCode, country
             var leadData = {};
             leadData.leadSource =  "Website";
@@ -1797,11 +1797,11 @@
             leadData.phone = callingCode +  $("input[id$=phone]").val();
             leadData.dealer = "";
             var dealerId =  $("select[id$=country]").val();
-            if(dealerId === "sg"){
-                leadData.dealer = "Sài Gòn";
+            if(dealerId === "AF"){
+                leadData.dealer = "Saigon";
             }
-            if(dealerId === "hn"){
-                leadData.dealer = "Hà Nội";
+            if(dealerId === "AX"){
+                leadData.dealer = "Hanoi";
             }
 
             leadData.family =  $("select[id$=select-family-z]").val();
