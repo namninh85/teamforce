@@ -1581,7 +1581,7 @@
         
             $("select.callingCode > option").each(function () {
                 if (this.value.startsWith(countryCode))
-                    $('select.callingCode').val('+84').trigger('change');
+                    $('select.callingCode').val('+VN|+84').trigger('change');
             });
         
             console.log("changeCountry.done()");
