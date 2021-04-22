@@ -3,7 +3,7 @@
 function TextCapture(txtid)
 {
 var OriginalValue=document.getElementById("name").value;
-alert(OriginalValue);
+
 document.getElementById("first_name").value=OriginalValue.substr(0,OriginalValue.indexOf(' ')); 
 document.getElementById("last_name").value=OriginalValue.substr(OriginalValue.indexOf(' ')+1);;
 }
