@@ -1,43 +1,53 @@
-<!--  ----------------------------------------------------------------------  -->
-<!--  NOTE: Please add the following <META> element to your page <HEAD>.      -->
-<!--  If necessary, please modify the charset parameter to specify the        -->
-<!--  character set of your HTML page.                                        -->
-<!--  ----------------------------------------------------------------------  -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Web2Lead</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
 
-<META HTTP-EQUIV="Content-type" CONTENT="text/html; charset=UTF-8">
-
-<!--  ----------------------------------------------------------------------  -->
-<!--  NOTE: Please add the following <FORM> element to your page.             -->
-<!--  ----------------------------------------------------------------------  -->
-
-<form action="https://teamforce1--teamforce2.my.salesforce.com/servlet/servlet.WebToCase?encoding=UTF-8" method="POST">
-
-<input type=hidden name="orgid" value="00D1s0000008qDX">
-<input type=hidden name="retURL" value="http://">
+<div class="container">
+  <h2>Web2Case form</h2>
+  <form action="https://teamforce1--teamforce2.my.salesforce.com/servlet/servlet.WebToCase?encoding=UTF-8" method="POST">
+    <input type=hidden name="oid" value="00D1s0000008qDX">
+<input type=hidden name="retURL" value="https://namninh85.github.io/ducati_website/static_html/web2case.html">
 
 <!--  ----------------------------------------------------------------------  -->
 <!--  NOTE: These fields are optional debugging elements. Please uncomment    -->
 <!--  these lines if you wish to test in debug mode.                          -->
 <!--  <input type="hidden" name="debug" value=1>                              -->
 <!--  <input type="hidden" name="debugEmail"                                  -->
-<!--  value="sachin.shrestha@crosscloudpartners.com">                         -->
+<!--  value="nin.bui@crosscloudpartners.com">                                 -->
 <!--  ----------------------------------------------------------------------  -->
+    <div class="form-group">
+      <label for="name">Contact Name</label>
+     
+      <input class="form-control" id="name" maxlength="80" name="name" size="20" type="text" />
+    </div>
+    <div class="form-group">
+      <label for="last_name">Phone</label>
+      <input  id="phone" class="form-control" maxlength="40" name="phone" size="20" type="text" />
+    </div>
+   <div class="form-group">
+      <label for="email">Email:</label>
+        <input  id="email" class="form-control" maxlength="80" name="email" size="20" type="text" />
+        
+    </div>
+    <div class="form-group">
+      <label for="company">Subject</label>
+      <input  id="subject" class="form-control" maxlength="40" name="subject" size="20" type="text" />
+    </div>
+     <div class="form-group">
+      <label for="city">Description</label>
+      <textarea class="form-control" name="description"></textarea>
+    </div>
+    <button type="submit" class="btn btn-default">Submit</button>
+  </form>
+</div>
 
-<label for="name">Contact Name</label><input  id="name" maxlength="80" name="name" size="20" type="text" /><br>
-
-<label for="email">Email</label><input  id="email" maxlength="80" name="email" size="20" type="text" /><br>
-
-<label for="phone">Phone</label><input  id="phone" maxlength="40" name="phone" size="20" type="text" /><br>
-
-<label for="subject">Subject</label><input  id="subject" maxlength="80" name="subject" size="20" type="text" /><br>
-
-<label for="description">Description</label><textarea name="description"></textarea><br>
-
-Address:<textarea  id="00N2v00000VArus" name="00N2v00000VArus" rows="3" type="text" wrap="soft"></textarea><br>
-
-<label for="recordType">Case Record Type</label><select  id="recordType" name="recordType"><option value="">--None--</option><option value="0121s00000012vR">Customer Service</option>
-</select><br>
-
-<input type="submit" name="submit">
-
-</form>
+</body>
+</html>
