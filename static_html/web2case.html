@@ -9,11 +9,23 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 <body>
-
 <div class="container">
   <h2>Web2Case form</h2>
-  <form action="https://teamforce1--teamforce2.my.salesforce.com/servlet/servlet.WebToCase?encoding=UTF-8" method="POST">
-    <input type=hidden name="oid" value="00D1s0000008qDX">
+<!--  ----------------------------------------------------------------------  -->
+<!--  NOTE: Please add the following <META> element to your page <HEAD>.      -->
+<!--  If necessary, please modify the charset parameter to specify the        -->
+<!--  character set of your HTML page.                                        -->
+<!--  ----------------------------------------------------------------------  -->
+
+
+
+<!--  ----------------------------------------------------------------------  -->
+<!--  NOTE: Please add the following <FORM> element to your page.             -->
+<!--  ----------------------------------------------------------------------  -->
+
+<form action="https://teamforce1--teamforce2.my.salesforce.com/servlet/servlet.WebToCase?encoding=UTF-8" method="POST">
+
+<input type=hidden name="orgid" value="00D1s0000008qDX">
 <input type=hidden name="retURL" value="https://namninh85.github.io/ducati_website/static_html/web2case.html">
 
 <!--  ----------------------------------------------------------------------  -->
@@ -21,7 +33,7 @@
 <!--  these lines if you wish to test in debug mode.                          -->
 <!--  <input type="hidden" name="debug" value=1>                              -->
 <!--  <input type="hidden" name="debugEmail"                                  -->
-<!--  value="nin.bui@crosscloudpartners.com">                                 -->
+<!--  value="sachin.shrestha@crosscloudpartners.com">                         -->
 <!--  ----------------------------------------------------------------------  -->
 <div class="form-group">
       <label>Type</label>
@@ -32,32 +44,26 @@
 			<option value="Account Enquiries">Account Enquiries</option>
         </select>
     </div>
-    <div class="form-group">
+ <div class="form-group">
       <label for="name">Contact Name</label>
      
-      <input class="form-control" id="name" maxlength="80" name="name" size="20" type="text" required />
+      <input id="name" class="form-control" maxlength="80" name="name" size="20" type="text" required />
     </div>
-    <div class="form-group">
-      <label for="last_name">Phone</label>
-      <input  id="phone" class="form-control" maxlength="40" name="phone" size="20" type="text" />
-    </div>
-   <div class="form-group">
-      <label for="email">Email</label>
-        <input  id="email" class="form-control" maxlength="80" name="email" size="20" type="email" required/>
-        
-    </div>
-    <div class="form-group">
-      <label for="company">Subject</label>
-      <input  id="subject" class="form-control" maxlength="40" name="subject" size="20" type="text" />
-    </div>
-     <div class="form-group">
-      <label for="city">Description</label>
-      <textarea class="form-control" name="description"></textarea>
-    </div>
-    
+ <div class="form-group">
+<label for="email">Email</label><input  id="email" class="form-control"maxlength="80" name="email" size="20" type="text" /> </div>
+ <div class="form-group">
+<label for="phone">Phone</label><input  id="phone" class="form-control" maxlength="40" name="phone" size="20" type="text" /></div>
+ <div class="form-group">
+<label for="subject">Subject</label><input  id="subject" class="form-control" maxlength="80" name="subject" size="20" type="text" /></div>
+ <div class="form-group">
+<label for="description">Description</label> <textarea class="form-control" name="description"></textarea></div>
+
+
     <br>
-    <button type="submit" class="btn btn-default">Submit</button>
-  </form>
+
+<input type="submit" name="submit">
+
+</form>
 </div>
 
 </body>
