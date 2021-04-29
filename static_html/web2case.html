@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Web2Lead</title>
+  <title>Web2Case form</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -23,6 +23,15 @@
 <!--  <input type="hidden" name="debugEmail"                                  -->
 <!--  value="nin.bui@crosscloudpartners.com">                                 -->
 <!--  ----------------------------------------------------------------------  -->
+<div class="form-group">
+      <label>Type</label>
+        <select class="form-control" id="type" name="type">
+     		<option value="Complaints">Complaints</option>     
+			<option value="Feedback">Feedback</option>
+			<option value="Extra Work Request">Extra Work Request</option>
+			<option value="Account Enquiries">Account Enquiries</option>
+        </select>
+    </div>
     <div class="form-group">
       <label for="name">Contact Name</label>
      
@@ -45,12 +54,7 @@
       <label for="city">Description</label>
       <textarea class="form-control" name="description"></textarea>
     </div>
-    <div class="form-group">
-      <label>Type</label>
-        <select  id="recordType" name="recordType"><option value="">--None--</option><option value="0121s00000012vR">Customer Service</option>
-            <option value="0121s000000136U">Work Order</option>
-        </select>
-    </div>
+    
     <br>
     <button type="submit" class="btn btn-default">Submit</button>
   </form>
