@@ -4,13 +4,11 @@
         <title>Web2Case form</title>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" />
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="https://www.teamforce.net.au/style.min.css" />
     </head>
     <body>
-        <div class="container">
-            <h2>Web2Case form</h2>
+        <div id="mceNonEditable">
+            <div class="enqHeader">Customer Support</div>
             <!--  ----------------------------------------------------------------------  -->
             <!--  NOTE: Please add the following <META> element to your page <HEAD>.      -->
             <!--  If necessary, please modify the charset parameter to specify the        -->
@@ -20,44 +18,67 @@
             <!--  ----------------------------------------------------------------------  -->
             <!--  NOTE: Please add the following <FORM> element to your page.             -->
             <!--  ----------------------------------------------------------------------  -->
+            <div id="enquiry">
+                <form action="https://teamforce1--teamforce2.my.salesforce.com/servlet/servlet.WebToCase?encoding=UTF-8" method="POST">
+                    <input type="hidden" name="orgid" value="00D1s0000008qDX" />
+                    <input type="hidden" name="retURL" value="https://namninh85.github.io/ducati_website/static_html/web2case.html" />
 
-            <form action="https://teamforce1--teamforce2.my.salesforce.com/servlet/servlet.WebToCase?encoding=UTF-8" method="POST">
-                <input type="hidden" name="orgid" value="00D1s0000008qDX" />
-                <input type="hidden" name="retURL" value="https://namninh85.github.io/ducati_website/static_html/web2case.html" />
+                    <!--  ----------------------------------------------------------------------  -->
+                    <!--  NOTE: These fields are optional debugging elements. Please uncomment    -->
+                    <!--  these lines if you wish to test in debug mode.                          -->
+                    <!--  <input type="hidden" name="debug" value=1>                              -->
+                    <!--  <input type="hidden" name="debugEmail"                                  -->
+                    <!--  value="sachin.shrestha@crosscloudpartners.com">                         -->
+                    <!--  ----------------------------------------------------------------------  -->
 
-                <!--  ----------------------------------------------------------------------  -->
-                <!--  NOTE: These fields are optional debugging elements. Please uncomment    -->
-                <!--  these lines if you wish to test in debug mode.                          -->
-                <!--  <input type="hidden" name="debug" value=1>                              -->
-                <!--  <input type="hidden" name="debugEmail"                                  -->
-                <!--  value="sachin.shrestha@crosscloudpartners.com">                         -->
-                <!--  ----------------------------------------------------------------------  -->
-                <div class="form-group">
-                    <label>Type</label>
-                    <select class="form-control" id="type" name="type">
-                        <option value="Complaints">Complaints</option>
-                        <option value="Feedback">Feedback</option>
-                        <option value="Extra Work Request">Extra Work Request</option>
-                        <option value="Account Enquiries">Account Enquiries</option>
-                    </select>
-                </div>
-                <div class="form-group"><label for="subject">SP Number</label><input id="00N1s000001WaJO" maxlength="30" name="00N1s000001WaJO" size="20" type="text" class="form-control" /></div>
+                    <div class="enqRow">
+                        <div class="enqLeft">Type</div>
+                        <div class="enqRight">
+                            <select id="type" name="type">
+                                <option value="Complaints">Complaints</option>
+                                <option value="Feedback">Feedback</option>
+                                <option value="Extra Work Request">Extra Work Request</option>
+                                <option value="Account Enquiries">Account Enquiries</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="enqRow">
+                        <div class="enqLeft">SP Number</div>
+                        <div class="enqRight"><input id="00N1s000001WaJO" maxlength="30" name="00N1s000001WaJO" size="20" type="text" /></div>
+                    </div>
 
-                <div class="form-group"><label for="subject">Subject</label><input id="subject" maxlength="80" name="subject" size="20" type="text" class="form-control" /></div>
-                <div class="form-group"><label for="description">Description</label> <textarea name="description" class="form-control"></textarea></div>
-                <div class="form-group">
-                    <label for="name">Contact Name</label>
-
-                    <input id="name" maxlength="80" name="name" size="20" type="text" required class="form-control" />
-                </div>
-                <div class="form-group"><label for="email">Email</label><input id="email" maxlength="80" name="email" size="20" type="email" required class="form-control" /></div>
-                <div class="form-group"><label for="phone">Phone</label><input id="phone" maxlength="40" name="phone" size="20" type="text" class="form-control" /></div>
-                <div class="form-group"><label for="Address">Address</label><textarea id="00N2v00000VArus" name="00N2v00000VArus" rows="2" type="text" wrap="soft" class="form-control"></textarea></div>
-
-                <br />
-
-                <input type="submit" name="submit" />
-            </form>
+                    <div class="enqRow">
+                        <div class="enqLeft">Subject *</div>
+                        <div class="enqRight"><input id="subject" maxlength="80" name="subject" size="20" type="text" required/></div>
+                    </div>
+                    <div class="enqRow">
+                        <div class="enqLeft">Description *</div>
+                        <div class="enqRight"><textarea name="description" required></textarea></div>
+                    </div>
+                    <div class="enqRow">
+                        <div class="enqLeft">Contact Name *</div>
+                        <div class="enqRight">
+                            <input id="name" maxlength="80" name="name" size="20" type="text" required />
+                        </div>
+                    </div>
+                    <div class="enqRow">
+                        <div class="enqLeft">Email *</div>
+                        <div class="enqRight"><input id="email" maxlength="80" name="email" size="20" type="email" required /></div>
+                    </div>
+                    <div class="enqRow">
+                        <div class="enqLeft">Phone</div>
+                        <div class="enqRight"><input id="phone" maxlength="40" name="phone" size="20" type="text" /></div>
+                    </div>
+                    <div class="enqRow">
+                        <div class="enqLeft">Address</div>
+                        <div class="enqRight"><textarea id="00N2v00000VArus" name="00N2v00000VArus" rows="2" type="text" wrap="soft"></textarea></div>
+                    </div>
+                    <div>* Required fields</div>
+                    <div class="enqRow">
+                        <input type="submit" name="submit" />
+                    </div>
+                </form>
+            </div>
         </div>
     </body>
 </html>
