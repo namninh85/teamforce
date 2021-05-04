@@ -1,0 +1,56 @@
+<div>
+<script>
+function TextCapture(txtid)
+{
+var OriginalValue=document.getElementById("name").value;
+
+document.getElementById("first_name").value=OriginalValue.substr(0,OriginalValue.indexOf(' ')); 
+document.getElementById("last_name").value=OriginalValue.substr(OriginalValue.indexOf(' ')+1);;
+}
+</script>
+</div>
+<form action="https://test.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8" method="POST">
+    <input type="hidden" name="oid" value="00D1s0000008qDX" />
+    <input type="hidden" name="retURL" value="/thank-you.html" />
+    <input type="hidden" id="first_name" maxlength="40" name="first_name" size="20" type="text" /><br>
+
+    <input type="hidden" id="last_name" maxlength="80" name="last_name" size="20" type="text" /><br>
+    
+    <div id="enquiry">
+        <div class="enqHeader"> Online Enquiry </div>
+        <div class="enqRow">
+            <div class="enqLeft"> Name * </div>
+            <div class="enqRight">
+                <input  id="name" maxlength="80" name="name" size="20" onchange="TextCapture(this)" type="text" required/>
+                </div>
+        </div>
+        <div class="enqRow">
+            <div class="enqLeft"> Phone * </div>
+            <div class="enqRight">
+                <input name="phone" maxlength="250" type="text" required/>
+            </div>
+        </div>
+        <div class="enqRow">
+            <div class="enqLeft"> Email * </div>
+            <div class="enqRight">
+                <input  id="email" maxlength="250" name="email" type="email" required/>
+            </div>
+       </div>
+        <div class="enqRow">
+            <div class="enqLeft"> Subject </div>
+            <div class="enqRight">
+                <input name="d_Subject" maxlength="250" type="text">
+                </div>
+        </div>
+        <div class="enqRow">
+                <div class="enqLeft"> Enquiry </div>
+                <div class="enqRight">
+                    <textarea name="description"></textarea>
+                    <div> * Required fields </div>
+        </div>
+            <div class="enqRow">
+                <input class="button" value="Send" type="submit">
+                </div>
+        </div>
+    </div>
+</form>
